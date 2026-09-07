@@ -4,7 +4,7 @@ import { ContactSection } from './components/ContactSection'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
 import { Hero } from './components/Hero'
-import { MethodSection } from './components/MethodSection'
+import { AboutSection } from './components/AboutSection'
 import { ProductSection } from './components/ProductSection'
 import { ProofSection } from './components/ProofSection'
 
@@ -15,13 +15,13 @@ function App() {
     <main>
       <Header menuOpen={menuOpen} onToggleMenu={() => setMenuOpen(!menuOpen)} onNavigate={() => setMenuOpen(false)} />
       <Hero />
-      <section className="statement section-pad reveal-up">
-        <p className="eyebrow">The TerraNook point of view</p>
-        <h2>We believe the future of farming should feel <em>more natural,</em> not less.</h2>
-        <div className="statement-meta"><span>01</span><p>From resilient soil to stronger roots, we design simple materials that help growers do more with what the earth already gives us.</p></div>
+      <AboutSection />
+      <section className="statement section-pad reveal-up" id="story">
+        <p className="eyebrow">The material between</p>
+        <h2>Better growing starts with a material that knows where it <em>came from.</em></h2>
+        <div className="statement-meta"><p>We transform a generous agricultural byproduct into dependable fibre systems for growers, manufacturers, and the landscapes between them.</p><a className="text-link" href="#about">Meet the company <span>↘</span></a></div>
       </section>
       <ProductSection />
-      <MethodSection />
       <ProofSection />
       <ContactSection />
       <Footer />

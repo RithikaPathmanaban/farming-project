@@ -1,29 +1,78 @@
-export const products = [
+export type Product = {
+  number: string
+  title: string
+  text: string
+  benefit: string
+  details: string[]
+  image: string
+  tag: string
+}
+
+export type FactoryStory = {
+  number: string
+  title: string
+  text: string
+  galleryTitle: string
+  images: string[]
+}
+
+export const navigationItems = [
+  ['Products', '#products'],
+  ['About us', '#about'],
+  ['Field notes', '#proof'],
+]
+
+export const products: Product[] = [
   {
     number: '01',
-    title: 'RootRise Media',
-    text: 'Balanced growing media that keeps roots oxygenated, hydrated, and ready for vigorous growth.',
-    image: 'https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?auto=format&fit=crop&w=1200&q=85',
-    tag: 'Growing media',
+    title: 'Curled Coir Rope',
+    text: 'Made from mature chestnut coir fibre with modern production methods, our curled coir rope is valued for its dependable quality and strength.',
+    benefit: 'Twisted for strength and durability',
+    details: ['Specially twisted for stronger, longer-lasting performance', 'Available in varied shades, widths, finishes, and characteristics', 'Production capacity above 400 MT per month', '100% eco-friendly product'],
+    image: '/products/coir_rope.png',
+    tag: 'Coir rope',
   },
   {
     number: '02',
-    title: 'FieldForm Beds',
-    text: 'Durable, ready-to-fill grow beds for high-value crops, greenhouse runs, and urban farms.',
-    image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=1200&q=85',
-    tag: 'Crop systems',
+    title: 'Coir Fibre Bales',
+    text: 'Natural coir fibre bales are produced from the fibrous outer layer of the coconut and secured with plastic straps for reliable quality and utility.',
+    benefit: 'Dense fibre with low moisture',
+    details: ['Higher fibre density', 'High bristle content with low moisture', 'Minimum pith content', 'Well suited to non-woven coir fabric', 'Ideal for rubberized coir made with needle-felt technology'],
+    image: '/products/coir-fibre-bales.png',
+    tag: 'Raw fibre',
   },
   {
     number: '03',
-    title: 'EarthWeave Fibre',
-    text: 'Strong natural fibre for soil protection, surface cover, and practical landscape restoration.',
-    image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1200&q=85',
-    tag: 'Land care',
+    title: 'Coir Peat',
+    text: 'Coir peat is the natural binding material created as a by-product when long fibres are extracted from coconut husk. It is an eco-friendly and biodegradable growing input.',
+    benefit: 'Balanced water and air retention',
+    details: ['High-EC and low-EC coco pith 5 kg blocks', 'High lignin content supports slow degradation and a stable water-air ratio', 'Used as a soil-improving fertilizer', 'Production capacity above 700 MT per month', 'Completely biodegradable, precise in size, and highly eco-friendly'],
+    image: '/products/coir-fibre.png',
+    tag: 'Coir peat',
   },
 ]
 
-export const steps = [
-  ['01', 'Source with care', 'We work with regional growers to turn useful agricultural byproducts into a dependable resource.'],
-  ['02', 'Refine the balance', 'Every batch is cleaned, screened, tested, and tuned for the conditions your crop actually needs.'],
-  ['03', 'Ship with purpose', 'Thoughtful packaging and responsive logistics carry TerraNook from our fields to yours.'],
+export const factoryStories: FactoryStory[] = [
+  {
+    number: '01',
+    title: 'Thaiagam Coir Products',
+    text: 'We supply India\'s leading mattress companies with about 400 MT per month, all from a 100% eco-friendly production unit. Our curled coir product is specifically twisted for better performance, strength, and durability.',
+    galleryTitle: 'Curled coir / coir fibre factory',
+    images: Array.from({ length: 7 }, (_, index) => `/aboutus/COIR%20FIBRE%20FACTORY/p${index + 1}.jpg`),
+  },
+  {
+    number: '02',
+    title: 'Thaiagam Agros',
+    text: 'With an export license from the Coir Board, we export coco peat to European countries and Australia, along with coir fibre to China and other markets. Our high-EC and low-EC coco pith products are used as fertilizers to improve soil quality.',
+    galleryTitle: 'Coir peat factory',
+    images: Array.from({ length: 8 }, (_, index) => `/aboutus/COIR%20PEAT%20FACTORY/p${index + 1}.jpg`),
+  },
 ]
+
+export const proofStats = [
+  ['40', 'years of material knowledge'],
+  ['700mt', 'monthly supply capacity'],
+  ['100%', 'biodegradable coir fibre'],
+  ['12+', 'markets within reach'],
+]
+

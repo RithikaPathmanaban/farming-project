@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react'
+import { navigationItems } from '../content'
+
 type HeaderProps = {
   menuOpen: boolean
   onToggleMenu: () => void
@@ -5,16 +8,23 @@ type HeaderProps = {
 }
 
 export function Header({ menuOpen, onToggleMenu, onNavigate }: HeaderProps) {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 32)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
-    <header className="site-header">
-      <a className="brand" href="#top" aria-label="TerraNook home"><span className="brand-mark">tn</span><span>TerraNook</span></a>
-      <button className="menu-toggle" onClick={onToggleMenu} aria-label="Toggle navigation">{menuOpen ? 'Close' : 'Menu'} <span>↗</span></button>
-      <nav className={menuOpen ? 'nav-links open' : 'nav-links'}>
-        <a href="#products" onClick={onNavigate}>What we grow</a>
-        <a href="#method" onClick={onNavigate}>Our method</a>
-        <a href="#contact" onClick={onNavigate}>Talk to us</a>
+    <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
+      <a className="brand" href="#top" aria-label="Thaiagam home"><span className="brand-mark">th</span><span>THAIAGAM</span></a>
+      <button className="menu-toggle" onClick={onToggleMenu} aria-expanded={menuOpen} aria-controls="primary-navigation" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}><span className="menu-icon" aria-hidden="true"><i /><i /></span><span>{menuOpen ? 'Close' : 'Menu'}</span></button>
+      <nav id="primary-navigation" className={menuOpen ? 'nav-links open' : 'nav-links'} aria-label="Primary navigation">
+        {navigationItems.map(([label, href]) => <a href={href} onClick={onNavigate} key={href}>{label}</a>)}
       </nav>
-      <a className="header-cta" href="#contact">Start a conversation <span>↗</span></a>
+      <a className="header-cta button button-small" href="#contact">Start a conversation <span>↗</span></a>
     </header>
   )
 }
