@@ -1,13 +1,7 @@
 import { useEffect, useState } from 'react'
 import { navigationItems } from '../content'
 
-type HeaderProps = {
-  menuOpen: boolean
-  onToggleMenu: () => void
-  onNavigate: () => void
-}
-
-export function Header({ menuOpen, onToggleMenu, onNavigate }: HeaderProps) {
+export function Header({ menuOpen, onToggleMenu, onNavigate }) {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {

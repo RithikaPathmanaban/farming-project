@@ -1,28 +1,10 @@
-export type Product = {
-  number: string
-  title: string
-  text: string
-  benefit: string
-  details: string[]
-  image: string
-  tag: string
-}
-
-export type FactoryStory = {
-  number: string
-  title: string
-  text: string
-  galleryTitle: string
-  images: string[]
-}
-
 export const navigationItems = [
   ['Products', '#products'],
   ['About us', '#about'],
   ['Field notes', '#proof'],
 ]
 
-export const products: Product[] = [
+export const products = [
   {
     number: '01',
     title: 'Curled Coir Rope',
@@ -52,7 +34,7 @@ export const products: Product[] = [
   },
 ]
 
-export const factoryStories: FactoryStory[] = [
+export const factoryStories = [
   {
     number: '01',
     title: 'Thaiagam Coir Products',
