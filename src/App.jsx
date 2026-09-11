@@ -12,8 +12,8 @@ import { ServicesSection } from './components/ServicesSection'
 import { ProofSection } from './components/ProofSection'
 import { TestimonialsSection } from './components/TestimonialsSection'
 import { LiquidGlassCard } from './components/LiquidGlassCard'
-import { HeritageGauges } from './components/HeritageGauges'
 import { ThemeModal, FloatingThemeTrigger, useThemeState } from './components/ThemeSwitcher'
+
 
 import { contactInfo } from './content'
 import { MessageCircle, ArrowUpRight, Sparkles, CheckCircle2, Award, Factory, TrendingUp, Leaf } from 'lucide-react'
@@ -96,12 +96,49 @@ function App() {
             </div>
           </div>
 
-          {/* Right Column: Interactive Industrial Heritage Gauges Cluster */}
+          {/* Right Column: 2x2 Glass Heritage Stat Showcase */}
           <div className="statement-right-col" data-aos="fade-left" data-aos-delay="100">
-            <HeritageGauges />
+            <div className="statement-stats-grid">
+              <LiquidGlassCard className="statement-stat-card" enableTilt={true}>
+                <div className="statement-stat-icon-row">
+                  <span className="statement-stat-num">1972</span>
+                  <Award className="w-5 h-5 text-accent" />
+                </div>
+                <h4 className="statement-stat-title">Year Established</h4>
+                <p className="statement-stat-desc">More than 40 years of trusted industry leadership & experience</p>
+              </LiquidGlassCard>
+
+              <LiquidGlassCard className="statement-stat-card" enableTilt={true}>
+                <div className="statement-stat-icon-row">
+                  <span className="statement-stat-num">4 Units</span>
+                  <Factory className="w-5 h-5 text-accent" />
+                </div>
+                <h4 className="statement-stat-title">Group Operations</h4>
+                <p className="statement-stat-desc">Specialized raw fibre, curled coir rope, and coco peat facilities</p>
+              </LiquidGlassCard>
+
+              <LiquidGlassCard className="statement-stat-card" enableTilt={true}>
+                <div className="statement-stat-icon-row">
+                  <span className="statement-stat-num">700 MT</span>
+                  <TrendingUp className="w-5 h-5 text-accent" />
+                </div>
+                <h4 className="statement-stat-title">Monthly Capacity</h4>
+                <p className="statement-stat-desc">Over 400 MT curled coir & 700 MT coir peat products produced monthly</p>
+              </LiquidGlassCard>
+
+              <LiquidGlassCard className="statement-stat-card" enableTilt={true}>
+                <div className="statement-stat-icon-row">
+                  <span className="statement-stat-num">100%</span>
+                  <Leaf className="w-5 h-5 text-accent" />
+                </div>
+                <h4 className="statement-stat-title">Eco-Friendly</h4>
+                <p className="statement-stat-desc">100% biodegradable and natural materials produced using modern innovation</p>
+              </LiquidGlassCard>
+            </div>
           </div>
         </div>
       </section>
+
 
 
       <AboutSection />

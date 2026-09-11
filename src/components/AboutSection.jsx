@@ -1,141 +1,93 @@
 import { useState } from 'react'
 import { factoryStories } from '../content'
-import { Factory, ArrowUpRight, Maximize2, X, ShieldCheck, ChevronRight, Check } from 'lucide-react'
+import { LiquidGlassCard } from './LiquidGlassCard'
+import { Factory, ArrowUpRight, Maximize2, X, ShieldCheck } from 'lucide-react'
 
 export function AboutSection() {
-  const [selectedUnitIdx, setSelectedUnitIdx] = useState(0)
-  const [activePhotoIdx, setActivePhotoIdx] = useState(0)
+  const [selectedFactoryIdx, setSelectedFactoryIdx] = useState(0)
   const [activeModalImg, setActiveModalImg] = useState(null)
 
-  const activeFactory = factoryStories[selectedUnitIdx]
-  const currentImages = activeFactory.images
-  const featuredImage = currentImages[activePhotoIdx] || currentImages[0]
+  const activeFactory = factoryStories[selectedFactoryIdx]
 
   return (
     <section className="about-section section-pad" id="about">
       <div className="section-head-wrap" data-aos="fade-up">
         <div>
           <span className="liquid-badge">
-            <Factory className="w-3.5 h-3.5" /> Group Units
+            <Factory className="w-3.5 h-3.5" /> About Thaiagam
           </span>
           <h2 className="section-title">
-            About <em>Thaiagam Group.</em>
+            About <em>Us.</em>
           </h2>
         </div>
         <p className="section-subtitle">
-          Established in 1972 with over 40 years of industrial excellence. Our group operates four specialized manufacturing units for curled coir rope, coir fibre bales, and coco peat export.
+          Thaiagam group of companies since 1972 has more than 40 years of experiences in coir products. Our group comprises of four units.
         </p>
       </div>
 
-      {/* Interactive Unit Segmented Switcher */}
-      <div className="unit-switch-bar" data-aos="fade-up" data-aos-delay="60">
+      {/* Factory Switcher Tabs */}
+      <div className="factory-tab-bar" data-aos="fade-up" data-aos-delay="100">
         {factoryStories.map((factory, index) => (
           <button
             key={factory.number}
-            type="button"
-            onClick={() => {
-              setSelectedUnitIdx(index)
-              setActivePhotoIdx(0)
-            }}
-            className={`unit-switch-btn ${index === selectedUnitIdx ? 'is-active' : ''}`}
+            onClick={() => setSelectedFactoryIdx(index)}
+            className={`factory-nav-tab ${index === selectedFactoryIdx ? 'active' : ''}`}
           >
-            <span className="unit-btn-num">Unit 0{index + 1}</span>
-            <span className="unit-btn-title">{factory.title}</span>
+            <span className="tab-unit-num">Unit 0{index + 1}</span>
+            <span className="tab-unit-title">{factory.title}</span>
           </button>
         ))}
       </div>
 
-      {/* Industrial Inspection Console */}
-      <div className="factory-console-card" data-aos="fade-up" data-aos-delay="120">
-        <div className="console-grid-layout">
-          {/* Left Column: Unit Dossier & Operational Capabilities */}
-          <div className="console-dossier-col">
-            <div className="dossier-meta-badge">
-              <ShieldCheck className="w-4 h-4 text-accent" />
-              <span>Dedicated Group Unit 0{selectedUnitIdx + 1}</span>
-            </div>
-
-            <h3 className="dossier-title">{activeFactory.title}</h3>
-            <p className="dossier-desc-text">{activeFactory.text}</p>
-
-            {/* Key Technical Operational Capabilities */}
-            <div className="dossier-specs-list">
-              <div className="dossier-spec-item">
-                <Check className="w-4 h-4 text-accent" />
-                <span>
-                  {selectedUnitIdx === 0
-                    ? '400+ MT / Month Curled Coir Rope specifically twisted for mattresses'
-                    : '700+ MT / Month High & Low EC Coco Pith for global agriculture'}
-                </span>
-              </div>
-              <div className="dossier-spec-item">
-                <Check className="w-4 h-4 text-accent" />
-                <span>
-                  {selectedUnitIdx === 0
-                    ? '100% natural, biodegradable raw coconut husks sourced from South India'
-                    : 'Export-grade packaging with direct port dispatch to Europe, China & Australia'}
-                </span>
-              </div>
-              <div className="dossier-spec-item">
-                <Check className="w-4 h-4 text-accent" />
-                <span>
-                  {selectedUnitIdx === 0
-                    ? 'Continuous decortication machinery with hydraulic compression balers'
-                    : 'Natural sun-cured open yards ensuring optimal low moisture ratios'}
-                </span>
-              </div>
-            </div>
-
-            <div className="dossier-cta-row">
-              <a href="#contact" className="button button-light">
-                <span>Inquire With Unit 0{selectedUnitIdx + 1}</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </a>
-              <span className="dossier-photo-counter">
-                Photo {activePhotoIdx + 1} of {currentImages.length}
+      {/* Active Factory Profile Card */}
+      <div className="factory-profile-container" data-aos="fade-up" data-aos-delay="150">
+        <LiquidGlassCard className="factory-profile-card" enableTilt={false}>
+          <div className="factory-meta-row">
+            <div className="factory-title-block">
+              <span className="factory-unit-tag">
+                <ShieldCheck className="w-3.5 h-3.5 text-accent" /> Group Unit 0{selectedFactoryIdx + 1}
               </span>
+              <h3 className="factory-heading">{activeFactory.title}</h3>
             </div>
+            <a href="#contact" className="factory-inquire-cta button button-small">
+              <span>Contact Unit</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
           </div>
 
-          {/* Right Column: Featured Live Inspection Stage */}
-          <div className="console-stage-col">
-            <div
-              className="console-main-photo-wrap"
-              onClick={() => setActiveModalImg(featuredImage)}
-              role="button"
-              tabIndex={0}
-              aria-label="Click to enlarge factory photo"
-            >
-              <img
-                src={featuredImage}
-                alt={`${activeFactory.galleryTitle} view ${activePhotoIdx + 1}`}
-                className="console-featured-img"
-              />
-              <div className="console-photo-glass-overlay">
-                <span className="console-live-tag">Live Facility Inspection</span>
-                <div className="console-zoom-pill">
-                  <Maximize2 className="w-4 h-4" />
-                  <span>Enlarge HD View</span>
-                </div>
-              </div>
+          <p className="factory-description-text">{activeFactory.text}</p>
+
+          {/* Gallery Showcase */}
+          <div className="factory-gallery-zone">
+            <div className="gallery-header-row">
+              <h4 className="gallery-section-title">{activeFactory.galleryTitle}</h4>
+              <span className="gallery-count-chip">{activeFactory.images.length} Factory Photos</span>
             </div>
 
-            {/* Interactive Filmstrip Thumbnails Strip */}
-            <div className="console-filmstrip-row">
-              {currentImages.map((img, idx) => (
-                <button
+            <div className="factory-image-masonry">
+              {activeFactory.images.map((img, imgIdx) => (
+                <div
                   key={img}
-                  type="button"
-                  onClick={() => setActivePhotoIdx(idx)}
-                  className={`console-thumb-pill ${idx === activePhotoIdx ? 'is-selected' : ''}`}
-                  aria-label={`Select photo ${idx + 1}`}
+                  className="gallery-thumb-wrap"
+                  onClick={() => setActiveModalImg(img)}
+                  data-aos="zoom-in"
+                  data-aos-delay={imgIdx * 60}
                 >
-                  <img src={img} alt={`Thumb ${idx + 1}`} className="console-thumb-img" />
-                </button>
+                  <img
+                    src={img}
+                    alt={`${activeFactory.galleryTitle} view ${imgIdx + 1}`}
+                    loading="lazy"
+                    className="gallery-thumb-img"
+                  />
+                  <div className="gallery-hover-overlay">
+                    <Maximize2 className="w-5 h-5" />
+                    <span>View Image</span>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
-        </div>
+        </LiquidGlassCard>
       </div>
 
       {/* Lightbox Modal */}
@@ -161,5 +113,3 @@ export function AboutSection() {
     </section>
   )
 }
-
-export default AboutSection
