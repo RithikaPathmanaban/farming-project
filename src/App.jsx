@@ -13,8 +13,14 @@ import { ProofSection } from './components/ProofSection'
 import { TestimonialsSection } from './components/TestimonialsSection'
 import { LiquidGlassCard } from './components/LiquidGlassCard'
 import { ThemeModal, FloatingThemeTrigger, useThemeState } from './components/ThemeSwitcher'
+import { TrustMarqueeSection } from './components/sections/TrustMarqueeSection'
+import { ProcessTimelineSection } from './components/sections/ProcessTimelineSection'
+import { GlobalExportSection } from './components/sections/GlobalExportSection'
+import { FaqSection } from './components/sections/FaqSection'
+import { BackToTop } from './components/ui/BackToTop'
 import { contactInfo } from './content'
 import { MessageCircle, ArrowUpRight, Sparkles, CheckCircle2, Award, Factory, TrendingUp, Leaf } from 'lucide-react'
+
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -51,6 +57,9 @@ function App() {
       />
 
       <Hero />
+
+      {/* Instant Trust & Performance KPI Marquee Ticker */}
+      <TrustMarqueeSection />
 
       {/* Philosophy Statement Banner with Authentic Thaiagam Content */}
       <section className="statement-banner section-pad" id="story" data-aos="fade-up">
@@ -143,13 +152,26 @@ function App() {
 
       <ProductSection />
 
+      {/* End-to-End Manufacturing Process Timeline */}
+      <ProcessTimelineSection />
+
+      {/* Global Export Footprint & Seaport Logistics */}
+      <GlobalExportSection />
+
       <ProofSection />
 
       <TestimonialsSection />
 
+      {/* B2B Export & Technical FAQ Accordion */}
+      <FaqSection />
+
       <ContactSection />
 
       <Footer />
+
+      {/* Floating Back to Top Button */}
+      <BackToTop threshold={320} />
+
 
       {/* Floating WhatsApp Quick Contact using authentic phone number */}
       <a
