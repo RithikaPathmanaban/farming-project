@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { LiquidGlassCard } from './LiquidGlassCard'
-import { contactInfo, products } from '../content'
-import { Mail, Phone, MapPin, Send, CheckCircle2, MessageSquare, User, Loader2, Sparkles, MessageCircle, ArrowUpRight } from 'lucide-react'
+import { contactInfo } from '../content'
+import { Mail, Phone, MapPin, Send, CheckCircle2, MessageSquare, Loader2, MessageCircle, ArrowUpRight } from 'lucide-react'
 
 const RECIPIENT_EMAIL = 'rithikapathmanaban1804@gmail.com'
 
@@ -124,47 +124,54 @@ export function ContactSection() {
             Operating from Dindigul, Tamil Nadu, our leadership team handles direct export communications, domestic mattress factory supply contracts, and bulk dispatch schedules.
           </p>
 
-          <div className="contact-details-cards">
+          <div className="contact-quick-cards">
             {/* Direct Dial Desk */}
-            <div className="contact-info-card">
-              <div className="contact-card-icon-wrap">
+            <div className="contact-card-item">
+              <div className="contact-card-icon">
                 <Phone className="w-5 h-5 text-accent" />
               </div>
-              <div className="contact-card-text">
-                <span className="contact-card-label">Direct Leadership Desk</span>
-                <p className="contact-leaders-name">{contactInfo.leaders}</p>
-                <div className="contact-phone-links">
-                  {contactInfo.phones.map((phone) => (
-                    <a key={phone} href={`tel:${phone}`} className="phone-link-pill">
-                      +91 {phone}
-                    </a>
+              <div>
+                <span className="contact-card-lbl">Direct Leadership Desk</span>
+                <span className="contact-card-val">{contactInfo.leaders}</span>
+                <div className="contact-card-phones" style={{ marginTop: '0.35rem' }}>
+                  {contactInfo.phones.map((phone, idx) => (
+                    <span key={phone} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                      {idx > 0 && <span className="phone-sep">/</span>}
+                      <a href={`tel:${phone}`} className="contact-card-val" style={{ margin: 0 }}>
+                        +91 {phone}
+                      </a>
+                    </span>
                   ))}
                 </div>
               </div>
             </div>
 
             {/* Email Dispatch */}
-            <div className="contact-info-card">
-              <div className="contact-card-icon-wrap">
+            <div className="contact-card-item">
+              <div className="contact-card-icon">
                 <Mail className="w-5 h-5 text-accent" />
               </div>
-              <div className="contact-card-text">
-                <span className="contact-card-label">Official Inquiry Inbox</span>
-                <a href={`mailto:${contactInfo.email}`} className="contact-email-link">
+              <div>
+                <span className="contact-card-lbl">Official Inquiry Inbox</span>
+                <a href={`mailto:${contactInfo.email}`} className="contact-card-val">
                   {contactInfo.email}
                 </a>
-                <span className="contact-sub-hint">Typical quote response within 2-4 hours</span>
+                <span style={{ display: 'block', fontSize: '0.74rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
+                  Typical quote response within 2–4 hours
+                </span>
               </div>
             </div>
 
             {/* Headquarters & Processing Hub */}
-            <div className="contact-info-card">
-              <div className="contact-card-icon-wrap">
+            <div className="contact-card-item">
+              <div className="contact-card-icon">
                 <MapPin className="w-5 h-5 text-accent" />
               </div>
-              <div className="contact-card-text">
-                <span className="contact-card-label">Registered Office & Mill Location</span>
-                <address className="contact-address-text">{contactInfo.address}</address>
+              <div>
+                <span className="contact-card-lbl">Registered Office & Mill Location</span>
+                <address className="contact-card-val" style={{ fontStyle: 'normal', lineHeight: 1.5 }}>
+                  {contactInfo.address}
+                </address>
               </div>
             </div>
           </div>
@@ -190,11 +197,11 @@ export function ContactSection() {
           </div>
         </div>
 
-        {/* Right Column: Interactive Inquiry Configurator Form */}
+        {/* Right Column: Liquid Glass Inquiry Form */}
         <div className="contact-form-col" data-aos="fade-left" data-aos-delay="100">
-          <div className="inquiry-configurator-card">
+          <LiquidGlassCard className="contact-glass-form-card" enableTilt={false}>
             {submitted ? (
-              <div className="form-success-pane" role="status" aria-live="polite">
+              <div className="contact-success-state" role="status" aria-live="polite">
                 <div className="success-icon-bubble">
                   <CheckCircle2 className="w-10 h-10 text-accent" />
                 </div>
@@ -204,41 +211,31 @@ export function ContactSection() {
                   <strong>{submittedData.product || 'Coir Products'}</strong> has been registered directly at our desk.
                 </p>
 
-                <div className="success-summary-box">
-                  <div className="success-row">
-                    <span>Contact Phone:</span>
-                    <strong>+91 {submittedData.phone}</strong>
-                  </div>
-                  <div className="success-row">
-                    <span>Email Address:</span>
-                    <strong>{submittedData.email}</strong>
-                  </div>
-                  {submittedData.message && (
-                    <div className="success-row-full">
-                      <span>Inquiry Specification:</span>
-                      <p>&ldquo;{submittedData.message}&rdquo;</p>
-                    </div>
-                  )}
+                <div className="success-target-email-badge">
+                  <Mail className="w-4 h-4 text-accent" />
+                  <span>Delivered to: <strong>{RECIPIENT_EMAIL}</strong></span>
                 </div>
 
-                <button
-                  type="button"
-                  className="button button-light reset-form-btn"
-                  onClick={() => {
-                    setSubmitted(false)
-                    setFormData({ name: '', email: '', phone: '', product: '', message: '' })
-                    setSelectedProductChip('')
-                    setSelectedTonnageChip('')
-                  }}
-                >
-                  Send Another Inquiry
-                </button>
+                <div className="success-actions-row">
+                  <button
+                    type="button"
+                    className="button button-light success-reset-btn"
+                    onClick={() => {
+                      setSubmitted(false)
+                      setFormData({ name: '', email: '', phone: '', product: '', message: '' })
+                      setSelectedProductChip('')
+                      setSelectedTonnageChip('')
+                    }}
+                  >
+                    <span>Send Another Inquiry</span>
+                  </button>
+                </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="modern-inquiry-form">
-                <div className="form-header-bar">
-                  <h3 className="form-title">Commercial Supply Inquiry</h3>
-                  <span className="form-badge-accent">Direct Factory Quote</span>
+              <form onSubmit={handleSubmit} className="rfq-form">
+                <div className="rfq-form-heading">
+                  <h4>Commercial Supply Inquiry</h4>
+                  <span>Direct Factory Quote Desk · Typical response in 2–4 hours</span>
                 </div>
 
                 {/* 1. Interactive One-Tap Product Selector Chips */}
@@ -276,12 +273,10 @@ export function ContactSection() {
                   </div>
                 </div>
 
-                {/* 3. Input Fields */}
-                <div className="form-fields-grid">
-                  <div className="form-field-item">
-                    <label htmlFor="contact-name" className="field-label">
-                      Your Full Name *
-                    </label>
+                {/* 3. Input Fields in Form Rows */}
+                <div className="form-row-duo">
+                  <div className="form-field-wrap">
+                    <label htmlFor="contact-name">Your Full Name *</label>
                     <input
                       type="text"
                       id="contact-name"
@@ -290,14 +285,11 @@ export function ContactSection() {
                       placeholder="e.g. Mr. Sriram / Mr. Zhang"
                       value={formData.name}
                       onChange={handleChange}
-                      className="field-input"
                     />
                   </div>
 
-                  <div className="form-field-item">
-                    <label htmlFor="contact-email" className="field-label">
-                      Email Address *
-                    </label>
+                  <div className="form-field-wrap">
+                    <label htmlFor="contact-email">Email Address *</label>
                     <input
                       type="email"
                       id="contact-email"
@@ -306,14 +298,13 @@ export function ContactSection() {
                       placeholder="name@company.com"
                       value={formData.email}
                       onChange={handleChange}
-                      className="field-input"
                     />
                   </div>
+                </div>
 
-                  <div className="form-field-item">
-                    <label htmlFor="contact-phone" className="field-label">
-                      Phone / WhatsApp Number *
-                    </label>
+                <div className="form-row-duo">
+                  <div className="form-field-wrap">
+                    <label htmlFor="contact-phone">Phone / WhatsApp Number *</label>
                     <input
                       type="tel"
                       id="contact-phone"
@@ -322,14 +313,11 @@ export function ContactSection() {
                       placeholder="+91 98421 19772"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="field-input"
                     />
                   </div>
 
-                  <div className="form-field-item">
-                    <label htmlFor="contact-product" className="field-label">
-                      Specific Product Focus
-                    </label>
+                  <div className="form-field-wrap">
+                    <label htmlFor="contact-product">Specific Product Focus</label>
                     <input
                       type="text"
                       id="contact-product"
@@ -337,30 +325,26 @@ export function ContactSection() {
                       placeholder="e.g. Curled Coir Rope 400 MT"
                       value={formData.product || selectedProductChip}
                       onChange={handleChange}
-                      className="field-input"
                     />
                   </div>
                 </div>
 
-                <div className="form-field-item field-item-full">
-                  <label htmlFor="contact-message" className="field-label">
-                    Contract Message / Specific Requirements
-                  </label>
+                <div className="form-field-wrap">
+                  <label htmlFor="contact-message">Contract Message / Specific Requirements</label>
                   <textarea
                     id="contact-message"
                     name="message"
-                    rows="3"
+                    rows={4}
                     placeholder="Enter required destination port, bale specifications, or delivery schedule..."
                     value={formData.message}
                     onChange={handleChange}
-                    className="field-input field-textarea"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="button button-light form-submit-btn"
+                  className="button button-light rfq-submit-btn"
                 >
                   {isSubmitting ? (
                     <>
@@ -376,7 +360,7 @@ export function ContactSection() {
                 </button>
               </form>
             )}
-          </div>
+          </LiquidGlassCard>
         </div>
       </div>
 
