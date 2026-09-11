@@ -25,13 +25,17 @@ export const heroSlides = [
   },
 ]
 
+const BASE_URL = import.meta.env.BASE_URL || '/'
+export const getAsset = (path) => `${BASE_URL}${path.replace(/^\//, '')}`
+
 export const products = [
   {
     number: '01',
+
     id: 'curled-coir-rope',
     title: 'Curled Coir Rope',
     tag: 'Coir Rope',
-    image: '/products/coir_rope.png',
+    image: getAsset('products/coir_rope.png'),
     text: 'The Curled Coir that we produce from Coconut Fiber is profoundly regarded for its quality and strength. Our mastery in the field has made us a standout amongst the most presumed coconut coir rope fabricator. We manufacture the Curled Coir rope out of matured chestnut Coir Fiber, which is produced using present day innovation.',
     benefit: 'Specially twisted for better performance, strength and durability',
     details: [
@@ -46,7 +50,7 @@ export const products = [
     id: 'coir-fibre-bales',
     title: 'Coir Fibre Bales',
     tag: 'Raw Fibre',
-    image: '/products/coir-fibre-bales.png',
+    image: getAsset('products/coir-fibre-bales.png'),
     text: 'Our Natural Coir Fibre bales highly regarded for its quality of water-resistant and impenetrable to salt water. Coconut Coir Fiber is removed from the stringy external front of the Coconut Plant. Coir Fiber is baled with the help of plastic straps, to guarantee its high quality and utility.',
     benefit: 'High bristle content and low moisture',
     details: [
@@ -62,7 +66,7 @@ export const products = [
     id: 'coir-peat',
     title: 'Coir Peat',
     tag: 'Coco Pith',
-    image: '/products/coir-fibre.png',
+    image: getAsset('products/coir-fibre.png'),
     text: 'Coco Coir Peat is the coupling material that originates from the fiber part of the coconut husk. It is produced as the bi-product when the extraction of long fibers from the husk is processed. We manufacture products which are eco-friendly and biodegradable.',
     benefit: 'Wide range of High EC & Low EC Coco Pith 5Kg Blocks',
     details: [
@@ -81,7 +85,7 @@ export const services = [
     number: '01',
     title: 'Manufacturing & Raw Material Handling',
     tag: 'Factory Operations',
-    image: '/aboutus/Services/Ourfactory.jpg',
+    image: getAsset('aboutus/Services/Ourfactory.jpg'),
     description: 'First grade manufacturer of coir fibre utilizing modern machinery and equipment. Our factory yard handles raw coconut husks with heavy hydraulic loaders to maintain consistent, high-volume production for 400-700 MT per month.',
     stats: '400 - 700 MT / Month',
     features: [
@@ -95,7 +99,7 @@ export const services = [
     number: '02',
     title: 'Curled Coir Rope Supply & Logistics',
     tag: 'Mattress Industry Supply',
-    image: '/aboutus/Services/Thaiagamcoirproducts.jpg',
+    image: getAsset('aboutus/Services/Thaiagamcoirproducts.jpg'),
     description: 'Supplying India’s leading mattress manufacturers with over 400 MT per month. Our curled coir rope is specifically twisted for superior resilience and durability, loaded and dispatched via dedicated transport across Tamil Nadu, Kerala, Karnataka, and nationwide.',
     stats: '400+ MT Monthly Supply',
     features: [
@@ -109,7 +113,7 @@ export const services = [
     number: '03',
     title: 'Natural Sun-Drying & Quality Sorting',
     tag: 'Natural Curing',
-    image: '/aboutus/Services/Thaiagamagros.jpg',
+    image: getAsset('aboutus/Services/Thaiagamagros.jpg'),
     description: 'Extensive open-air sun-drying yards under natural sunlight ensuring optimal low moisture levels and high bristle content. Handled by experienced craftsmen to guarantee superior fibre thickness before baling.',
     stats: 'Sun Cured Yards',
     features: [
@@ -123,7 +127,7 @@ export const services = [
     number: '04',
     title: 'Bulk Coco Peat & Agro Distribution',
     tag: 'Domestic & Overseas',
-    image: '/aboutus/Services/ouragroproducts.jpg',
+    image: getAsset('aboutus/Services/ouragroproducts.jpg'),
     description: 'Mechanized loader-to-truck loading operations for High EC & Low EC Coco Pith products and coir bales. Prepared for agricultural soil enhancement, horticulture, and international export container shipping.',
     stats: 'High & Low EC Coco Pith',
     features: [
@@ -140,14 +144,14 @@ export const factoryStories = [
     title: 'Thaiagam Coir Products',
     text: 'We supply to the India’s leading mattress companies about 400mt per month and it is 100% eco-friendly. Our production unit produces more than 400 MT/month of 100% eco-friendly curled coir product. Our curled coir rope is specifically twisted for better performance, strength and durability.',
     galleryTitle: 'Curled Coir / Coir Fibre Factory',
-    images: Array.from({ length: 7 }, (_, index) => `/aboutus/COIR%20FIBRE%20FACTORY/p${index + 1}.jpg`),
+    images: Array.from({ length: 7 }, (_, index) => getAsset(`aboutus/COIR%20FIBRE%20FACTORY/p${index + 1}.jpg`)),
   },
   {
     number: '02',
     title: 'Thaiagam Agros',
     text: 'We are exporting coco peat to European countries and Australia. We also export coir Fibre to China and numerous other countries. We offer a wide range of High EC & Low EC Coco Pith products. Our Coir/Coco peat products are used as fertilizers to improve soil quality.',
     galleryTitle: 'Coir Peat Factory',
-    images: Array.from({ length: 8 }, (_, index) => `/aboutus/COIR%20PEAT%20FACTORY/p${index + 1}.jpg`),
+    images: Array.from({ length: 8 }, (_, index) => getAsset(`aboutus/COIR%20PEAT%20FACTORY/p${index + 1}.jpg`)),
   },
 ]
 

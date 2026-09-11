@@ -2,12 +2,14 @@
   "name": "farming-react-web",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://RithikaPathmanaban.github.io/farming-project",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "animejs": "^4.5.0",
