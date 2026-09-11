@@ -146,21 +146,6 @@ export function ContactSection() {
               </div>
             </div>
 
-            {/* Email Dispatch */}
-            <div className="contact-card-item">
-              <div className="contact-card-icon">
-                <Mail className="w-5 h-5 text-accent" />
-              </div>
-              <div>
-                <span className="contact-card-lbl">Official Inquiry Inbox</span>
-                <a href={`mailto:${contactInfo.email}`} className="contact-card-val">
-                  {contactInfo.email}
-                </a>
-                <span style={{ display: 'block', fontSize: '0.74rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
-                  Typical quote response within 2–4 hours
-                </span>
-              </div>
-            </div>
 
             {/* Headquarters & Processing Hub */}
             <div className="contact-card-item">
