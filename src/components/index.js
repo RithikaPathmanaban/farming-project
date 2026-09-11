@@ -18,8 +18,3 @@ export { Footer } from './Footer';
 export { ThemeSwitcher } from './ThemeSwitcher';
 export { LiquidGlassCard } from './LiquidGlassCard';
 
-// Interactive Feature Sections
-export { TrustMarqueeSection } from './sections/TrustMarqueeSection';
-export { ProcessTimelineSection } from './sections/ProcessTimelineSection';
-export { GlobalExportSection } from './sections/GlobalExportSection';
-export { FaqSection } from './sections/FaqSection';
