@@ -48,6 +48,290 @@
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+/* --------------------------------------------------------------------------
+   CURATED COMBINATION THEMES (8 DISTINCT ATMOSPHERES)
+   -------------------------------------------------------------------------- */
+
+/* 1. Emerald Heritage (Default / Evergreen Forest) */
+[data-theme="emerald"],
+:root {
+  --bg-dark: #071914;
+  --bg-darker: #040e0b;
+  --bg-surface: #0c261e;
+  --bg-surface-light: #14372c;
+  --gold: #efc86d;
+  --gold-glow: rgba(239, 200, 109, 0.35);
+  --gold-subtle: rgba(239, 200, 109, 0.15);
+  --gold-border: rgba(239, 200, 109, 0.45);
+  --bronze: #d99036;
+  --sprout: #36c275;
+  --lime: #d8e46a;
+  --clay: #ca7252;
+  --text-white: #ffffff;
+  --text-paper: #f1f4ec;
+  --text-muted: #9eb5aa;
+  --text-dim: #6e8479;
+  --glass-border-hover: rgba(239, 200, 109, 0.45);
+
+  /* Aesthetic Tokens */
+  --btn-gradient: linear-gradient(135deg, #efc86d 0%, #d99036 100%);
+  --btn-color: #0c1a14;
+  --headline-gradient: linear-gradient(135deg, #efc86d 30%, #f6e3a8 70%, #d99036);
+  --hero-overlay: linear-gradient(115deg, rgba(7, 25, 20, 0.94) 0%, rgba(12, 38, 30, 0.84) 42%, rgba(55, 34, 15, 0.68) 100%), radial-gradient(circle at 18% 22%, rgba(239, 200, 109, 0.22), transparent 35%), radial-gradient(circle at 85% 78%, rgba(54, 194, 117, 0.25), transparent 40%);
+  --theme-bg-pattern: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(54, 194, 117, 0.15), transparent 70%), radial-gradient(circle at 90% 80%, rgba(239, 200, 109, 0.08), transparent 40%);
+  --radius-card: 1.5rem;
+  --radius-btn: 9999px;
+  --radius-badge: 9999px;
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-sans: 'Outfit', sans-serif;
+}
+
+/* 2. Terra Earth & Clay (Warm Agricultural Earth & Coconut Husk) */
+[data-theme="terra"] {
+  --bg-dark: #18110c;
+  --bg-darker: #0f0a07;
+  --bg-surface: #271b14;
+  --bg-surface-light: #38271d;
+  --gold: #f09a5b;
+  --gold-glow: rgba(240, 154, 91, 0.35);
+  --gold-subtle: rgba(240, 154, 91, 0.15);
+  --gold-border: rgba(240, 154, 91, 0.45);
+  --bronze: #e07a5f;
+  --sprout: #81b29a;
+  --lime: #f4a261;
+  --clay: #d97757;
+  --text-white: #ffffff;
+  --text-paper: #f7ede2;
+  --text-muted: #bda393;
+  --text-dim: #8c7365;
+  --glass-border-hover: rgba(240, 154, 91, 0.45);
+
+  /* Aesthetic Tokens */
+  --btn-gradient: linear-gradient(135deg, #f09a5b 0%, #e07a5f 100%);
+  --btn-color: #170d07;
+  --headline-gradient: linear-gradient(135deg, #f09a5b 30%, #fceade 70%, #e07a5f);
+  --hero-overlay: linear-gradient(115deg, rgba(24, 17, 12, 0.96) 0%, rgba(39, 27, 20, 0.88) 42%, rgba(50, 25, 15, 0.75) 100%), radial-gradient(circle at 18% 22%, rgba(240, 154, 91, 0.28), transparent 40%), radial-gradient(circle at 85% 78%, rgba(224, 122, 95, 0.25), transparent 45%);
+  --theme-bg-pattern: radial-gradient(circle at 15% 20%, rgba(240, 154, 91, 0.16), transparent 45%), radial-gradient(ellipse at 85% 60%, rgba(224, 122, 95, 0.14), transparent 50%), radial-gradient(circle at 50% 100%, rgba(217, 119, 87, 0.12), transparent 40%);
+  --radius-card: 1.35rem;
+  --radius-btn: 14px;
+  --radius-badge: 8px;
+  --font-heading: 'Fraunces', Georgia, serif;
+  --font-sans: 'Outfit', sans-serif;
+}
+
+/* 3. Midnight Cyber Sprout (Modern High-Tech Agritech) */
+[data-theme="cyber-sprout"] {
+  --bg-dark: #0a0e14;
+  --bg-darker: #05080c;
+  --bg-surface: #111822;
+  --bg-surface-light: #182332;
+  --gold: #00f59b;
+  --gold-glow: rgba(0, 245, 155, 0.35);
+  --gold-subtle: rgba(0, 245, 155, 0.15);
+  --gold-border: rgba(0, 245, 155, 0.45);
+  --bronze: #38bdf8;
+  --sprout: #10e785;
+  --lime: #5eead4;
+  --clay: #06b6d4;
+  --text-white: #ffffff;
+  --text-paper: #e6f1f5;
+  --text-muted: #8ca3ba;
+  --text-dim: #5c748c;
+  --glass-border-hover: rgba(0, 245, 155, 0.45);
+
+  /* Aesthetic Tokens */
+  --btn-gradient: linear-gradient(135deg, #00f59b 0%, #38bdf8 100%);
+  --btn-color: #030d09;
+  --headline-gradient: linear-gradient(135deg, #00f59b 30%, #a7f3d0 70%, #38bdf8);
+  --hero-overlay: linear-gradient(115deg, rgba(10, 14, 20, 0.96) 0%, rgba(17, 24, 34, 0.88) 42%, rgba(10, 25, 35, 0.8) 100%), radial-gradient(circle at 18% 22%, rgba(0, 245, 155, 0.25), transparent 40%), radial-gradient(circle at 85% 78%, rgba(56, 189, 248, 0.25), transparent 45%);
+  --theme-bg-pattern: linear-gradient(rgba(0, 245, 155, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 245, 155, 0.05) 1px, transparent 1px), radial-gradient(circle at 50% 10%, rgba(0, 245, 155, 0.18), transparent 60%), radial-gradient(circle at 85% 70%, rgba(56, 189, 248, 0.15), transparent 50%);
+  --radius-card: 8px;
+  --radius-btn: 6px;
+  --radius-badge: 4px;
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-sans: 'Space Grotesk', sans-serif;
+}
+
+/* 4. Golden Sunset & Harvest (Golden Hour Sun-Drying Yards) */
+[data-theme="golden-harvest"] {
+  --bg-dark: #1a1309;
+  --bg-darker: #100b05;
+  --bg-surface: #2a1e0f;
+  --bg-surface-light: #3b2b16;
+  --gold: #fbb034;
+  --gold-glow: rgba(251, 176, 52, 0.35);
+  --gold-subtle: rgba(251, 176, 52, 0.15);
+  --gold-border: rgba(251, 176, 52, 0.45);
+  --bronze: #f15a24;
+  --sprout: #a3e635;
+  --lime: #fde047;
+  --clay: #ea580c;
+  --text-white: #ffffff;
+  --text-paper: #fef8eb;
+  --text-muted: #bfa98e;
+  --text-dim: #8f795f;
+  --glass-border-hover: rgba(251, 176, 52, 0.45);
+
+  /* Aesthetic Tokens */
+  --btn-gradient: linear-gradient(135deg, #fbb034 0%, #f15a24 100%);
+  --btn-color: #170d03;
+  --headline-gradient: linear-gradient(135deg, #fbb034 30%, #fef3c7 70%, #f15a24);
+  --hero-overlay: linear-gradient(115deg, rgba(26, 19, 9, 0.96) 0%, rgba(42, 30, 15, 0.88) 42%, rgba(65, 35, 10, 0.75) 100%), radial-gradient(circle at 18% 22%, rgba(251, 176, 52, 0.3), transparent 40%), radial-gradient(circle at 85% 78%, rgba(241, 90, 36, 0.25), transparent 45%);
+  --theme-bg-pattern: radial-gradient(ellipse 90% 60% at 20% 10%, rgba(251, 176, 52, 0.2), transparent 60%), radial-gradient(circle at 80% 80%, rgba(241, 90, 36, 0.16), transparent 50%), radial-gradient(circle at 50% 50%, rgba(251, 176, 52, 0.06), transparent 70%);
+  --radius-card: 1.4rem;
+  --radius-btn: 12px;
+  --radius-badge: 8px;
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-sans: 'Outfit', sans-serif;
+}
+
+/* 5. Ocean Coast & Deep Marine (Coastal Coconut Groves & Global Shipping) */
+[data-theme="ocean-coast"] {
+  --bg-dark: #08141e;
+  --bg-darker: #040b12;
+  --bg-surface: #0f2231;
+  --bg-surface-light: #173248;
+  --gold: #38bdf8;
+  --gold-glow: rgba(56, 189, 248, 0.35);
+  --gold-subtle: rgba(56, 189, 248, 0.15);
+  --gold-border: rgba(56, 189, 248, 0.45);
+  --bronze: #2dd4bf;
+  --sprout: #34d399;
+  --lime: #7dd3fc;
+  --clay: #0284c7;
+  --text-white: #ffffff;
+  --text-paper: #ecf9ff;
+  --text-muted: #94afc2;
+  --text-dim: #607d91;
+  --glass-border-hover: rgba(56, 189, 248, 0.45);
+
+  /* Aesthetic Tokens */
+  --btn-gradient: linear-gradient(135deg, #38bdf8 0%, #2dd4bf 100%);
+  --btn-color: #031520;
+  --headline-gradient: linear-gradient(135deg, #38bdf8 30%, #e0f2fe 70%, #2dd4bf);
+  --hero-overlay: linear-gradient(115deg, rgba(8, 20, 30, 0.96) 0%, rgba(15, 34, 49, 0.88) 42%, rgba(5, 40, 55, 0.75) 100%), radial-gradient(circle at 18% 22%, rgba(56, 189, 248, 0.28), transparent 40%), radial-gradient(circle at 85% 78%, rgba(45, 212, 191, 0.25), transparent 45%);
+  --theme-bg-pattern: radial-gradient(ellipse 70% 50% at 80% 20%, rgba(56, 189, 248, 0.2), transparent 50%), radial-gradient(ellipse 90% 70% at 10% 80%, rgba(45, 212, 191, 0.16), transparent 55%), radial-gradient(circle at 50% 30%, rgba(2, 132, 199, 0.12), transparent 60%);
+  --radius-card: 1.65rem;
+  --radius-btn: 9999px;
+  --radius-badge: 9999px;
+  --font-heading: 'Outfit', sans-serif;
+  --font-sans: 'Outfit', sans-serif;
+}
+
+/* 6. Royal Amethyst & Orchid (Luxury Organic Fibre Export) */
+[data-theme="royal-amethyst"] {
+  --bg-dark: #140d1e;
+  --bg-darker: #0c0613;
+  --bg-surface: #221633;
+  --bg-surface-light: #312048;
+  --gold: #c084fc;
+  --gold-glow: rgba(192, 132, 252, 0.35);
+  --gold-subtle: rgba(192, 132, 252, 0.15);
+  --gold-border: rgba(192, 132, 252, 0.45);
+  --bronze: #f472b6;
+  --sprout: #a855f7;
+  --lime: #e879f9;
+  --clay: #9333ea;
+  --text-white: #ffffff;
+  --text-paper: #f9f4fe;
+  --text-muted: #b59ecb;
+  --text-dim: #846d9a;
+  --glass-border-hover: rgba(192, 132, 252, 0.45);
+
+  /* Aesthetic Tokens */
+  --btn-gradient: linear-gradient(135deg, #c084fc 0%, #f472b6 100%);
+  --btn-color: #150622;
+  --headline-gradient: linear-gradient(135deg, #c084fc 30%, #fae8ff 70%, #f472b6);
+  --hero-overlay: linear-gradient(115deg, rgba(20, 13, 30, 0.96) 0%, rgba(34, 22, 51, 0.88) 42%, rgba(45, 15, 55, 0.75) 100%), radial-gradient(circle at 18% 22%, rgba(192, 132, 252, 0.3), transparent 40%), radial-gradient(circle at 85% 78%, rgba(244, 114, 182, 0.22), transparent 45%);
+  --theme-bg-pattern: radial-gradient(circle at 85% 15%, rgba(192, 132, 252, 0.22), transparent 50%), radial-gradient(circle at 15% 75%, rgba(244, 114, 182, 0.16), transparent 45%), radial-gradient(ellipse at 50% 40%, rgba(147, 51, 234, 0.12), transparent 60%);
+  --radius-card: 1.25rem;
+  --radius-btn: 10px;
+  --radius-badge: 6px;
+  --font-heading: 'Fraunces', Georgia, serif;
+  --font-sans: 'Outfit', sans-serif;
+}
+
+/* 7. Nordic Sage & Frost (Clean Minimal Eco Botanical) */
+[data-theme="nordic-sage"] {
+  --bg-dark: #0d1715;
+  --bg-darker: #070e0d;
+  --bg-surface: #162522;
+  --bg-surface-light: #1f3430;
+  --gold: #6ee7b7;
+  --gold-glow: rgba(110, 231, 183, 0.35);
+  --gold-subtle: rgba(110, 231, 183, 0.15);
+  --gold-border: rgba(110, 231, 183, 0.45);
+  --bronze: #5eead4;
+  --sprout: #a7f3d0;
+  --lime: #86efac;
+  --clay: #14b8a6;
+  --text-white: #ffffff;
+  --text-paper: #effaf6;
+  --text-muted: #9cb5ae;
+  --text-dim: #6a857e;
+  --glass-border-hover: rgba(110, 231, 183, 0.45);
+
+  /* Aesthetic Tokens */
+  --btn-gradient: linear-gradient(135deg, #6ee7b7 0%, #5eead4 100%);
+  --btn-color: #061914;
+  --headline-gradient: linear-gradient(135deg, #6ee7b7 30%, #f0fdf4 70%, #5eead4);
+  --hero-overlay: linear-gradient(115deg, rgba(13, 23, 21, 0.96) 0%, rgba(22, 37, 34, 0.88) 42%, rgba(15, 45, 38, 0.75) 100%), radial-gradient(circle at 18% 22%, rgba(110, 231, 183, 0.25), transparent 40%), radial-gradient(circle at 85% 78%, rgba(94, 234, 212, 0.22), transparent 45%);
+  --theme-bg-pattern: linear-gradient(180deg, rgba(110, 231, 183, 0.08) 0%, transparent 40%), radial-gradient(circle at 80% 30%, rgba(94, 234, 212, 0.15), transparent 50%), radial-gradient(circle at 20% 70%, rgba(167, 243, 208, 0.12), transparent 45%);
+  --radius-card: 1.85rem;
+  --radius-btn: 9999px;
+  --radius-badge: 9999px;
+  --font-heading: 'Outfit', sans-serif;
+  --font-sans: 'Outfit', sans-serif;
+}
+
+/* 8. Coir Craft & Raw Flax (Artisan Spun Rope & Natural Fibres) */
+[data-theme="coir-craft"] {
+  --bg-dark: #181512;
+  --bg-darker: #0f0d0a;
+  --bg-surface: #26201a;
+  --bg-surface-light: #362e26;
+  --gold: #e5b869;
+  --gold-glow: rgba(229, 184, 105, 0.35);
+  --gold-subtle: rgba(229, 184, 105, 0.15);
+  --gold-border: rgba(229, 184, 105, 0.45);
+  --bronze: #c28b49;
+  --sprout: #94a372;
+  --lime: #d4af37;
+  --clay: #a66a38;
+  --text-white: #ffffff;
+  --text-paper: #f8f4ed;
+  --text-muted: #b9aea1;
+  --text-dim: #887d6f;
+  --glass-border-hover: rgba(229, 184, 105, 0.45);
+
+  /* Aesthetic Tokens */
+  --btn-gradient: linear-gradient(135deg, #e5b869 0%, #c28b49 100%);
+  --btn-color: #171109;
+  --headline-gradient: linear-gradient(135deg, #e5b869 30%, #fef3c7 70%, #c28b49);
+  --hero-overlay: linear-gradient(115deg, rgba(24, 21, 18, 0.96) 0%, rgba(38, 32, 26, 0.88) 42%, rgba(55, 38, 22, 0.75) 100%), radial-gradient(circle at 18% 22%, rgba(229, 184, 105, 0.28), transparent 40%), radial-gradient(circle at 85% 78%, rgba(194, 139, 73, 0.22), transparent 45%);
+  --theme-bg-pattern: radial-gradient(ellipse at 30% 20%, rgba(229, 184, 105, 0.18), transparent 50%), radial-gradient(circle at 70% 80%, rgba(194, 139, 73, 0.16), transparent 45%), radial-gradient(circle at 50% 50%, rgba(166, 106, 56, 0.1), transparent 60%);
+  --radius-card: 1.15rem;
+  --radius-btn: 10px;
+  --radius-badge: 6px;
+  --font-heading: 'Fraunces', Georgia, serif;
+  --font-sans: 'Outfit', sans-serif;
+}
+
+/* Smooth Theme Transitions */
+body,
+.site-wrapper,
+.liquid-header-bar,
+.liquid-glass-card,
+.statement-banner,
+.factory-story-item,
+.product-showcase-card,
+.footer-wrapper,
+.stat-card-glass,
+.quote-highlight-card,
+.contact-glass-card {
+  transition: background-color 0.45s ease, border-color 0.45s ease, color 0.35s ease, box-shadow 0.45s ease;
+}
+
 /* ==========================================================================
    GLOBAL BASE
    ========================================================================== */
@@ -73,8 +357,49 @@ body {
 
 .site-wrapper {
   position: relative;
-  background: var(--bg-dark);
+  background-color: var(--bg-dark);
+  background-image: var(--theme-bg-pattern);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: repeat, repeat, no-repeat, no-repeat;
   overflow: hidden;
+  transition: background-color 0.45s ease, background-image 0.45s ease;
+}
+
+/* Dynamic Atmospheric Theme Glow Orbs */
+.theme-ambient-glow-orb {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0.28;
+  transition: all 0.75s ease;
+  mix-blend-mode: screen;
+}
+
+.theme-ambient-glow-orb.orb-1 {
+  width: min(48vw, 650px);
+  height: min(48vw, 650px);
+  top: -120px;
+  right: -80px;
+  background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+}
+
+.theme-ambient-glow-orb.orb-2 {
+  width: min(52vw, 720px);
+  height: min(52vw, 720px);
+  top: 38%;
+  left: -200px;
+  background: radial-gradient(circle, var(--sprout) 0%, transparent 70%);
+}
+
+.theme-ambient-glow-orb.orb-3 {
+  width: min(48vw, 660px);
+  height: min(48vw, 660px);
+  bottom: 8%;
+  right: -150px;
+  background: radial-gradient(circle, var(--bronze) 0%, transparent 70%);
 }
 
 a {
@@ -177,9 +502,9 @@ button {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
-  border-radius: 1.5rem;
+  border-radius: var(--radius-card);
   box-shadow: var(--glass-shadow), var(--glass-inner-glow);
-  transition: border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease, border-radius 0.45s ease;
   will-change: transform;
 }
 
@@ -218,7 +543,7 @@ button {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  border-radius: 9999px;
+  border-radius: var(--radius-btn);
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 600;
@@ -229,15 +554,15 @@ button {
 
 .button-light {
   padding: 0.95rem 1.8rem;
-  background: linear-gradient(135deg, #efc86d, #db994f);
-  color: #1a1608;
+  background: var(--btn-gradient);
+  color: var(--btn-color);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 14px 30px rgba(239, 200, 109, 0.28);
+  box-shadow: 0 14px 30px var(--gold-glow);
 }
 
 .button-light:hover {
   transform: translateY(-2px);
-  box-shadow: 0 20px 38px rgba(239, 200, 109, 0.4);
+  box-shadow: 0 20px 38px var(--gold-glow);
   filter: brightness(1.06);
 }
 
@@ -289,9 +614,9 @@ button {
 }
 
 .liquid-header-wrapper.is-scrolled .liquid-header-bar {
-  background: rgba(5, 20, 15, 0.94);
-  border-color: rgba(239, 200, 109, 0.35);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6), 0 0 20px rgba(239, 200, 109, 0.15);
+  background: var(--bg-surface);
+  border-color: var(--gold-border);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6), 0 0 20px var(--gold-subtle);
 }
 
 .liquid-brand {
@@ -307,9 +632,9 @@ button {
   width: 2.3rem;
   height: 2.3rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold), var(--bronze));
-  color: #121008;
-  box-shadow: 0 4px 14px rgba(239, 200, 109, 0.35);
+  background: var(--btn-gradient);
+  color: var(--btn-color);
+  box-shadow: 0 4px 14px var(--gold-glow);
   flex-shrink: 0;
 }
 
@@ -437,11 +762,11 @@ button {
 }
 
 .header-phone-link:hover {
-  background: rgba(239, 200, 109, 0.2);
+  background: var(--gold-subtle);
   border-color: var(--gold);
   color: var(--gold);
   transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(239, 200, 109, 0.25);
+  box-shadow: 0 4px 15px var(--gold-glow);
 }
 
 .liquid-cta-btn {
@@ -451,9 +776,9 @@ button {
   gap: 0.45rem;
   height: 2.35rem;
   padding: 0 1.25rem;
-  border-radius: 9999px;
-  background: linear-gradient(135deg, #efc86d 0%, #db994f 100%);
-  color: #121008;
+  border-radius: var(--radius-btn);
+  background: var(--btn-gradient);
+  color: var(--btn-color);
   border: 1px solid rgba(255, 255, 255, 0.3);
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -463,13 +788,13 @@ button {
   text-decoration: none;
   white-space: nowrap;
   flex-shrink: 0;
-  box-shadow: 0 4px 16px rgba(239, 200, 109, 0.3);
+  box-shadow: 0 4px 16px var(--gold-glow);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .liquid-cta-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(239, 200, 109, 0.45);
+  box-shadow: 0 8px 24px var(--gold-glow);
   filter: brightness(1.08);
 }
 
@@ -515,10 +840,8 @@ button {
 .hero-liquid-overlay {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(115deg, rgba(6, 26, 20, 0.95) 0%, rgba(11, 37, 29, 0.84) 42%, rgba(55, 34, 15, 0.68) 100%),
-    radial-gradient(circle at 18% 22%, rgba(239, 200, 109, 0.22), transparent 35%),
-    radial-gradient(circle at 85% 78%, rgba(54, 194, 117, 0.25), transparent 40%);
+  background: var(--hero-overlay);
+  transition: background 0.6s ease;
 }
 
 .hero-grid-lines {
@@ -562,7 +885,7 @@ button {
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 400;
-  background: linear-gradient(135deg, #efc86d 30%, #f6e3a8 70%, #d89947);
+  background: var(--headline-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -731,8 +1054,8 @@ button {
 .cap-tag-pill {
   display: inline-block;
   padding: 0.25rem 0.65rem;
-  border-radius: 4px;
-  background: rgba(239, 200, 109, 0.15);
+  border-radius: var(--radius-badge);
+  background: var(--gold-subtle);
   color: var(--gold);
   font-family: var(--font-mono);
   font-size: 0.65rem;
@@ -807,14 +1130,15 @@ button {
   width: 6.8rem;
   height: 6.8rem;
   border-radius: 50%;
-  background: rgba(6, 26, 20, 0.92);
-  border: 1.5px solid rgba(239, 200, 109, 0.5);
+  background: var(--bg-surface);
+  border: 1.5px solid var(--gold);
   backdrop-filter: blur(16px);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 24px rgba(239, 200, 109, 0.2);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 24px var(--gold-glow);
   display: grid;
   place-items: center;
   z-index: 10;
   animation: float-stamp 5s ease-in-out infinite;
+  transition: all 0.45s ease;
 }
 
 @keyframes float-stamp {
@@ -990,7 +1314,7 @@ button {
 }
 
 .statement-secondary-link:hover {
-  background: rgba(239, 200, 109, 0.15);
+  background: var(--gold-subtle);
   border-color: var(--gold);
   color: #fff;
   transform: translateX(3px);
@@ -1009,16 +1333,16 @@ button {
 
 .statement-stat-card {
   padding: 1.6rem;
-  border-radius: 1.4rem;
+  border-radius: calc(var(--radius-card) * 0.85);
   background: linear-gradient(155deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
   border: 1px solid rgba(255, 255, 255, 0.14);
   transition: all 0.35s ease;
 }
 
 .statement-stat-card:hover {
-  border-color: rgba(239, 200, 109, 0.4);
+  border-color: var(--gold-border);
   transform: translateY(-4px);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4), 0 0 20px rgba(239, 200, 109, 0.1);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4), 0 0 20px var(--gold-subtle);
 }
 
 .statement-stat-icon-row {
@@ -1254,9 +1578,9 @@ button {
 
 .product-inquire-btn:hover {
   background: var(--gold);
-  color: #121008;
+  color: var(--btn-color);
   border-color: var(--gold);
-  box-shadow: 0 10px 25px rgba(239, 200, 109, 0.35);
+  box-shadow: 0 10px 25px var(--gold-glow);
 }
 
 /* ==========================================================================
@@ -1289,7 +1613,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(13, 31, 24, 0.7);
+  background: var(--bg-surface);
   border: 1px solid rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(12px);
   color: var(--text-white);
@@ -1300,10 +1624,10 @@ button {
 
 .carousel-arrow-btn:hover {
   background: var(--gold);
-  color: #0b1c14;
+  color: var(--btn-color);
   border-color: var(--gold);
   transform: scale(1.08);
-  box-shadow: 0 10px 25px rgba(239, 200, 109, 0.35);
+  box-shadow: 0 10px 25px var(--gold-glow);
 }
 
 .carousel-arrow-btn:active {
@@ -1333,18 +1657,18 @@ button {
 }
 
 .service-minimal-card {
-  border-radius: 1.6rem;
+  border-radius: var(--radius-card);
   overflow: hidden;
   position: relative;
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
-  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease, border-radius 0.45s ease;
 }
 
 .service-minimal-card:hover {
-  border-color: rgba(239, 200, 109, 0.5);
-  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.6), 0 0 30px rgba(239, 200, 109, 0.15);
+  border-color: var(--gold-border);
+  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.6), 0 0 30px var(--gold-subtle);
 }
 
 .service-card-media-wrap {
@@ -1476,7 +1800,7 @@ button {
 .carousel-dot-pill.active {
   width: 52px;
   background: var(--gold);
-  box-shadow: 0 0 14px rgba(239, 200, 109, 0.5);
+  box-shadow: 0 0 14px var(--gold-glow);
 }
 
 @media (max-width: 768px) {
@@ -1531,11 +1855,11 @@ button {
   max-height: 90vh;
   display: flex;
   flex-direction: column;
-  border-radius: 1.2rem;
+  border-radius: var(--radius-card);
   overflow: hidden;
-  background: rgba(10, 24, 18, 0.95);
+  background: var(--bg-surface);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(239, 200, 109, 0.15);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 40px var(--gold-subtle);
 }
 
 .factory-modal-close,
@@ -1883,14 +2207,14 @@ button {
   align-items: center;
   gap: 0.6rem;
   padding: 0.65rem 1.25rem;
-  border-radius: 9999px;
-  background: rgba(6, 26, 20, 0.85);
-  border: 1px solid rgba(239, 200, 109, 0.4);
+  border-radius: var(--radius-badge);
+  background: var(--bg-surface);
+  border: 1px solid var(--gold-border);
   backdrop-filter: blur(12px);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--text-white);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 16px var(--gold-subtle);
 }
 
 .proof-lead-text {
@@ -2056,9 +2380,9 @@ button {
   place-items: center;
   width: 2.6rem;
   height: 2.6rem;
-  border-radius: 0.8rem;
-  background: rgba(239, 200, 109, 0.15);
-  border: 1px solid rgba(239, 200, 109, 0.3);
+  border-radius: var(--radius-badge);
+  background: var(--gold-subtle);
+  border: 1px solid var(--gold-border);
   color: var(--gold);
 }
 
@@ -2176,8 +2500,8 @@ button {
   place-items: center;
   width: 2.8rem;
   height: 2.8rem;
-  border-radius: 0.8rem;
-  background: rgba(239, 200, 109, 0.15);
+  border-radius: var(--radius-badge);
+  background: var(--gold-subtle);
   color: var(--gold);
   flex-shrink: 0;
 }
@@ -2293,7 +2617,7 @@ button {
   outline: none;
   border-color: var(--gold);
   background: rgba(0, 0, 0, 0.55);
-  box-shadow: 0 0 0 3px rgba(239, 200, 109, 0.15);
+  box-shadow: 0 0 0 3px var(--gold-subtle);
 }
 
 .form-field-wrap input::placeholder,
@@ -2302,7 +2626,7 @@ button {
 }
 
 .form-field-wrap select option {
-  background: #081d18;
+  background: var(--bg-surface);
   color: var(--text-white);
 }
 
@@ -2328,7 +2652,7 @@ button {
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
-  background: rgba(239, 200, 109, 0.15);
+  background: var(--gold-subtle);
   border: 1px solid var(--gold);
   margin-bottom: 1.5rem;
 }
@@ -2348,15 +2672,14 @@ button {
   max-width: 480px;
 }
 
-
 .success-target-email-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1.1rem;
-  background: rgba(239, 200, 109, 0.12);
-  border: 1px solid rgba(239, 200, 109, 0.35);
-  border-radius: 9999px;
+  background: var(--gold-subtle);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-badge);
   font-family: var(--font-mono);
   font-size: 0.8rem;
   color: var(--gold);
@@ -2686,7 +3009,7 @@ button {
     transition: all 0.25s ease;
   }
   .liquid-menu-toggle:hover {
-    background: rgba(239, 200, 109, 0.2);
+    background: var(--gold-subtle);
     border-color: var(--gold);
     color: var(--gold);
   }
@@ -2699,8 +3022,8 @@ button {
     flex-direction: column;
     align-items: stretch;
     padding: 1.5rem;
-    border-radius: 1.5rem;
-    background: rgba(6, 26, 20, 0.96);
+    border-radius: var(--radius-card);
+    background: var(--bg-surface);
     border: 1px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(24px);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
@@ -2735,7 +3058,7 @@ button {
     justify-content: center;
     gap: 0.6rem;
     padding: 0.85rem 1.2rem;
-    border-radius: 9999px;
+    border-radius: var(--radius-btn);
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.18);
     font-family: var(--font-mono);
@@ -2746,7 +3069,7 @@ button {
     transition: all 0.25s ease;
   }
   .mobile-drawer-phone:hover {
-    background: rgba(239, 200, 109, 0.2);
+    background: var(--gold-subtle);
     color: var(--gold);
     border-color: var(--gold);
   }
@@ -2757,9 +3080,9 @@ button {
     gap: 0.5rem;
     width: 100%;
     padding: 0.85rem 1.2rem;
-    border-radius: 9999px;
-    background: linear-gradient(135deg, #efc86d 0%, #db994f 100%);
-    color: #121008;
+    border-radius: var(--radius-btn);
+    background: var(--btn-gradient);
+    color: var(--btn-color);
     font-family: var(--font-mono);
     font-size: 0.8rem;
     font-weight: 700;
@@ -2834,7 +3157,7 @@ button {
     left: 0;
     right: 0;
     height: 3.5rem;
-    background: linear-gradient(to bottom, transparent 0%, rgba(6, 26, 20, 0.94) 85%, rgba(6, 26, 20, 1) 100%);
+    background: linear-gradient(to bottom, transparent 0%, var(--bg-dark) 85%, var(--bg-dark) 100%);
     pointer-events: none;
   }
   .product-expand-toggle-btn {
@@ -2845,7 +3168,7 @@ button {
     width: 100%;
     margin: 0.6rem 0 1.25rem;
     padding: 0.65rem 1rem;
-    border-radius: 0.75rem;
+    border-radius: var(--radius-btn);
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.14);
     font-family: var(--font-mono);
@@ -2857,8 +3180,8 @@ button {
     transition: all 0.25s ease;
   }
   .product-expand-toggle-btn:hover {
-    background: rgba(239, 200, 109, 0.15);
-    border-color: rgba(239, 200, 109, 0.4);
+    background: var(--gold-subtle);
+    border-color: var(--gold-border);
     color: #ffffff;
   }
   .expand-chevron-icon {
@@ -3100,5 +3423,368 @@ button {
   }
   .counter-number {
     font-size: 2rem;
+  }
+}
+
+/* ==========================================================================
+   THEME STUDIO & PALETTE SWITCHER UI
+   ========================================================================== */
+
+/* Header Theme Button */
+.header-theme-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-paper);
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: all 0.25s var(--ease-smooth);
+  cursor: pointer;
+}
+
+.header-theme-btn:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--gold);
+  color: var(--text-white);
+  box-shadow: 0 0 16px var(--gold-glow);
+  transform: translateY(-1px);
+}
+
+.theme-btn-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 8px var(--gold);
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+/* Floating Quick Switcher Pill */
+.floating-theme-trigger {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 99;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.65rem 1.15rem;
+  border-radius: 999px;
+  background: var(--bg-surface);
+  border: 1px solid var(--glass-border);
+  color: var(--text-paper);
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45), 0 0 18px var(--gold-glow);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  cursor: pointer;
+  transition: all 0.3s var(--ease-smooth);
+}
+
+.floating-theme-trigger:hover {
+  transform: translateY(-3px) scale(1.03);
+  border-color: var(--gold);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 28px var(--gold-glow);
+  color: var(--text-white);
+}
+
+.floating-theme-trigger .theme-btn-dot {
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.35); opacity: 1; box-shadow: 0 0 12px var(--gold); }
+}
+
+/* Theme Studio Modal Backdrop */
+.theme-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  animation: modal-fade-in 0.28s var(--ease-smooth);
+}
+
+@keyframes modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Theme Studio Panel */
+.theme-modal-panel {
+  position: relative;
+  width: 100%;
+  max-width: 860px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--bg-surface);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.65), 0 0 35px var(--gold-glow);
+  color: var(--text-paper);
+  animation: modal-slide-up 0.32s var(--ease-spring);
+}
+
+@keyframes modal-slide-up {
+  from { transform: translateY(24px) scale(0.96); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.theme-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.theme-modal-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.theme-modal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  background: var(--glass-bg);
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  width: fit-content;
+}
+
+.theme-modal-title {
+  font-family: var(--font-heading);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin: 0.2rem 0 0;
+  letter-spacing: -0.02em;
+}
+
+.theme-modal-subtitle {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.theme-modal-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.theme-modal-close-btn:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--gold);
+  color: var(--text-white);
+  transform: rotate(90deg);
+}
+
+/* 8 Theme Grid */
+.theme-studio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+/* Individual Theme Option Card */
+.theme-card-option {
+  position: relative;
+  text-align: left;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.15rem 1.15rem 1.25rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: all 0.25s var(--ease-smooth);
+}
+
+.theme-card-option:hover {
+  background: var(--glass-bg-hover);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.theme-card-option.is-active {
+  background: var(--bg-surface-light);
+  border-color: var(--gold);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 20px var(--gold-glow);
+}
+
+.theme-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+/* Color Palette Swatches */
+.theme-swatches-strip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.theme-swatch-circle {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+.theme-card-active-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: var(--glass-bg);
+  border: 1px solid var(--gold);
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+}
+
+.theme-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.theme-card-name {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-white);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.theme-card-tag-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.theme-card-tag {
+  font-size: 0.74rem;
+  font-family: var(--font-mono);
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.theme-card-aesthetic-badge {
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  color: var(--text-dim);
+  letter-spacing: 0.02em;
+}
+
+.theme-card-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-top: 0.2rem;
+}
+
+/* Modal Footer */
+.theme-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--glass-border);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.theme-modal-footer-note {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+}
+
+.theme-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-paper);
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.theme-reset-btn:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--gold);
+  color: var(--text-white);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .theme-modal-panel {
+    padding: 1.25rem;
+    max-height: 85vh;
+  }
+  .theme-studio-grid {
+    grid-template-columns: 1fr;
+  }
+  .floating-theme-trigger {
+    bottom: 16px;
+    right: 16px;
+    padding: 0.55rem 0.95rem;
+    font-size: 0.78rem;
+  }
+  .theme-modal-title {
+    font-size: 1.35rem;
   }
 }

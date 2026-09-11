@@ -12,11 +12,14 @@ import { ServicesSection } from './components/ServicesSection'
 import { ProofSection } from './components/ProofSection'
 import { TestimonialsSection } from './components/TestimonialsSection'
 import { LiquidGlassCard } from './components/LiquidGlassCard'
+import { ThemeModal, FloatingThemeTrigger, useThemeState } from './components/ThemeSwitcher'
 import { contactInfo } from './content'
 import { MessageCircle, ArrowUpRight, Sparkles, CheckCircle2, Award, Factory, TrendingUp, Leaf } from 'lucide-react'
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [currentTheme, setCurrentTheme] = useThemeState()
+  const [themeModalOpen, setThemeModalOpen] = useState(false)
 
   useEffect(() => {
     AOS.init({
@@ -35,10 +38,16 @@ function App() {
 
   return (
     <main className="site-wrapper">
+      {/* Dynamic Theme Atmospheric Ambient Glow Orbs */}
+      <div className="theme-ambient-glow-orb orb-1" aria-hidden="true" />
+      <div className="theme-ambient-glow-orb orb-2" aria-hidden="true" />
+      <div className="theme-ambient-glow-orb orb-3" aria-hidden="true" />
+
       <Header
         menuOpen={menuOpen}
         onToggleMenu={() => setMenuOpen(!menuOpen)}
         onNavigate={() => setMenuOpen(false)}
+        onOpenThemeModal={() => setThemeModalOpen(true)}
       />
 
       <Hero />
@@ -154,6 +163,20 @@ function App() {
         <MessageCircle className="w-6 h-6" />
         <span className="whatsapp-tooltip">Chat with Thaiagam</span>
       </a>
+
+      {/* Floating Quick Theme Switcher Pill (Bottom Left) */}
+      <FloatingThemeTrigger
+        onClick={() => setThemeModalOpen(true)}
+        currentTheme={currentTheme}
+      />
+
+      {/* Atmospheric Theme Studio Modal */}
+      <ThemeModal
+        isOpen={themeModalOpen}
+        onClose={() => setThemeModalOpen(false)}
+        currentTheme={currentTheme}
+        onSelectTheme={setCurrentTheme}
+      />
     </main>
   )
 }
