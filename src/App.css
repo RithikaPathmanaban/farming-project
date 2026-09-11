@@ -328,8 +328,10 @@ body,
 .footer-wrapper,
 .stat-card-glass,
 .quote-highlight-card,
-.contact-glass-card {
-  transition: background-color 0.45s ease, border-color 0.45s ease, color 0.35s ease, box-shadow 0.45s ease;
+.contact-glass-card,
+.gauge-instrument-card,
+.gauge-ring-circle {
+  transition: background-color 0.45s ease, border-color 0.45s ease, color 0.35s ease, box-shadow 0.45s ease, stroke 0.45s ease, filter 0.45s ease;
 }
 
 /* ==========================================================================
@@ -4762,15 +4764,14 @@ button {
   stroke-width: 6;
   stroke-linecap: round;
   filter: drop-shadow(0 0 8px var(--gold-glow));
+  transition: stroke 0.45s ease, filter 0.45s ease;
 }
 
-.gauge-ring-orange {
-  stroke: var(--gold);
-}
-
+.gauge-ring-orange,
 .gauge-ring-green {
-  stroke: var(--sprout);
-  filter: drop-shadow(0 0 8px var(--sprout));
+  stroke: var(--gold);
+  filter: drop-shadow(0 0 8px var(--gold-glow));
+  transition: stroke 0.45s ease, filter 0.45s ease;
 }
 
 .gauge-dial-center {
@@ -4788,6 +4789,7 @@ button {
   width: 1.15rem;
   height: 1.15rem;
   color: var(--gold);
+  transition: color 0.45s ease;
 }
 
 .gauge-center-num {

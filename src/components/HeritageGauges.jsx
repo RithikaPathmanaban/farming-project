@@ -102,8 +102,8 @@ export function HeritageGauges() {
               cy="62"
               r="52"
               strokeDasharray="327"
-              strokeDashoffset="82"
-              data-target-offset="82"
+              strokeDashoffset="0"
+              data-target-offset="0"
             />
           </svg>
           <div className="gauge-dial-center">
@@ -149,13 +149,13 @@ export function HeritageGauges() {
           <svg className="gauge-svg-ring" viewBox="0 0 124 124">
             <circle className="gauge-bg-track" cx="62" cy="62" r="52" />
             <circle
-              className="gauge-ring-circle gauge-ring-orange"
+              className="gauge-ring-circle"
               cx="62"
               cy="62"
               r="52"
               strokeDasharray="327"
-              strokeDashoffset="49"
-              data-target-offset="49"
+              strokeDashoffset="0"
+              data-target-offset="0"
             />
           </svg>
           <div className="gauge-dial-center">
@@ -175,7 +175,7 @@ export function HeritageGauges() {
           <svg className="gauge-svg-ring" viewBox="0 0 124 124">
             <circle className="gauge-bg-track" cx="62" cy="62" r="52" />
             <circle
-              className="gauge-ring-circle gauge-ring-green"
+              className="gauge-ring-circle"
               cx="62"
               cy="62"
               r="52"
