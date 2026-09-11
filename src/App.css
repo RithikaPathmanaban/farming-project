@@ -5225,6 +5225,47 @@ button {
   box-shadow: 0 4px 14px var(--gold-glow);
 }
 
+.product-specs-toggle-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.specs-expand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--radius-btn);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--gold-border);
+  color: var(--gold);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.specs-expand-btn:hover,
+.specs-expand-btn.is-active {
+  background: var(--gold);
+  color: var(--btn-color);
+  box-shadow: 0 6px 20px var(--gold-glow);
+  transform: translateY(-2px);
+}
+
+.specs-chevron {
+  transition: transform 0.3s ease;
+}
+
+.specs-chevron.is-rotated {
+  transform: rotate(180deg);
+}
+
 .product-view-switcher {
   display: inline-flex;
   align-items: center;

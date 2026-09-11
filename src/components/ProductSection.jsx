@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { products } from '../content'
 import { LiquidGlassCard } from './LiquidGlassCard'
-import { ArrowUpRight, Check, Sparkles, SlidersHorizontal, LayoutGrid, Table, CheckCircle2, ChevronDown } from 'lucide-react'
+import { ArrowUpRight, Check, Sparkles, Table, CheckCircle2, ChevronDown } from 'lucide-react'
 
 // Technical specifications comparison matrix
 const productSpecsData = [
@@ -116,13 +116,7 @@ function ProductCardItem({ product }) {
 }
 
 export function ProductSection() {
-  const [selectedFilter, setSelectedFilter] = useState('all')
-  const [viewMode, setViewMode] = useState('cards') // 'cards' | 'specs'
-
-  const filteredProducts =
-    selectedFilter === 'all'
-      ? products
-      : products.filter((p) => p.tag.toLowerCase().includes(selectedFilter.toLowerCase()))
+  const [showSpecs, setShowSpecs] = useState(false)
 
   return (
     <section className="products-section section-pad" id="products">
@@ -140,85 +134,29 @@ export function ProductSection() {
         </p>
       </div>
 
-      {/* Interactive Control Bar: Category Tabs + View Switcher */}
-      <div className="product-stage-controls" data-aos="fade-up" data-aos-delay="50">
-        {/* Category Filter Pills */}
-        <div className="product-category-filters" role="tablist">
-          <button
-            type="button"
-            role="tab"
-            aria-selected={selectedFilter === 'all'}
-            className={`stage-filter-btn ${selectedFilter === 'all' ? 'is-active' : ''}`}
-            onClick={() => setSelectedFilter('all')}
-          >
-            All Products ({products.length})
-          </button>
-          <button
-            type="button"
-            role="tab"
-            aria-selected={selectedFilter === 'rope'}
-            className={`stage-filter-btn ${selectedFilter === 'rope' ? 'is-active' : ''}`}
-            onClick={() => setSelectedFilter('rope')}
-          >
-            Curled Coir Rope
-          </button>
-          <button
-            type="button"
-            role="tab"
-            aria-selected={selectedFilter === 'fibre'}
-            className={`stage-filter-btn ${selectedFilter === 'fibre' ? 'is-active' : ''}`}
-            onClick={() => setSelectedFilter('fibre')}
-          >
-            Fibre Bales
-          </button>
-          <button
-            type="button"
-            role="tab"
-            aria-selected={selectedFilter === 'peat'}
-            className={`stage-filter-btn ${selectedFilter === 'peat' ? 'is-active' : ''}`}
-            onClick={() => setSelectedFilter('peat')}
-          >
-            Coir Peat
-          </button>
-        </div>
-
-        {/* View Switcher: Visual Cards vs Technical Specs Matrix */}
-        <div className="product-view-switcher">
-          <button
-            type="button"
-            className={`view-switch-btn ${viewMode === 'cards' ? 'active' : ''}`}
-            onClick={() => setViewMode('cards')}
-            title="Visual Showcase Cards"
-            aria-label="Switch to Visual Showcase Cards"
-          >
-            <LayoutGrid className="w-4 h-4" />
-            <span>Showcase</span>
-          </button>
-          <button
-            type="button"
-            className={`view-switch-btn ${viewMode === 'specs' ? 'active' : ''}`}
-            onClick={() => setViewMode('specs')}
-            title="Technical Lab Specifications Matrix"
-            aria-label="Switch to Technical Specifications Matrix"
-          >
-            <Table className="w-4 h-4" />
-            <span>Spec Matrix</span>
-          </button>
-        </div>
+      {/* Visual Product Cards (Display All Products) */}
+      <div className="product-card-grid product-grid-3col" data-aos="fade-up" data-aos-delay="100">
+        {products.map((product) => (
+          <ProductCardItem key={product.number} product={product} />
+        ))}
       </div>
 
-      {/* Mode A: Visual Product Cards with 3D Tilt */}
-      {viewMode === 'cards' && (
-        <div className={`product-card-grid product-grid-3col ${filteredProducts.length === 1 ? 'is-single-item' : ''}`} data-aos="fade-up" data-aos-delay="100">
-          {filteredProducts.map((product) => (
-            <ProductCardItem key={product.number} product={product} />
-          ))}
-        </div>
-      )}
+      {/* Technical Lab Specifications Matrix (Expandable below products) */}
+      <div className="product-specs-toggle-wrap" data-aos="fade-up">
+        <button
+          type="button"
+          className={`specs-expand-btn ${showSpecs ? 'is-active' : ''}`}
+          onClick={() => setShowSpecs(!showSpecs)}
+          aria-expanded={showSpecs}
+        >
+          <Table className="w-4 h-4" />
+          <span>{showSpecs ? 'Hide Technical Lab Spec Matrix' : 'Compare Full Technical Lab Specifications Matrix'}</span>
+          <ChevronDown className={`w-4 h-4 specs-chevron ${showSpecs ? 'is-rotated' : ''}`} />
+        </button>
+      </div>
 
-      {/* Mode B: Technical Specifications Matrix (Unique interactive comparison UI) */}
-      {viewMode === 'specs' && (
-        <div className="product-specs-table-card" data-aos="fade-up" data-aos-delay="100">
+      {showSpecs && (
+        <div className="product-specs-table-card" data-aos="fade-up" data-aos-delay="50">
           <div className="specs-table-wrapper">
             <table className="specs-matrix-table">
               <thead>
