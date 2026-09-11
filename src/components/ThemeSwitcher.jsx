@@ -4,66 +4,58 @@ import { Palette, Check, Sparkles, X, RotateCcw } from 'lucide-react'
 export const THEMES = [
   {
     id: 'emerald',
-    name: 'Emerald Heritage',
-    tag: 'Original 1972 Signature',
-    desc: 'Lush natural forest green with warm gold & vibrant sprout accents.',
-    aesthetic: 'Balanced Organic · 24px Curve · Grotesk',
+    name: 'Green & Gold',
+    tag: 'Green + Gold',
+    desc: 'Dark forest green background with warm gold & green accents.',
     swatches: ['#071914', '#0c261e', '#efc86d'],
   },
   {
     id: 'terra',
-    name: 'Terra Earth & Clay',
-    tag: 'Warm Agriculture & Husk',
-    desc: 'Rich coconut husk umber with terracotta earth & copper sun highlights.',
-    aesthetic: 'Earthy Warmth · 22px Curve · Editorial Serif',
+    name: 'Brown & Orange',
+    tag: 'Brown + Orange',
+    desc: 'Earthy dark brown background with warm terracotta orange accents.',
     swatches: ['#18110c', '#271b14', '#f09a5b'],
   },
   {
     id: 'cyber-sprout',
-    name: 'Midnight Cyber Sprout',
-    tag: 'Modern Agritech & Precision',
-    desc: 'Deep obsidian dark mode with coordinate grid mesh, electric mint & cyan aurora.',
-    aesthetic: 'High-Tech Grid · 8px Chamfer · Tech Grotesk',
+    name: 'Black & Mint Green',
+    tag: 'Black + Mint',
+    desc: 'Sleek black background with bright mint green & cyan accents.',
     swatches: ['#0a0e14', '#111822', '#00f59b'],
   },
   {
     id: 'golden-harvest',
-    name: 'Golden Sunset & Harvest',
-    tag: 'Golden Hour Sun-Cured',
-    desc: 'Warm charcoal dusk with amber honey glow & sun-cured harvest tones.',
-    aesthetic: 'Sunlit Rays · 22px Curve · Bold Grotesk',
+    name: 'Amber & Orange',
+    tag: 'Amber + Orange',
+    desc: 'Warm charcoal background with amber honey & golden yellow accents.',
     swatches: ['#1a1309', '#2a1e0f', '#fbb034'],
   },
   {
     id: 'ocean-coast',
-    name: 'Ocean Coast & Marine',
-    tag: 'Maritime Coir Export',
-    desc: 'Deep nautical ocean navy with sea foam teal & luminous sky aqua waves.',
-    aesthetic: 'Fluid Waves · 26px Pebble · Modern Sans',
+    name: 'Navy Blue & Teal',
+    tag: 'Blue + Teal',
+    desc: 'Deep navy blue background with ocean teal & cyan blue accents.',
     swatches: ['#08141e', '#0f2231', '#38bdf8'],
   },
   {
     id: 'royal-amethyst',
-    name: 'Royal Amethyst & Orchid',
-    tag: 'Luxury Botanical Elegance',
-    desc: 'Midnight imperial violet with radiant orchid & warm champagne rose.',
-    aesthetic: 'Regal Velvet · 20px Curve · Luxury Serif',
+    name: 'Purple & Violet',
+    tag: 'Purple + Violet',
+    desc: 'Deep dark purple background with bright violet & rose pink accents.',
     swatches: ['#140d1e', '#221633', '#c084fc'],
   },
   {
     id: 'nordic-sage',
-    name: 'Nordic Sage & Frost',
-    tag: 'Pristine Eco Botanical',
-    desc: 'Crisp minimal slate pine with frosted mint sage & glacial teal.',
-    aesthetic: 'Frosted Glass · 30px Pebble · Clean Sans',
+    name: 'Dark Grey & Sage Green',
+    tag: 'Grey + Sage',
+    desc: 'Dark slate grey background with clean sage green accents.',
     swatches: ['#0d1715', '#162522', '#6ee7b7'],
   },
   {
     id: 'coir-craft',
-    name: 'Coir Craft & Raw Flax',
-    tag: 'Artisan Twisted Rope',
-    desc: 'Espresso undertones with raw spun flaxen gold & woven coir bronze.',
-    aesthetic: 'Artisan Workshop · 18px Curve · Heritage Serif',
+    name: 'Coffee Brown & Sand',
+    tag: 'Brown + Sand',
+    desc: 'Dark coffee brown background with natural sand gold accents.',
     swatches: ['#181512', '#26201a', '#e5b869'],
   },
 ]
@@ -125,13 +117,13 @@ export function ThemeModal({ isOpen, onClose, currentTheme, onSelectTheme }) {
         <div className="theme-modal-header">
           <div className="theme-modal-title-group">
             <span className="theme-modal-badge">
-              <Sparkles className="w-3.5 h-3.5" /> Atmospheric Combinations
+              <Sparkles className="w-3.5 h-3.5" /> Color Themes
             </span>
             <h2 id="theme-studio-title" className="theme-modal-title">
-              Theme Studio
+              Select Color Theme
             </h2>
             <p className="theme-modal-subtitle">
-              Choose from 8 curated atmospheric combination themes tailored for Thaiagam Group.
+              Choose your preferred color combination for the website.
             </p>
           </div>
 
@@ -173,10 +165,7 @@ export function ThemeModal({ isOpen, onClose, currentTheme, onSelectTheme }) {
                 </div>
 
                 <div className="theme-card-body">
-                  <div className="theme-card-tag-row">
-                    <span className="theme-card-tag">{theme.tag}</span>
-                    <span className="theme-card-aesthetic-badge">{theme.aesthetic}</span>
-                  </div>
+                  <span className="theme-card-tag">{theme.tag}</span>
                   <div className="theme-card-name">
                     {theme.name}
                   </div>
@@ -189,7 +178,7 @@ export function ThemeModal({ isOpen, onClose, currentTheme, onSelectTheme }) {
 
         <div className="theme-modal-footer">
           <div className="theme-modal-footer-note">
-            Active: <strong>{activeThemeObj.name}</strong> · Choice saved automatically
+            Active: <strong>{activeThemeObj.name}</strong> · Saved automatically
           </div>
 
           <button
@@ -198,7 +187,7 @@ export function ThemeModal({ isOpen, onClose, currentTheme, onSelectTheme }) {
             onClick={() => onSelectTheme('emerald')}
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            <span>Reset to Original</span>
+            <span>Reset to Default (Green & Gold)</span>
           </button>
         </div>
       </div>
