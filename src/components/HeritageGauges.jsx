@@ -12,16 +12,15 @@ export function HeritageGauges() {
         if (entries[0].isIntersecting && !hasAnimated.current) {
           hasAnimated.current = true
 
-          // Animate circular SVG strokes
-          const rings = containerRef.current?.querySelectorAll('.gauge-ring-circle')
-          if (rings) {
-            rings.forEach((ring) => {
-              const targetOffset = ring.getAttribute('data-target-offset') || '0'
-              animate(ring, {
-                strokeDashoffset: [327, parseFloat(targetOffset)],
-                duration: 1600,
-                ease: 'outCubic',
-              })
+          // Animate dial rings entrance smoothly
+          const dialWraps = containerRef.current?.querySelectorAll('.gauge-dial-wrap')
+          if (dialWraps) {
+            animate(dialWraps, {
+              scale: [0.88, 1],
+              opacity: [0.3, 1],
+              duration: 900,
+              delay: (el, i) => i * 100,
+              ease: 'outBack(1.4)',
             })
           }
 
@@ -96,15 +95,7 @@ export function HeritageGauges() {
         <div className="gauge-dial-wrap">
           <svg className="gauge-svg-ring" viewBox="0 0 124 124">
             <circle className="gauge-bg-track" cx="62" cy="62" r="52" />
-            <circle
-              className="gauge-ring-circle"
-              cx="62"
-              cy="62"
-              r="52"
-              strokeDasharray="327"
-              strokeDashoffset="0"
-              data-target-offset="0"
-            />
+            <circle className="gauge-ring-circle" cx="62" cy="62" r="52" />
           </svg>
           <div className="gauge-dial-center">
             <Award className="gauge-center-icon" />
@@ -122,15 +113,7 @@ export function HeritageGauges() {
         <div className="gauge-dial-wrap">
           <svg className="gauge-svg-ring" viewBox="0 0 124 124">
             <circle className="gauge-bg-track" cx="62" cy="62" r="52" />
-            <circle
-              className="gauge-ring-circle"
-              cx="62"
-              cy="62"
-              r="52"
-              strokeDasharray="327"
-              strokeDashoffset="0"
-              data-target-offset="0"
-            />
+            <circle className="gauge-ring-circle" cx="62" cy="62" r="52" />
           </svg>
           <div className="gauge-dial-center">
             <Factory className="gauge-center-icon" />
@@ -148,15 +131,7 @@ export function HeritageGauges() {
         <div className="gauge-dial-wrap">
           <svg className="gauge-svg-ring" viewBox="0 0 124 124">
             <circle className="gauge-bg-track" cx="62" cy="62" r="52" />
-            <circle
-              className="gauge-ring-circle"
-              cx="62"
-              cy="62"
-              r="52"
-              strokeDasharray="327"
-              strokeDashoffset="0"
-              data-target-offset="0"
-            />
+            <circle className="gauge-ring-circle" cx="62" cy="62" r="52" />
           </svg>
           <div className="gauge-dial-center">
             <TrendingUp className="gauge-center-icon" />
@@ -174,15 +149,7 @@ export function HeritageGauges() {
         <div className="gauge-dial-wrap">
           <svg className="gauge-svg-ring" viewBox="0 0 124 124">
             <circle className="gauge-bg-track" cx="62" cy="62" r="52" />
-            <circle
-              className="gauge-ring-circle"
-              cx="62"
-              cy="62"
-              r="52"
-              strokeDasharray="327"
-              strokeDashoffset="0"
-              data-target-offset="0"
-            />
+            <circle className="gauge-ring-circle" cx="62" cy="62" r="52" />
           </svg>
           <div className="gauge-dial-center">
             <Leaf className="gauge-center-icon" />

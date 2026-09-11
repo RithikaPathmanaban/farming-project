@@ -4760,16 +4760,19 @@ button {
 
 .gauge-ring-circle {
   fill: none;
-  stroke: var(--gold);
+  stroke: var(--gold) !important;
   stroke-width: 6;
-  stroke-linecap: round;
+  stroke-dasharray: none !important;
+  stroke-dashoffset: 0 !important;
   filter: drop-shadow(0 0 8px var(--gold-glow));
   transition: stroke 0.45s ease, filter 0.45s ease;
 }
 
 .gauge-ring-orange,
 .gauge-ring-green {
-  stroke: var(--gold);
+  stroke: var(--gold) !important;
+  stroke-dasharray: none !important;
+  stroke-dashoffset: 0 !important;
   filter: drop-shadow(0 0 8px var(--gold-glow));
   transition: stroke 0.45s ease, filter 0.45s ease;
 }
