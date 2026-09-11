@@ -1386,25 +1386,34 @@ button {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
+  align-items: start;
 }
 
 .product-card-grid.product-grid-3col {
   grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+}
+
+.product-card-wrapper {
+  height: auto;
+  align-self: start;
 }
 
 .modern-product-card {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: auto;
+  min-height: 0;
   border-radius: 1.8rem;
   background: linear-gradient(175deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
   border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.35s ease;
 }
 
 .modern-product-card .liquid-glass-content {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: auto;
 }
 
 .product-media-zone {
