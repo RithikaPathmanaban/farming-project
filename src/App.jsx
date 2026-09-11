@@ -13,11 +13,8 @@ import { ProofSection } from './components/ProofSection'
 import { TestimonialsSection } from './components/TestimonialsSection'
 import { LiquidGlassCard } from './components/LiquidGlassCard'
 import { ThemeModal, FloatingThemeTrigger, useThemeState } from './components/ThemeSwitcher'
-import { BackToTop } from './components/ui/BackToTop'
 import { contactInfo } from './content'
 import { MessageCircle, ArrowUpRight, Sparkles, CheckCircle2, Award, Factory, TrendingUp, Leaf } from 'lucide-react'
-
-
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -50,8 +47,8 @@ function App() {
         menuOpen={menuOpen}
         onToggleMenu={() => setMenuOpen(!menuOpen)}
         onNavigate={() => setMenuOpen(false)}
-        onOpenThemeModal={() => setThemeModalOpen(true)}
       />
+
 
       <Hero />
 
@@ -154,12 +151,8 @@ function App() {
 
       <Footer />
 
-      {/* Floating Back to Top Button */}
-      <BackToTop threshold={320} />
-
-
-
       {/* Floating WhatsApp Quick Contact using authentic phone number */}
+
       <a
         href={`https://wa.me/91${contactInfo.phones[0]}?text=Hello%20Thaiagam%20Group%2C%20I'd%20like%20to%20enquire%20about%20your%20coir%20products.`}
         target="_blank"

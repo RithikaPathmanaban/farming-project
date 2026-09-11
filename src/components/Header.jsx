@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { navigationItems, contactInfo } from '../content'
-import { Leaf, ArrowUpRight, Menu, X, Phone, Palette } from 'lucide-react'
+import { Leaf, ArrowUpRight, Menu, X, Phone } from 'lucide-react'
 
-export function Header({ menuOpen, onToggleMenu, onNavigate, onOpenThemeModal }) {
+export function Header({ menuOpen, onToggleMenu, onNavigate }) {
+
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -43,19 +44,6 @@ export function Header({ menuOpen, onToggleMenu, onNavigate, onOpenThemeModal })
             </a>
           ))}
           <div className="mobile-drawer-actions">
-            <button
-              type="button"
-              className="header-theme-btn"
-              style={{ width: '100%', justifyContent: 'center', padding: '0.65rem' }}
-              onClick={() => {
-                onNavigate?.()
-                onOpenThemeModal?.()
-              }}
-            >
-              <Palette className="w-4 h-4" />
-              <span className="theme-btn-dot" />
-              <span>Change Theme</span>
-            </button>
             <a
               href={`tel:${contactInfo.phones[0]}`}
               className="mobile-drawer-phone"
@@ -76,18 +64,6 @@ export function Header({ menuOpen, onToggleMenu, onNavigate, onOpenThemeModal })
         </nav>
 
         <div className="header-actions">
-          <button
-            type="button"
-            className="header-theme-btn"
-            onClick={onOpenThemeModal}
-            title="Choose website theme"
-            aria-label="Open Theme Studio"
-          >
-            <Palette className="w-3.5 h-3.5" />
-            <span className="theme-btn-dot" />
-            <span>Theme</span>
-          </button>
-
           <a
             href={`tel:${contactInfo.phones[0]}`}
             className="header-phone-link"
@@ -97,6 +73,7 @@ export function Header({ menuOpen, onToggleMenu, onNavigate, onOpenThemeModal })
             <Phone className="w-3.5 h-3.5 text-accent" />
             <span className="header-phone-text">{contactInfo.phones[0]}</span>
           </a>
+
 
           <a className="liquid-cta-btn" href="#contact">
             <span>Contact Us</span>
