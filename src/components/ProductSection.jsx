@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { products } from '../content'
 import { LiquidGlassCard } from './LiquidGlassCard'
-import { ArrowUpRight, Check, Sparkles, SlidersHorizontal, LayoutGrid, Table, CheckCircle2 } from 'lucide-react'
+import { ArrowUpRight, Check, Sparkles, SlidersHorizontal, LayoutGrid, Table, CheckCircle2, ChevronDown } from 'lucide-react'
 
 // Technical specifications comparison matrix
 const productSpecsData = [
@@ -18,30 +18,102 @@ const productSpecsData = [
     coirPeat: 'Fine Sieved Coupling Lignin Peat',
   },
   {
-    spec: 'Moisture Content',
-    coirRope: '< 15% Max (Solar Dried)',
-    fibreBales: '< 14% (Strictly Checked)',
-    coirPeat: '< 18% (Compressed 5kg Blocks)',
+    spec: 'Moisture Tolerance',
+    coirRope: '< 15% Max Sun Cured',
+    fibreBales: '< 15% Optimal Low Moisture',
+    coirPeat: '< 20% Export Grade Dry',
   },
   {
-    spec: 'Electrical Conductivity (EC)',
-    coirRope: 'Natural Raw Level',
-    fibreBales: 'Natural Raw Level',
-    coirPeat: 'High EC & Low EC (< 0.5 mS/cm)',
+    spec: 'Packaging & Form Factor',
+    coirRope: 'Continuous Coils (~30-35 Kg)',
+    fibreBales: 'Hydraulic Strapped Bales (120-130 Kg)',
+    coirPeat: '5 Kg Compressed Blocks / Loose Pallets',
   },
   {
-    spec: 'Monthly Supply Capacity',
-    coirRope: '400+ Metric Tons',
-    fibreBales: '300+ Metric Tons',
-    coirPeat: '700+ Metric Tons',
+    spec: 'Monthly Production Yield',
+    coirRope: '400+ Metric Tonnes / Month',
+    fibreBales: 'High Capacity Decortication Run',
+    coirPeat: '700+ Metric Tonnes / Month',
   },
   {
-    spec: 'Export Packaging',
-    coirRope: 'High-Density Coils with strapping',
-    fibreBales: '100-120 KG Plastic Strapped Bales',
-    coirPeat: '5KG Compressed Blocks / Palletized',
+    spec: 'Eco & Bio Compliance',
+    coirRope: '100% Biodegradable & Natural',
+    fibreBales: '100% Biodegradable Organic',
+    coirPeat: '100% Organic Soil Conditioner',
   },
 ]
+
+function ProductCardItem({ product }) {
+  const [isExpanded, setIsExpanded] = useState(false)
+
+  return (
+    <div key={product.number} className="product-card-wrapper">
+      <LiquidGlassCard className="modern-product-card" enableTilt={true}>
+        {/* Product Media Area */}
+        <div className="product-media-zone">
+          <img
+            src={product.image}
+            alt={product.title}
+            className="product-showcase-img"
+            loading="lazy"
+          />
+          <span className="product-category-pill">{product.tag}</span>
+          <span className="product-idx-pill">#{product.number}</span>
+        </div>
+
+        {/* Product Info Area */}
+        <div className="product-content-zone">
+          <div className="product-header-block">
+            <h3 className="product-card-heading">{product.title}</h3>
+            <p className="product-benefit-tag">{product.benefit}</p>
+          </div>
+
+          {/* Collapsible Description & Specifications */}
+          <div
+            id={`product-desc-${product.number}`}
+            className={`product-description-wrap ${isExpanded ? 'is-expanded' : 'is-collapsed'}`}
+          >
+            <p className="product-summary-text">{product.text}</p>
+
+            <ul className="product-bullets">
+              {product.details.map((detail, dIdx) => (
+                <li key={dIdx}>
+                  <Check className="bullet-check-icon" />
+                  <span>{detail}</span>
+                </li>
+              ))}
+            </ul>
+
+            {!isExpanded && <div className="product-desc-fade" aria-hidden="true" />}
+          </div>
+
+          {/* Collapsible Toggle Button */}
+          <button
+            type="button"
+            className="product-expand-toggle-btn"
+            onClick={() => setIsExpanded(!isExpanded)}
+            aria-expanded={isExpanded}
+            aria-controls={`product-desc-${product.number}`}
+            aria-label={isExpanded ? `Show less details for ${product.title}` : `Read more details for ${product.title}`}
+          >
+            <span>{isExpanded ? 'Show Less' : 'View Full Specifications'}</span>
+            <ChevronDown className={`expand-chevron-icon ${isExpanded ? 'is-rotated' : ''}`} />
+          </button>
+
+          {/* Action CTA */}
+          <a
+            className="product-inquire-btn"
+            href="#contact"
+            aria-label={`Inquire about ${product.title}`}
+          >
+            <span>Inquire for Contract</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </a>
+        </div>
+      </LiquidGlassCard>
+    </div>
+  )
+}
 
 export function ProductSection() {
   const [selectedFilter, setSelectedFilter] = useState('all')
@@ -138,53 +210,8 @@ export function ProductSection() {
       {/* Mode A: Visual Product Cards with 3D Tilt */}
       {viewMode === 'cards' && (
         <div className={`product-card-grid product-grid-3col ${filteredProducts.length === 1 ? 'is-single-item' : ''}`} data-aos="fade-up" data-aos-delay="100">
-          {filteredProducts.map((product, index) => (
-            <div key={product.number} className="product-card-wrapper">
-              <LiquidGlassCard className="modern-product-card" enableTilt={true}>
-                {/* Product Media Area */}
-                <div className="product-media-zone">
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="product-showcase-img"
-                    loading="lazy"
-                  />
-                  <span className="product-category-pill">{product.tag}</span>
-                  <span className="product-idx-pill">#{product.number}</span>
-                </div>
-
-                {/* Product Info Area */}
-                <div className="product-content-zone">
-                  <div className="product-header-block">
-                    <h3 className="product-card-heading">{product.title}</h3>
-                    <p className="product-benefit-tag">{product.benefit}</p>
-                  </div>
-
-                  <div className="product-description-wrap">
-                    <p className="product-summary-text">{product.text}</p>
-
-                    <ul className="product-bullets">
-                      {product.details.map((detail, dIdx) => (
-                        <li key={dIdx}>
-                          <Check className="bullet-check-icon" />
-                          <span>{detail}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Action CTA */}
-                  <a
-                    className="product-inquire-btn"
-                    href="#contact"
-                    aria-label={`Inquire about ${product.title}`}
-                  >
-                    <span>Inquire for Contract</span>
-                    <ArrowUpRight className="w-4 h-4" />
-                  </a>
-                </div>
-              </LiquidGlassCard>
-            </div>
+          {filteredProducts.map((product) => (
+            <ProductCardItem key={product.number} product={product} />
           ))}
         </div>
       )}

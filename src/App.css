@@ -1483,14 +1483,68 @@ button {
   position: relative;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-description-wrap.is-collapsed {
+  max-height: 4.8rem;
+}
+
+.product-description-wrap.is-collapsed .product-summary-text {
+  margin-bottom: 0.5rem;
+}
+
+.product-description-wrap.is-expanded {
+  max-height: 60rem;
 }
 
 .product-desc-fade {
-  display: none;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3.2rem;
+  background: linear-gradient(to bottom, transparent 0%, var(--bg-surface) 88%, var(--bg-surface) 100%);
+  pointer-events: none;
 }
 
 .product-expand-toggle-btn {
-  display: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  margin: 0.6rem 0 1.25rem;
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-btn);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.product-expand-toggle-btn:hover {
+  background: var(--gold-subtle);
+  border-color: var(--gold-border);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.expand-chevron-icon {
+  width: 0.95rem;
+  height: 0.95rem;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.expand-chevron-icon.is-rotated {
+  transform: rotate(180deg);
 }
 
 .product-summary-text {
