@@ -1,5 +1,6 @@
 import { Leaf, ArrowUp, Mail, Phone, MapPin, Globe2 } from 'lucide-react'
-import { contactInfo, products } from '../content'
+import { contactInfo, products, navigationItems } from '../content'
+import { Link } from 'react-router-dom'
 
 export function Footer() {
   const scrollToTop = () => {
@@ -12,7 +13,7 @@ export function Footer() {
         <div className="footer-top-row">
           {/* Brand Col */}
           <div className="footer-brand-col">
-            <a className="liquid-brand" href="#top" aria-label="Thaiagam Group of Companies home">
+            <Link className="liquid-brand" to="/" aria-label="Thaiagam Group of Companies home">
               <span className="brand-mark-liquid">
                 <Leaf className="brand-leaf-icon" />
               </span>
@@ -20,22 +21,32 @@ export function Footer() {
                 <span className="brand-name">THAIAGAM</span>
                 <span className="brand-sub">GROUP OF COMPANIES · SINCE 1972</span>
               </div>
-            </a>
+            </Link>
             <p className="footer-brand-desc">
               Thaiagam group of companies since 1972 has more than 40 years of experiences in coir products. Our group comprises of four units supplying qualitative coir products.
             </p>
             <div className="footer-est-tag">
-              <span>{contactInfo.leaders}</span>
+              <span>{contactInfo.leaders} · Dindigul, Tamil Nadu</span>
             </div>
+          </div>
+
+          {/* Quick Links Column */}
+          <div className="footer-nav-col">
+            <span className="footer-col-head">Navigation</span>
+            {navigationItems.map((item) => (
+              <Link to={item.path} key={item.path}>
+                {item.label}
+              </Link>
+            ))}
           </div>
 
           {/* Products Column */}
           <div className="footer-nav-col">
-            <span className="footer-col-head">Our Products</span>
-            {products.map((p) => (
-              <a href="#products" key={p.id}>
+            <span className="footer-col-head">Export Catalog</span>
+            {products.slice(0, 5).map((p) => (
+              <Link to={`/products?target=${p.id}`} key={p.id}>
                 {p.title}
-              </a>
+              </Link>
             ))}
           </div>
 

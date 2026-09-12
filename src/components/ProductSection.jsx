@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { products } from '../content'
 import { LiquidGlassCard } from './LiquidGlassCard'
 import { ArrowUpRight, Check, Sparkles, Table, CheckCircle2, ChevronDown } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 // Technical specifications comparison matrix
 const productSpecsData = [
@@ -101,14 +102,14 @@ function ProductCardItem({ product }) {
           </button>
 
           {/* Action CTA */}
-          <a
+          <Link
             className="product-inquire-btn"
-            href="#contact"
+            to="/contact"
             aria-label={`Inquire about ${product.title}`}
           >
             <span>Inquire for Contract</span>
             <ArrowUpRight className="w-4 h-4" />
-          </a>
+          </Link>
         </div>
       </LiquidGlassCard>
     </div>
@@ -187,10 +188,10 @@ export function ProductSection() {
               <CheckCircle2 className="w-4 h-4 text-accent" />
               <span>Custom moisture tolerances and EC test reports available upon contract confirmation.</span>
             </div>
-            <a href="#contact" className="button button-small">
+            <Link to="/contact" className="button button-small">
               <span>Request Full Lab Spec Sheet</span>
               <ArrowUpRight className="w-4 h-4" />
-            </a>
+            </Link>
           </div>
         </div>
       )}

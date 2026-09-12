@@ -329,7 +329,7 @@ export function ContactSection() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="button button-light rfq-submit-btn"
+                  className="button button-accent rfq-submit-btn"
                 >
                   {isSubmitting ? (
                     <>

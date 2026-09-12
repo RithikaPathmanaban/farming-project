@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react'
 import { navigationItems, contactInfo } from '../content'
-import { Leaf, ArrowUpRight, Menu, X, Phone } from 'lucide-react'
+import { Leaf, ArrowUpRight, Menu, X, Phone, Palette } from 'lucide-react'
+import { Link, NavLink } from 'react-router-dom'
 
-export function Header({ menuOpen, onToggleMenu, onNavigate }) {
-
+export function Header({
+  menuOpen,
+  onToggleMenu,
+  onNavigate,
+  onOpenThemeModal,
+}) {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -16,7 +21,12 @@ export function Header({ menuOpen, onToggleMenu, onNavigate }) {
   return (
     <header className={`liquid-header-wrapper ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="liquid-header-bar" data-aos="fade-down" data-aos-duration="600">
-        <a className="liquid-brand" href="#top" aria-label="Thaiagam Group of Companies home">
+        <Link
+          className="liquid-brand"
+          to="/"
+          onClick={onNavigate}
+          aria-label="Thaiagam Group of Companies home"
+        >
           <span className="brand-mark-liquid">
             <Leaf className="brand-leaf-icon" />
           </span>
@@ -24,26 +34,43 @@ export function Header({ menuOpen, onToggleMenu, onNavigate }) {
             <span className="brand-name">THAIAGAM</span>
             <span className="brand-sub">GROUP OF COMPANIES · SINCE 1972</span>
           </div>
-        </a>
+        </Link>
 
         <div className="header-trust-chip">
           <span className="trust-dot" />
           <span>100% Eco-Friendly</span>
         </div>
 
-        <nav id="primary-navigation" className={`liquid-nav-links ${menuOpen ? 'open' : ''}`} aria-label="Primary navigation">
-          {navigationItems.map(([label, href]) => (
-            <a
-              href={href}
+        <nav
+          id="primary-navigation"
+          className={`liquid-nav-links ${menuOpen ? 'open' : ''}`}
+          aria-label="Primary navigation"
+        >
+          {navigationItems.map((item) => (
+            <NavLink
+              to={item.path}
               onClick={onNavigate}
-              key={href}
-              className="liquid-nav-item"
+              key={item.path}
+              className={({ isActive }) =>
+                `liquid-nav-item ${isActive ? 'is-active' : ''}`
+              }
             >
-              <span>{label}</span>
-              <span className="nav-hover-pill" />
-            </a>
+              <span className="liquid-nav-text">{item.label}</span>
+            </NavLink>
           ))}
           <div className="mobile-drawer-actions">
+            <button
+              type="button"
+              className="mobile-drawer-theme-btn"
+              onClick={() => {
+                onNavigate()
+                onOpenThemeModal?.()
+              }}
+            >
+              <Palette className="w-4 h-4 text-accent" />
+              <span>Theme Studio</span>
+              <span className="theme-btn-dot" />
+            </button>
             <a
               href={`tel:${contactInfo.phones[0]}`}
               className="mobile-drawer-phone"
@@ -52,14 +79,14 @@ export function Header({ menuOpen, onToggleMenu, onNavigate }) {
               <Phone className="w-4 h-4 text-accent" />
               <span>+91 {contactInfo.phones[0]}</span>
             </a>
-            <a
+            <Link
               className="mobile-cta-btn button button-small"
-              href="#contact"
+              to="/contact"
               onClick={onNavigate}
             >
               <span>Contact Us</span>
               <ArrowUpRight className="w-4 h-4" />
-            </a>
+            </Link>
           </div>
         </nav>
 
@@ -74,11 +101,10 @@ export function Header({ menuOpen, onToggleMenu, onNavigate }) {
             <span className="header-phone-text">{contactInfo.phones[0]}</span>
           </a>
 
-
-          <a className="liquid-cta-btn" href="#contact">
+          <Link className="liquid-cta-btn" to="/contact">
             <span>Contact Us</span>
             <ArrowUpRight className="w-4 h-4" />
-          </a>
+          </Link>
 
           <button
             className="liquid-menu-toggle"

@@ -3,6 +3,13 @@ import { Palette, Check, Sparkles, X, RotateCcw } from 'lucide-react'
 
 export const THEMES = [
   {
+    id: 'white',
+    name: 'Coco Agri White',
+    tag: 'White + Botanical Green',
+    desc: 'Crisp porcelain white background with botanical green and warm gold accents.',
+    swatches: ['#ffffff', '#154734', '#d99036'],
+  },
+  {
     id: 'emerald',
     name: 'Green & Gold',
     tag: 'Green + Gold',
@@ -60,14 +67,17 @@ export const THEMES = [
   },
 ]
 
-export const STORAGE_KEY = 'thaiagam_theme'
+export const STORAGE_KEY = 'thaiagam_theme_v2'
 
 export function useThemeState() {
   const [currentTheme, setCurrentTheme] = useState(() => {
     try {
-      return localStorage.getItem(STORAGE_KEY) || 'emerald'
+      const stored = localStorage.getItem(STORAGE_KEY)
+      if (stored) return stored
+      // Fallback: if old storage was emerald or empty, default to white
+      return 'white'
     } catch {
-      return 'emerald'
+      return 'white'
     }
   })
 
@@ -184,10 +194,10 @@ export function ThemeModal({ isOpen, onClose, currentTheme, onSelectTheme }) {
           <button
             type="button"
             className="theme-reset-btn"
-            onClick={() => onSelectTheme('emerald')}
+            onClick={() => onSelectTheme('white')}
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            <span>Reset to Default (Green & Gold)</span>
+            <span>Reset to Default (Coco Agri White)</span>
           </button>
         </div>
       </div>
@@ -195,20 +205,20 @@ export function ThemeModal({ isOpen, onClose, currentTheme, onSelectTheme }) {
   )
 }
 
-export function FloatingThemeTrigger({ onClick, currentTheme }) {
+export function FloatingThemeTrigger({ onClick, currentTheme, hidden }) {
   const activeTheme = THEMES.find((t) => t.id === currentTheme) || THEMES[0]
 
   return (
     <button
       type="button"
-      className="floating-theme-trigger"
+      className={`floating-theme-trigger ${hidden ? 'is-hidden' : ''}`}
       onClick={onClick}
       aria-label="Open Theme Studio to switch colors"
       title={`Theme: ${activeTheme.name}. Click to change.`}
     >
-      <Palette className="w-4 h-4" />
+      <Palette className="theme-btn-icon" />
       <span className="theme-btn-dot" />
-      <span>Theme</span>
+      <span className="theme-btn-label">Theme</span>
     </button>
   )
 }

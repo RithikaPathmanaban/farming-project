@@ -3,6 +3,7 @@ import { animate } from 'animejs'
 import { Leaf, ArrowUpRight, ShieldCheck, Sparkles, ChevronRight, Phone } from 'lucide-react'
 import { LiquidGlassCard } from './LiquidGlassCard'
 import { heroSlides, contactInfo } from '../content'
+import { Link } from 'react-router-dom'
 
 export function Hero() {
   const [activeSlide, setActiveSlide] = useState(0)
@@ -73,14 +74,14 @@ export function Hero() {
           </div>
 
           <div className="hero-cta-group">
-            <a className="button button-light hero-primary-btn" href="#products">
+            <Link className="button button-light hero-primary-btn" to="/products">
               <span>Our Products</span>
               <ArrowUpRight className="w-4 h-4" />
-            </a>
-            <a className="hero-secondary-btn" href="#about">
+            </Link>
+            <Link className="hero-secondary-btn" to="/about">
               <span>About Us</span>
               <ChevronRight className="w-4 h-4" />
-            </a>
+            </Link>
           </div>
 
           {/* Quick Metrics from thaiagam.com */}
@@ -155,10 +156,10 @@ export function Hero() {
 
       {/* Hero Foot Strip */}
       <div className="hero-bottom-strip">
-        <a href="#about" className="strip-scroll-link">
+        <Link to="/about" className="strip-scroll-link">
           <span>Explore Thaiagam</span>
           <span className="strip-arrow">↓</span>
-        </a>
+        </Link>
       </div>
     </section>
   )

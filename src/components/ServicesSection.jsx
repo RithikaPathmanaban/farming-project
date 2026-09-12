@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { services } from '../content'
 import { Truck, Check, Maximize2, X, ArrowRight, ShieldCheck } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 export function ServicesSection() {
   const [activeIdx, setActiveIdx] = useState(0)
@@ -120,10 +121,10 @@ export function ServicesSection() {
                         <strong className="deck-stat-val">{service.stats}</strong>
                       </div>
 
-                      <a href="#contact" className="deck-inquire-link">
+                      <Link to="/contact" className="deck-inquire-link">
                         <span>Book Capacity</span>
                         <ArrowRight className="w-4 h-4" />
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>

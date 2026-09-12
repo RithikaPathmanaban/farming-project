@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { factoryStories } from '../content'
 import { Factory, ArrowUpRight, Maximize2, X, ShieldCheck, ChevronRight, Check } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 export function AboutSection() {
   const [selectedUnitIdx, setSelectedUnitIdx] = useState(0)
@@ -87,10 +88,10 @@ export function AboutSection() {
             </div>
 
             <div className="dossier-cta-row">
-              <a href="#contact" className="button button-light">
+              <Link to="/contact" className="button button-light">
                 <span>Inquire With Unit 0{selectedUnitIdx + 1}</span>
                 <ArrowUpRight className="w-4 h-4" />
-              </a>
+              </Link>
               <span className="dossier-photo-counter">
                 Photo {activePhotoIdx + 1} of {currentImages.length}
               </span>
