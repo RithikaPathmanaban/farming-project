@@ -359,6 +359,6 @@ export const contactInfo = {
   leaders: 'Mr. Ismail and Mr. Rahman',
   address: '145, Malligai Street, Ram Nagar, Round Road, Dindigul, Tamilnadu, India.',
   phones: ['9842119772', '9443036680'],
-  email: 'rithikapathmanaban1804@gmail.com',
+  email: 'mk.rahman0210@gmail.com',
   exportMarkets: 'European countries, Australia, China, and numerous other countries',
 }

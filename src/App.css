@@ -510,19 +510,113 @@ button {
   outline-offset: 3px;
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - Global */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
+}
+
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
+  background: transparent;
+}
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
   background: var(--bg-darker);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--bg-surface-light);
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--gold);
+}
+
+[data-theme="white"] * {
+  scrollbar-color: rgba(18, 53, 40, 0.25) transparent;
+}
+
+[data-theme="white"] ::-webkit-scrollbar-thumb {
+  background: rgba(18, 53, 40, 0.22);
+}
+
+[data-theme="white"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(18, 53, 40, 0.55);
+}
+
+/* Dedicated Popups & Modals Scrollbar System */
+.theme-modal-panel,
+.comm-modal-container,
+.ui-modal-panel,
+.gallery-modal-content,
+[role="dialog"] {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
+  overscroll-behavior: contain;
+}
+
+.theme-modal-panel::-webkit-scrollbar,
+.comm-modal-container::-webkit-scrollbar,
+.ui-modal-panel::-webkit-scrollbar,
+.gallery-modal-content::-webkit-scrollbar,
+[role="dialog"]::-webkit-scrollbar {
+  width: 6px;
+}
+
+.theme-modal-panel::-webkit-scrollbar-track,
+.comm-modal-container::-webkit-scrollbar-track,
+.ui-modal-panel::-webkit-scrollbar-track,
+.gallery-modal-content::-webkit-scrollbar-track,
+[role="dialog"]::-webkit-scrollbar-track {
+  background: transparent !important;
+  margin: 0.75rem 0;
+  border-radius: 9999px;
+}
+
+.theme-modal-panel::-webkit-scrollbar-thumb,
+.comm-modal-container::-webkit-scrollbar-thumb,
+.ui-modal-panel::-webkit-scrollbar-thumb,
+.gallery-modal-content::-webkit-scrollbar-thumb,
+[role="dialog"]::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.28) !important;
+  border-radius: 9999px;
+  transition: background 0.2s ease;
+}
+
+.theme-modal-panel::-webkit-scrollbar-thumb:hover,
+.comm-modal-container::-webkit-scrollbar-thumb:hover,
+.ui-modal-panel::-webkit-scrollbar-thumb:hover,
+.gallery-modal-content::-webkit-scrollbar-thumb:hover,
+[role="dialog"]::-webkit-scrollbar-thumb:hover {
+  background: var(--gold, #efc86d) !important;
+}
+
+/* Modal Scrollbar - White Theme */
+[data-theme="white"] .theme-modal-panel,
+[data-theme="white"] .comm-modal-container,
+[data-theme="white"] .ui-modal-panel,
+[data-theme="white"] .gallery-modal-content,
+[data-theme="white"] [role="dialog"] {
+  scrollbar-color: rgba(18, 53, 40, 0.25) transparent;
+}
+
+[data-theme="white"] .theme-modal-panel::-webkit-scrollbar-thumb,
+[data-theme="white"] .comm-modal-container::-webkit-scrollbar-thumb,
+[data-theme="white"] .ui-modal-panel::-webkit-scrollbar-thumb,
+[data-theme="white"] .gallery-modal-content::-webkit-scrollbar-thumb,
+[data-theme="white"] [role="dialog"]::-webkit-scrollbar-thumb {
+  background: rgba(18, 53, 40, 0.25) !important;
+}
+
+[data-theme="white"] .theme-modal-panel::-webkit-scrollbar-thumb:hover,
+[data-theme="white"] .comm-modal-container::-webkit-scrollbar-thumb:hover,
+[data-theme="white"] .ui-modal-panel::-webkit-scrollbar-thumb:hover,
+[data-theme="white"] .gallery-modal-content::-webkit-scrollbar-thumb:hover,
+[data-theme="white"] [role="dialog"]::-webkit-scrollbar-thumb:hover {
+  background: rgba(21, 71, 52, 0.6) !important;
 }
 
 /* ==========================================================================
@@ -7045,9 +7139,17 @@ button {
 }
 
 [data-theme="white"] .liquid-nav-links {
-  background: #ffffff;
-  border: 1px solid rgba(18, 53, 40, 0.12);
-  box-shadow: 0 20px 50px rgba(18, 53, 40, 0.15);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+@media (max-width: 899px) {
+  [data-theme="white"] .liquid-nav-links.open {
+    background: #ffffff;
+    border: 1px solid rgba(18, 53, 40, 0.12);
+    box-shadow: 0 20px 50px rgba(18, 53, 40, 0.15);
+  }
 }
 
 [data-theme="white"] .mobile-drawer-actions {

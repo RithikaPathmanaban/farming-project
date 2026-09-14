@@ -3,7 +3,7 @@ import { LiquidGlassCard } from './LiquidGlassCard'
 import { contactInfo } from '../content'
 import { Mail, Phone, MapPin, Send, CheckCircle2, MessageSquare, Loader2, MessageCircle, ArrowUpRight } from 'lucide-react'
 
-const RECIPIENT_EMAIL = 'rithikapathmanaban1804@gmail.com'
+const RECIPIENT_EMAIL = contactInfo.email || 'mk.rahman0210@gmail.com'
 
 const quickProductOptions = [
   { label: 'Curled Coir Rope', tag: 'Mattress Grade' },
@@ -267,7 +267,7 @@ export function ContactSection() {
                       id="contact-name"
                       name="name"
                       required
-                      placeholder="e.g. Mr. Sriram / Mr. Zhang"
+                      placeholder=""
                       value={formData.name}
                       onChange={handleChange}
                     />
@@ -295,7 +295,7 @@ export function ContactSection() {
                       id="contact-phone"
                       name="phone"
                       required
-                      placeholder="+91 98421 19772"
+                      placeholder="+91 00000 00000"
                       value={formData.phone}
                       onChange={handleChange}
                     />
@@ -320,7 +320,7 @@ export function ContactSection() {
                     id="contact-message"
                     name="message"
                     rows={4}
-                    placeholder="Enter required destination port, bale specifications, or delivery schedule..."
+                    placeholder="Enter your required details..."
                     value={formData.message}
                     onChange={handleChange}
                   />
