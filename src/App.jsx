@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { ThemeModal, FloatingThemeTrigger, useThemeState } from './components/ThemeSwitcher'
+import { FloatingLanguageTrigger, LanguageProvider, useLanguage } from './components/LanguageTranslator'
 import { contactInfo } from './content'
 import { MessageCircle } from 'lucide-react'
 
@@ -29,10 +30,11 @@ function ScrollToTop() {
   return null
 }
 
-function App() {
+function AppContent() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [currentTheme, setCurrentTheme] = useThemeState()
   const [themeModalOpen, setThemeModalOpen] = useState(false)
+  const { currentLang, selectLanguage, brand } = useLanguage()
 
   useEffect(() => {
     AOS.init({
@@ -82,23 +84,30 @@ function App() {
 
         {/* Floating WhatsApp Quick Contact */}
         <a
-          href={`https://wa.me/91${contactInfo.phones[0]}?text=Hello%20Thaiagam%20Group%2C%20I'd%20like%20to%20enquire%20about%20your%20coir%20products.`}
+          href={`https://wa.me/91${contactInfo.phones[0]}?text=Hello%20${brand.shortName}%20Group%2C%20I'd%20like%20to%20enquire%20about%20your%20coir%20products.`}
           target="_blank"
           rel="noopener noreferrer"
           className={`floating-whatsapp-btn ${menuOpen ? 'is-hidden' : ''}`}
-          aria-label="Chat with Thaiagam on WhatsApp"
+          aria-label={`Chat with ${brand.shortName} on WhatsApp`}
         >
           <span className="whatsapp-pulse-ring" />
           <MessageCircle className="w-6 h-6" />
-          <span className="whatsapp-tooltip">Chat with Thaiagam</span>
+          <span className="whatsapp-tooltip">Chat with {brand.shortName}</span>
         </a>
 
-        {/* Floating Quick Theme Switcher Pill (Bottom Left) */}
-        <FloatingThemeTrigger
-          onClick={() => setThemeModalOpen(true)}
-          currentTheme={currentTheme}
-          hidden={menuOpen}
-        />
+        {/* Floating Quick Action Controls Dock (Bottom Left: Theme Switcher & Language Translator) */}
+        <div className={`floating-bottom-left-dock ${menuOpen ? 'is-hidden' : ''}`}>
+          <FloatingThemeTrigger
+            onClick={() => setThemeModalOpen(true)}
+            currentTheme={currentTheme}
+            hidden={false}
+          />
+          <FloatingLanguageTrigger
+            currentLang={currentLang}
+            onSelectLanguage={selectLanguage}
+            hidden={false}
+          />
+        </div>
 
         {/* Atmospheric Theme Studio Modal */}
         <ThemeModal
@@ -109,6 +118,14 @@ function App() {
         />
       </main>
     </BrowserRouter>
+  )
+}
+
+function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
   )
 }
 

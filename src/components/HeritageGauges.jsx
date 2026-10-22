@@ -1,10 +1,14 @@
 import { useEffect, useRef } from 'react'
 import { animate } from 'animejs'
 import { Award, Factory, TrendingUp, Leaf } from 'lucide-react'
+import { useLanguage } from './LanguageTranslator'
 
 export function HeritageGauges() {
   const containerRef = useRef(null)
   const hasAnimated = useRef(false)
+  const { t } = useLanguage()
+
+  const metrics = t.gauges.metrics || []
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -63,19 +67,6 @@ export function HeritageGauges() {
               },
             })
           }
-
-          const num100 = containerRef.current?.querySelector('.gauge-num-100')
-          if (num100) {
-            const obj = { val: 50 }
-            animate(obj, {
-              val: 100,
-              duration: 1500,
-              ease: 'outExpo',
-              onUpdate: () => {
-                num100.textContent = `${Math.round(obj.val)}%`
-              },
-            })
-          }
         }
       },
       { threshold: 0.2 }
@@ -103,8 +94,8 @@ export function HeritageGauges() {
           </div>
         </div>
         <div className="gauge-info">
-          <h4 className="gauge-title">Year Established</h4>
-          <p className="gauge-desc">40+ years of continuous industry leadership & heritage</p>
+          <h4 className="gauge-title">{metrics[0]?.label || 'Year Established'}</h4>
+          <p className="gauge-desc">{metrics[0]?.desc || '40+ years of continuous industry leadership & heritage'}</p>
         </div>
       </div>
 
@@ -121,8 +112,8 @@ export function HeritageGauges() {
           </div>
         </div>
         <div className="gauge-info">
-          <h4 className="gauge-title">Manufacturing Hubs</h4>
-          <p className="gauge-desc">Dedicated facilities for curled rope, raw fibre & peat</p>
+          <h4 className="gauge-title">{metrics[1]?.label || 'Manufacturing Hubs'}</h4>
+          <p className="gauge-desc">{metrics[1]?.desc || 'Dedicated facilities for curled rope, raw fibre & peat'}</p>
         </div>
       </div>
 
@@ -139,8 +130,8 @@ export function HeritageGauges() {
           </div>
         </div>
         <div className="gauge-info">
-          <h4 className="gauge-title">Monthly Production</h4>
-          <p className="gauge-desc">400 MT curled coir + 700 MT coco peat capacity</p>
+          <h4 className="gauge-title">{metrics[2]?.label || 'Monthly Production'}</h4>
+          <p className="gauge-desc">{metrics[2]?.desc || '400 MT curled coir + 700 MT coco peat capacity'}</p>
         </div>
       </div>
 
@@ -157,8 +148,8 @@ export function HeritageGauges() {
           </div>
         </div>
         <div className="gauge-info">
-          <h4 className="gauge-title">Eco-Friendly & Pure</h4>
-          <p className="gauge-desc">100% biodegradable natural coconut husk products</p>
+          <h4 className="gauge-title">{metrics[3]?.label || 'Eco-Friendly & Pure'}</h4>
+          <p className="gauge-desc">{metrics[3]?.desc || '100% biodegradable natural coconut husk products'}</p>
         </div>
       </div>
     </div>

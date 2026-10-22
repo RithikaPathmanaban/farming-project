@@ -5,11 +5,39 @@ import { Award, ShieldCheck, Globe2, Sparkles, CheckCircle2, RotateCw, Check } f
 
 const accreditationDetails = [
   {
+    id: 'iso',
+    icon: ShieldCheck,
+    title: 'ISO Certified Standard',
+    subtitle: 'Quality Management System',
+    frontDesc: 'Certified quality management procedures guaranteeing strict moisture limits, fiber purity, and standardized processing.',
+    backHeader: 'ISO Compliance & Quality',
+    backPoints: [
+      'Standardized manufacturing & decortication pipeline',
+      'Digital EC titration & tensile elasticity lab verification',
+      'Continuous quality management and batch audits',
+      'Certified seaworthy containerized cargo loading',
+    ],
+  },
+  {
+    id: 'one-star',
+    icon: Award,
+    title: '1 Star Category Certificate',
+    subtitle: 'Recognized Export House',
+    frontDesc: 'Conferred with 1 Star Category Status Holder Certificate by the Government of India for international export performance.',
+    backHeader: 'Export House Credentials',
+    backPoints: [
+      'Government of India recognized 1 Star Export House',
+      'Registered & licensed with Coir Board of India',
+      'Fast-track priority seaport customs documentation',
+      'Proven global delivery track record across 4 continents',
+    ],
+  },
+  {
     id: 'eco',
     icon: CheckCircle2,
     title: '100% Eco-Friendly Certified',
     subtitle: 'Biodegradable Standard',
-    frontDesc: 'Produced from natural, organic coconut husks with zero synthetic polymer additives.',
+    frontDesc: 'Produced from natural, organic coconut husks with zero synthetic polymer additives or chemical bleaching.',
     backHeader: 'Sustainability Compliance',
     backPoints: [
       '100% biodegradable organic coir fibers',
@@ -21,29 +49,15 @@ const accreditationDetails = [
   {
     id: 'global',
     icon: Globe2,
-    title: 'Global Export Clearance',
-    subtitle: 'Customs & Port Compliant',
-    frontDesc: 'Direct container shipping via Tuticorin & Chennai deep-water seaports to Europe, China & Australia.',
+    title: 'Global Export Footprint',
+    subtitle: 'China · Europe · Australia · Turkey',
+    frontDesc: 'Direct container shipping via Tuticorin & Chennai deep-water seaports to China, Europe, Australia & Turkey.',
     backHeader: 'Sea Freight Logistics',
     backPoints: [
-      'Pre-shipment phytosanitary inspections',
+      'Regular containerized shipments to China, Europe, Australia & Turkey',
+      'Pre-shipment phytosanitary inspections & fumigation',
       'Moisture control below critical mold thresholds',
       'High-Cube 40ft container density packaging',
-      'FOB & CIF commercial invoice documentation',
-    ],
-  },
-  {
-    id: 'industry',
-    icon: Sparkles,
-    title: 'Leading Mattress Supplier',
-    subtitle: 'Industrial B2B Grade',
-    frontDesc: 'Supplying India’s premier mattress brands with over 400 MT of curled coir rope monthly.',
-    backHeader: 'Mattress Core Quality',
-    backPoints: [
-      'High spring-back memory coil elasticity',
-      'Precision machine-spun continuous rope twist',
-      'Optimal needle felt and rubberized coir compatibility',
-      'Dedicated transport fleet across South & Central India',
     ],
   },
 ]
@@ -160,7 +174,7 @@ export function ProofSection() {
           <span>VERIFIED ACCREDITATIONS & INDUSTRIAL COMPLIANCE (CLICK CARD TO FLIP ↻)</span>
         </div>
 
-        <div className="cert-cards-grid cert-grid-3">
+        <div className="cert-cards-grid">
           {accreditationDetails.map((item) => {
             const Icon = item.icon
             const isFlipped = !!flippedCards[item.id]

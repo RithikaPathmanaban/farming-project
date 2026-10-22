@@ -2,19 +2,23 @@ import { useState } from 'react'
 import { LiquidGlassCard } from './LiquidGlassCard'
 import { contactInfo } from '../content'
 import { Mail, Phone, MapPin, Send, CheckCircle2, MessageSquare, Loader2, MessageCircle, ArrowUpRight } from 'lucide-react'
+import { useLanguage } from './LanguageTranslator'
 
-const RECIPIENT_EMAIL = contactInfo.email || 'mk.rahman0210@gmail.com'
+const RECIPIENT_EMAIL = contactInfo.email || 'rahman@thaiagam.com'
 
 const quickProductOptions = [
-  { label: 'Curled Coir Rope', tag: 'Mattress Grade' },
+  { label: 'Grow Bags', tag: 'Greenhouse' },
+  { label: 'Coco Pots (Grow Pots)', tag: 'Biodegradable' },
+  { label: '5kg Husk Chips Block', tag: 'Aeration' },
+  { label: 'Coco Peat (5kg Blocks)', tag: 'Low & High EC' },
   { label: 'Coir Fibre Bales', tag: 'Baled Fibre' },
-  { label: 'Low EC Coco Peat', tag: 'Greenhouse' },
-  { label: 'High EC Coco Peat', tag: 'Soil Conditioning' },
+  { label: 'Curled Coir Rope (MTF)', tag: 'Mattress Grade' },
 ]
 
 const tonnageOptions = ['< 50 MT', '100 - 400 MT', '500 - 700 MT (Bulk Contract)']
 
 export function ContactSection() {
+  const { brand, t } = useLanguage()
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [selectedProductChip, setSelectedProductChip] = useState('')
@@ -115,13 +119,13 @@ export function ContactSection() {
         {/* Left Column: Authentic Contact Info & Direct Desks */}
         <div className="contact-info-col" data-aos="fade-right">
           <span className="liquid-badge">
-            <MessageSquare className="w-3.5 h-3.5" /> Contact Us
+            <MessageSquare className="w-3.5 h-3.5" /> {t.contact.badge}
           </span>
           <h2 className="section-title">
-            Get in Touch with <em>Thaiagam.</em>
+            {t.contact.title} <em>{t.contact.titleEmphasis}</em>
           </h2>
           <p className="contact-lead-text">
-            Operating from Dindigul, Tamil Nadu, our leadership team handles direct export communications, domestic mattress factory supply contracts, and bulk dispatch schedules.
+            {t.contact.subtitle}
           </p>
 
           <div className="contact-quick-cards">
@@ -131,7 +135,7 @@ export function ContactSection() {
                 <Phone className="w-5 h-5 text-accent" />
               </div>
               <div>
-                <span className="contact-card-lbl">Direct Leadership Desk</span>
+                <span className="contact-card-lbl">{t.contact.leadershipDesk}</span>
                 <span className="contact-card-val">{contactInfo.leaders}</span>
                 <div className="contact-card-phones" style={{ marginTop: '0.35rem' }}>
                   {contactInfo.phones.map((phone, idx) => (

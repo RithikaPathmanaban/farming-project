@@ -1,10 +1,20 @@
 import { Leaf, ArrowUp, Mail, Phone, MapPin, Globe2 } from 'lucide-react'
 import { contactInfo, products, navigationItems } from '../content'
 import { Link } from 'react-router-dom'
+import { useLanguage } from './LanguageTranslator'
 
 export function Footer() {
+  const { brand, t } = useLanguage()
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const navLabels = {
+    '/': t.nav.home,
+    '/products': t.nav.products,
+    '/process': t.nav.process,
+    '/about': t.nav.about,
+    '/contact': t.nav.contact,
   }
 
   return (
@@ -13,17 +23,17 @@ export function Footer() {
         <div className="footer-top-row">
           {/* Brand Col */}
           <div className="footer-brand-col">
-            <Link className="liquid-brand" to="/" aria-label="Thaiagam Group of Companies home">
+            <Link className="liquid-brand" to="/" aria-label={`${brand.fullName} home`}>
               <span className="brand-mark-liquid">
                 <Leaf className="brand-leaf-icon" />
               </span>
-              <div className="brand-text-col">
-                <span className="brand-name">THAIAGAM</span>
-                <span className="brand-sub">GROUP OF COMPANIES · SINCE 1972</span>
+              <div className="brand-text-col notranslate" translate="no">
+                <span className="brand-name notranslate" translate="no">{brand.brandName}</span>
+                <span className="brand-sub notranslate" translate="no">{brand.brandSub}</span>
               </div>
             </Link>
             <p className="footer-brand-desc">
-              Thaiagam group of companies since 1972 has more than 40 years of experiences in coir products. Our group comprises of four units supplying qualitative coir products.
+              {brand.aboutDesc}
             </p>
             <div className="footer-est-tag">
               <span>{contactInfo.leaders} · Dindigul, Tamil Nadu</span>
@@ -32,41 +42,41 @@ export function Footer() {
 
           {/* Quick Links Column */}
           <div className="footer-nav-col">
-            <span className="footer-col-head">Navigation</span>
+            <span className="footer-col-head">{t.footer.navHeader}</span>
             {navigationItems.map((item) => (
               <Link to={item.path} key={item.path}>
-                {item.label}
+                {navLabels[item.path] || item.label}
               </Link>
             ))}
           </div>
 
           {/* Products Column */}
           <div className="footer-nav-col">
-            <span className="footer-col-head">Export Catalog</span>
-            {products.slice(0, 5).map((p) => (
+            <span className="footer-col-head">{t.footer.catalogHeader}</span>
+            {products.map((p, idx) => (
               <Link to={`/products?target=${p.id}`} key={p.id}>
-                {p.title}
+                {t.products.items?.[idx]?.title || p.title}
               </Link>
             ))}
           </div>
 
           {/* Contact Details from thaiagam.com */}
           <div className="footer-contact-col">
-            <span className="footer-col-head">Contact Office</span>
+            <span className="footer-col-head">{t.footer.contactHeader}</span>
             <div className="footer-contact-link">
               <MapPin className="w-4 h-4 text-accent" />
               <span>{contactInfo.address}</span>
             </div>
             <a href={`tel:${contactInfo.phones[0]}`} className="footer-contact-link">
               <Phone className="w-4 h-4 text-accent" />
-              <span>+91 {contactInfo.phones[0]} / {contactInfo.phones[1]}</span>
+              <span>+91 {contactInfo.phones.join(' / +91 ')}</span>
             </a>
             <a href={`mailto:${contactInfo.email}`} className="footer-contact-link">
               <Mail className="w-4 h-4 text-accent" />
               <span>{contactInfo.email}</span>
             </a>
             <button type="button" onClick={scrollToTop} className="footer-back-top-btn">
-              <span>Back to Top</span>
+              <span>{t.footer.backToTop}</span>
               <ArrowUp className="w-3.5 h-3.5" />
             </button>
           </div>
@@ -74,12 +84,12 @@ export function Footer() {
 
         <div className="footer-bottom-bar">
           <div className="footer-legal">
-            <span>© Copyright 2026 Thaiagam Group of Companies. All rights reserved.</span>
-            <span>100% Eco-Friendly Coir & Coco Peat Products</span>
+            <span>© Copyright 2026 {brand.fullName}. All rights reserved.</span>
+            <span>{t.footer.legalText}</span>
           </div>
           <div className="footer-ports-indicator">
             <Globe2 className="w-3.5 h-3.5 text-accent" />
-            <span>100% Biodegradable & Eco-Friendly Agro Products</span>
+            <span>{t.footer.exportPorts}</span>
           </div>
         </div>
       </div>

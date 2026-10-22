@@ -17,4 +17,5 @@ export { ContactSection } from './ContactSection';
 export { Footer } from './Footer';
 export { ThemeSwitcher } from './ThemeSwitcher';
 export { LiquidGlassCard } from './LiquidGlassCard';
+export * from './LanguageTranslator';
 

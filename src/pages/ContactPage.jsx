@@ -1,8 +1,11 @@
 import { ContactSection } from '../components/ContactSection'
 import { contactInfo } from '../content'
 import { Sparkles, Phone, Mail, MapPin, MessageCircle, Clock, ShieldCheck, Globe } from 'lucide-react'
+import { useLanguage } from '../components/LanguageTranslator'
 
 export function ContactPage() {
+  const { brand, t } = useLanguage()
+
   return (
     <div className="page-contact-view">
       {/* 1. Contact Hero Banner */}
@@ -10,13 +13,13 @@ export function ContactPage() {
         <div className="contact-hero-glow" aria-hidden="true" />
         <div className="contact-hero-container" data-aos="fade-up">
           <span className="liquid-badge">
-            <Sparkles className="w-3.5 h-3.5" /> Direct Communications
+            <Sparkles className="w-3.5 h-3.5" /> {t.contact.badge}
           </span>
           <h1 className="contact-hero-title">
-            Let’s Discuss Your <em>Export & Volume Requirements.</em>
+            {t.contact.title} <em>{t.contact.titleEmphasis}</em>
           </h1>
           <p className="contact-hero-desc">
-            Connect directly with Thaiagam Group leadership for contract manufacturing, CIF/FOB pricing, custom EC tolerances, and container shipping schedules.
+            {t.contact.subtitle}
           </p>
 
           {/* Quick Direct Communication Strip */}

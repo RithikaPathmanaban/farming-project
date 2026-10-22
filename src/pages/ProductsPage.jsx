@@ -19,53 +19,67 @@ import {
   Zap,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { useLanguage } from '../components/LanguageTranslator'
 
 const technicalSpecsMatrix = [
   {
     param: 'Primary Application',
-    coirRope: 'Spring Mattress & Automotive Cores',
-    fibreBales: 'Needle Felt, Non-Woven & Mattresses',
+    growBags: 'Commercial Greenhouse Hydroponics',
+    cocoPots: 'Root Training & Nursery Saplings',
+    huskChips: 'Orchids, Anthuriums & Aeration',
     coirPeat: 'Horticulture, Greenhouses & Soil Blend',
+    fibreBales: 'Needle Felt, Non-Woven & Mattresses',
+    coirRope: 'Spring Mattress & Automotive Cores',
   },
   {
     param: 'Material Composition',
-    coirRope: '100% Mature Chestnut Coconut Fiber',
-    fibreBales: 'Long Natural Bristle Coconut Fiber',
+    growBags: '70/30 or 50/50 Washed Peat/Chips',
+    cocoPots: 'Natural Coir Fibre + Natural Latex',
+    huskChips: '8 – 20 mm Uniform Cut Husk Chips',
     coirPeat: 'Sieved Pith Dust & Fine Lignin Sponges',
+    fibreBales: 'Long Natural Bristle Coconut Fiber',
+    coirRope: '100% Mature Chestnut Coconut Fiber',
   },
   {
     param: 'Moisture Tolerance',
-    coirRope: '< 15% Optimal Sun Cured',
-    fibreBales: '< 15% Maximum Sun Cured',
+    growBags: '< 18% Moisture Controlled',
+    cocoPots: 'Dry Mold-Resistant Shell',
+    huskChips: '< 18% Sun Cured Low Moisture',
     coirPeat: '< 20% Export Moisture',
+    fibreBales: '< 15% Maximum Sun Cured',
+    coirRope: '< 15% Optimal Sun Cured',
   },
   {
     param: 'Packaging & Form Factor',
-    coirRope: 'Continuous Coils (~30-35 Kg)',
-    fibreBales: 'Hydraulic Strapped Bales (120-130 Kg)',
+    growBags: 'UV-Treated Poly Sleeves (100cm)',
+    cocoPots: 'Molded Pots (3" to 12" Sizes)',
+    huskChips: '5 Kg Compressed Blocks (~5:1)',
     coirPeat: '5 Kg Compressed Blocks (~70-75L)',
+    fibreBales: 'Hydraulic Strapped Bales (120-130 Kg)',
+    coirRope: 'Continuous Coils (~30-35 Kg)',
   },
   {
     param: 'Electrical Conductivity (EC)',
-    coirRope: 'Natural Raw Salt Resilient',
-    fibreBales: 'Natural Raw Salt Impermeable',
+    growBags: 'Low EC (< 0.5 mS/cm) & Buffered',
+    cocoPots: 'Natural Organic Low Salt',
+    huskChips: 'Low EC (< 0.5 mS/cm) Washed',
     coirPeat: 'Low EC (< 0.5 mS/cm) & High EC',
-  },
-  {
-    param: 'Monthly Production Yield',
-    coirRope: '400+ Metric Tonnes / Month',
-    fibreBales: 'Continuous Decortication Capacity',
-    coirPeat: '700+ Metric Tonnes / Month',
+    fibreBales: 'Natural Raw Salt Impermeable',
+    coirRope: 'Natural Raw Salt Resilient',
   },
   {
     param: 'Biodegradability & Eco Safety',
-    coirRope: '100% Biodegradable & Chemical-Free',
-    fibreBales: '100% Organic Biodegradable',
+    growBags: '100% Organic Soil-Less Substrate',
+    cocoPots: '100% Biodegradable in Soil',
+    huskChips: '100% Natural Organic Chips',
     coirPeat: '100% Organic Soil Conditioner',
+    fibreBales: '100% Organic Biodegradable',
+    coirRope: '100% Biodegradable & Chemical-Free',
   },
 ]
 
 export function ProductsPage() {
+  const { brand, t } = useLanguage()
   const [searchQuery, setSearchQuery] = useState('')
   const [showSpecsTable, setShowSpecsTable] = useState(false)
   const [activeModalProduct, setActiveModalProduct] = useState(null)
@@ -139,15 +153,15 @@ export function ProductsPage() {
           <div className="products-hero-left" data-aos="fade-right">
             <span className="products-hero-badge">
               <Leaf className="w-3.5 h-3.5 text-accent" />
-              <span>Factory Direct Export · ISO Certified</span>
+              <span>{t.hero.chipIso} · {t.hero.chipEco}</span>
             </span>
 
             <h1 className="products-hero-title">
-              Coco & Coir Products for <em>Growers, Industry & Civil Projects.</em>
+              {brand.name} <em>{t.products.titleEmphasis}</em>
             </h1>
 
             <p className="products-hero-desc">
-              Thaiagam Group manufactures and exports high-tensile curled coir rope, long bristle fiber bales, and washed low-EC coco peat blocks from Tamil Nadu, India since 1972.
+              {brand.leadDesc}
             </p>
 
             {/* Quick Stat Badges */}
@@ -176,12 +190,12 @@ export function ProductsPage() {
                 onClick={scrollToCatalog}
                 className="button button-light"
               >
-                <span>Browse Product Catalog</span>
+                <span>{t.statement.btnCatalog}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
               <Link to="/contact" className="button button-outline">
                 <Mail className="w-4 h-4" />
-                <span>Request Export Pricing</span>
+                <span>{t.statement.btnContact}</span>
               </Link>
             </div>
           </div>
@@ -224,13 +238,13 @@ export function ProductsPage() {
         <div className="catalog-header-bar" data-aos="fade-up">
           <div>
             <span className="liquid-badge">
-              <PackageCheck className="w-3.5 h-3.5" /> Export Catalog
+              <PackageCheck className="w-3.5 h-3.5" /> {t.products.badge}
             </span>
             <h2 className="section-title">
-              Our Three Core <em>Coir Product Lines.</em>
+              {t.products.title} <em>{t.products.titleEmphasis}</em>
             </h2>
             <p className="section-subtitle mt-2">
-              Supplying 400-700 MT per month to India’s leading companies and global international markets.
+              {t.products.subtitle}
             </p>
           </div>
 
@@ -381,7 +395,7 @@ export function ProductsPage() {
               <span>
                 {showSpecsTable
                   ? 'Hide Master Laboratory Specifications Matrix'
-                  : 'Compare All 3 Core Products in Master Laboratory Specifications Matrix'}
+                  : 'Compare All 6 Export Products in Master Laboratory Specifications Matrix'}
               </span>
             </div>
             <ChevronDown className={`w-5 h-5 matrix-chevron ${showSpecsTable ? 'is-rotated' : ''}`} />
@@ -394,18 +408,24 @@ export function ProductsPage() {
                   <thead>
                     <tr>
                       <th>Technical Parameter</th>
-                      <th>Curled Coir Rope</th>
+                      <th>Grow Bags</th>
+                      <th>Coco Pots</th>
+                      <th>5kg Husk Chips</th>
+                      <th>Coco Peat (5Kg)</th>
                       <th>Coir Fibre Bales</th>
-                      <th>Coco Peat (5Kg Blocks)</th>
+                      <th>Curled Coir Rope</th>
                     </tr>
                   </thead>
                   <tbody>
                     {technicalSpecsMatrix.map((row, rIdx) => (
                       <tr key={rIdx}>
                         <td className="td-param">{row.param}</td>
-                        <td>{row.coirRope}</td>
-                        <td>{row.fibreBales}</td>
+                        <td>{row.growBags}</td>
+                        <td>{row.cocoPots}</td>
+                        <td>{row.huskChips}</td>
                         <td>{row.coirPeat}</td>
+                        <td>{row.fibreBales}</td>
+                        <td>{row.coirRope}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -435,7 +455,7 @@ export function ProductsPage() {
               Need Custom Dimensions, Density, or Private Label Packaging?
             </h2>
             <p className="closing-banner-desc">
-              We engineer tailored moisture profiles, custom coil diameters, branded grow bags, and customized bale dimensions for international distributors and large-scale industrial consumers.
+              We engineer tailored moisture profiles, custom coil diameters, branded grow bags, and customized bale dimensions for international distributors and large-scale industrial consumers across China, Europe, Australia, Turkey & worldwide.
             </p>
             <div className="closing-banner-actions">
               <Link to="/contact" className="button button-light">

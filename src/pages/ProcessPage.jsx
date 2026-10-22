@@ -14,6 +14,7 @@ import {
   FileCheck,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { useLanguage } from '../components/LanguageTranslator'
 
 const qualityCheckpoints = [
   {
@@ -43,6 +44,8 @@ const qualityCheckpoints = [
 ]
 
 export function ProcessPage() {
+  const { brand, t } = useLanguage()
+
   return (
     <div className="page-process-view">
       {/* 1. Process Page Hero Banner */}
@@ -50,13 +53,13 @@ export function ProcessPage() {
         <div className="process-hero-glow" aria-hidden="true" />
         <div className="process-hero-container" data-aos="fade-up">
           <span className="liquid-badge">
-            <Sparkles className="w-3.5 h-3.5" /> Engineering & Manufacturing
+            <Sparkles className="w-3.5 h-3.5" /> {t.process.badge}
           </span>
           <h1 className="process-hero-heading">
-            Sustainable Coir Processing from <em>Husk to Global Export.</em>
+            {t.process.title} <em>{t.process.titleEmphasis}</em>
           </h1>
           <p className="process-hero-sub">
-            From hand-selected coconut plantations in Tamil Nadu through mechanized decortication, solar curing, and hydraulic export compression—discover our four-decade perfected zero-waste processing methodology.
+            {t.process.subtitle}
           </p>
 
           <div className="process-hero-stats-row">
@@ -141,7 +144,7 @@ export function ProcessPage() {
               </li>
               <li>
                 <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
-                <span>Certified export container loading dock with fumigation compliance</span>
+                <span>ISO Certified & 1 Star Category export container loading docks with fumigation compliance</span>
               </li>
             </ul>
 

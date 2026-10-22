@@ -4,8 +4,11 @@ import { ProofSection } from '../components/ProofSection'
 import { contactInfo } from '../content'
 import { Sparkles, CheckCircle2, Factory, Award, Users, Globe, ArrowRight, ShieldCheck } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { useLanguage } from '../components/LanguageTranslator'
 
 export function AboutPage() {
+  const { brand, t } = useLanguage()
+
   return (
     <div className="page-about-view">
       {/* 1. About Hero Section */}
@@ -13,13 +16,13 @@ export function AboutPage() {
         <div className="about-hero-backdrop-glow" aria-hidden="true" />
         <div className="about-hero-container" data-aos="fade-up">
           <span className="liquid-badge">
-            <Sparkles className="w-3.5 h-3.5" /> Established 1972
+            <Sparkles className="w-3.5 h-3.5" /> {t.hero.sinceBadge}
           </span>
           <h1 className="about-hero-title">
-            Over Four Decades of <em>Coir Heritage & Trust.</em>
+            {brand.name} <em>{t.about.titleEmphasis}</em>
           </h1>
           <p className="about-hero-desc">
-            Founded in 1972 under the visionary stewardship of {contactInfo.leaders}, Thaiagam Group of Companies has grown from an artisanal coir mill in Dindigul, Tamil Nadu into one of India’s most trusted global exporters of natural coir fiber, curled rope, and coco peat.
+            {brand.leadDesc}
           </p>
         </div>
       </section>
@@ -39,27 +42,21 @@ export function AboutPage() {
             </p>
 
             <ul className="statement-key-points">
-              <li>
-                <CheckCircle2 className="w-4 h-4 text-accent" />
-                <span>Four dedicated processing facilities covering all stages of coir extraction</span>
-              </li>
-              <li>
-                <CheckCircle2 className="w-4 h-4 text-accent" />
-                <span>Leader in supplying India’s premier spring and rubberized mattress brands</span>
-              </li>
-              <li>
-                <CheckCircle2 className="w-4 h-4 text-accent" />
-                <span>Export footprint spanning European countries, Australia, China, and beyond</span>
-              </li>
+              {t.statement.points.map((pt, idx) => (
+                <li key={idx}>
+                  <CheckCircle2 className="w-4 h-4 text-accent" />
+                  <span>{pt}</span>
+                </li>
+              ))}
             </ul>
 
             <div className="statement-action-wrap">
               <Link to="/contact" className="button button-accent">
-                <span>Inquire with Leadership</span>
+                <span>{t.statement.btnContact}</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link to="/products" className="statement-secondary-link">
-                <span>Browse Products</span>
+                <span>{t.statement.btnCatalog}</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -88,9 +85,10 @@ export function AboutPage() {
             Serving agricultural distributors, greenhouse operators, and mattress manufacturers across {contactInfo.exportMarkets}.
           </p>
           <div className="export-tags-wrap">
-            <span className="export-tag">European Union</span>
-            <span className="export-tag">Australia</span>
             <span className="export-tag">China</span>
+            <span className="export-tag">Europe</span>
+            <span className="export-tag">Australia</span>
+            <span className="export-tag">Turkey</span>
             <span className="export-tag">United Kingdom</span>
             <span className="export-tag">Middle East</span>
             <span className="export-tag">North America</span>

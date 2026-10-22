@@ -6,6 +6,8 @@ import { Star, Quote, MessageSquare, Globe2, CheckCircle2 } from 'lucide-react'
 const flagMap = {
   China: '🇨🇳',
   Europe: '🇪🇺',
+  Australia: '🇦🇺',
+  Turkey: '🇹🇷',
   Rajasthan: '🇮🇳',
   Chennai: '🇮🇳',
 }

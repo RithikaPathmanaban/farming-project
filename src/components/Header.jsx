@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { navigationItems, contactInfo } from '../content'
 import { Leaf, ArrowUpRight, Menu, X, Phone, Palette } from 'lucide-react'
 import { Link, NavLink } from 'react-router-dom'
+import { useLanguage } from './LanguageTranslator'
 
 export function Header({
   menuOpen,
@@ -10,6 +11,15 @@ export function Header({
   onOpenThemeModal,
 }) {
   const [scrolled, setScrolled] = useState(false)
+  const { brand, t } = useLanguage()
+
+  const navLabels = {
+    '/': t.nav.home,
+    '/products': t.nav.products,
+    '/process': t.nav.process,
+    '/about': t.nav.about,
+    '/contact': t.nav.contact,
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 28)
@@ -25,20 +35,20 @@ export function Header({
           className="liquid-brand"
           to="/"
           onClick={onNavigate}
-          aria-label="Thaiagam Group of Companies home"
+          aria-label={`${brand.fullName} home`}
         >
           <span className="brand-mark-liquid">
             <Leaf className="brand-leaf-icon" />
           </span>
-          <div className="brand-text-col">
-            <span className="brand-name">THAIAGAM</span>
-            <span className="brand-sub">GROUP OF COMPANIES · SINCE 1972</span>
+          <div className="brand-text-col notranslate" translate="no">
+            <span className="brand-name notranslate" translate="no">{brand.brandName}</span>
+            <span className="brand-sub notranslate" translate="no">{brand.brandSub}</span>
           </div>
         </Link>
 
         <div className="header-trust-chip">
           <span className="trust-dot" />
-          <span>100% Eco-Friendly</span>
+          <span>{t.nav.ecoTag}</span>
         </div>
 
         <nav
@@ -55,7 +65,7 @@ export function Header({
                 `liquid-nav-item ${isActive ? 'is-active' : ''}`
               }
             >
-              <span className="liquid-nav-text">{item.label}</span>
+              <span className="liquid-nav-text">{navLabels[item.path] || item.label}</span>
             </NavLink>
           ))}
           <div className="mobile-drawer-actions">
@@ -68,7 +78,7 @@ export function Header({
               }}
             >
               <Palette className="w-4 h-4 text-accent" />
-              <span>Theme Studio</span>
+              <span>{t.nav.themeStudio}</span>
               <span className="theme-btn-dot" />
             </button>
             <a
@@ -84,7 +94,7 @@ export function Header({
               to="/contact"
               onClick={onNavigate}
             >
-              <span>Contact Us</span>
+              <span>{t.nav.contactUs}</span>
               <ArrowUpRight className="w-4 h-4" />
             </Link>
           </div>
@@ -94,15 +104,15 @@ export function Header({
           <a
             href={`tel:${contactInfo.phones[0]}`}
             className="header-phone-link"
-            title={`Call Thaiagam: +91 ${contactInfo.phones[0]}`}
-            aria-label={`Call Thaiagam: +91 ${contactInfo.phones[0]}`}
+            title={`Call ${brand.shortName}: +91 ${contactInfo.phones[0]}`}
+            aria-label={`Call ${brand.shortName}: +91 ${contactInfo.phones[0]}`}
           >
             <Phone className="w-3.5 h-3.5 text-accent" />
             <span className="header-phone-text">{contactInfo.phones[0]}</span>
           </a>
 
           <Link className="liquid-cta-btn" to="/contact">
-            <span>Contact Us</span>
+            <span>{t.nav.contactUs}</span>
             <ArrowUpRight className="w-4 h-4" />
           </Link>
 

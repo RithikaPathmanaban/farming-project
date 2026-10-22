@@ -1,13 +1,17 @@
 import { useState, useRef, useEffect } from 'react'
 import { animate } from 'animejs'
-import { Leaf, ArrowUpRight, ShieldCheck, Sparkles, ChevronRight, Phone } from 'lucide-react'
+import { Leaf, ArrowUpRight, ShieldCheck, Sparkles, ChevronRight, Phone, Award } from 'lucide-react'
 import { LiquidGlassCard } from './LiquidGlassCard'
 import { heroSlides, contactInfo } from '../content'
 import { Link } from 'react-router-dom'
+import { useLanguage } from './LanguageTranslator'
 
 export function Hero() {
   const [activeSlide, setActiveSlide] = useState(0)
+  const { brand, t } = useLanguage()
   const slidePanelRef = useRef(null)
+
+  const slides = t.hero.slides || heroSlides
 
   useEffect(() => {
     if (slidePanelRef.current) {
@@ -23,12 +27,12 @@ export function Hero() {
   // Auto-rotate hero slider
   useEffect(() => {
     const timer = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % heroSlides.length)
+      setActiveSlide((prev) => (prev + 1) % slides.length)
     }, 6000)
     return () => clearInterval(timer)
-  }, [])
+  }, [slides.length])
 
-  const current = heroSlides[activeSlide]
+  const current = slides[activeSlide] || slides[0]
 
   return (
     <section className="liquid-hero" id="top">
@@ -36,7 +40,7 @@ export function Hero() {
       <div className="hero-bg-media">
         <img
           src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=2000&q=90"
-          alt="Thaiagam Eco-Friendly Coir & Agricultural Growing Media"
+          alt={`${brand.name} Eco-Friendly Coir & Agricultural Growing Media`}
           className="hero-bg-img"
         />
         <div className="hero-liquid-overlay" />
@@ -49,37 +53,40 @@ export function Hero() {
           <div className="hero-badge-row">
             <span className="liquid-badge">
               <Leaf className="w-3.5 h-3.5" />
-              <span>Since 1972 · 40+ Years of Experience</span>
+              <span>{t.hero.sinceBadge}</span>
             </span>
           </div>
 
           <h1 className="hero-title">
-            Thaiagam Group of <em>Companies.</em>
+            <span className="notranslate" translate="no">{brand.name}</span> {t.hero.titlePrefix ? `${t.hero.titlePrefix} ` : ''}<em>{t.hero.titleEmphasis}</em>
           </h1>
 
           <p className="hero-lead">
-            Thaiagam group of companies since 1972 has more than 40 years of experiences in coir products. Our group comprises of four units supplying India’s leading companies and global export markets.
+            {brand.leadDesc}
           </p>
 
           <div className="hero-feature-tags">
             <span className="hero-spec-chip">
-              <Sparkles className="w-3.5 h-3.5 text-accent" /> 100% Eco-Friendly
+              <Award className="w-3.5 h-3.5 text-accent" /> {t.hero.chipIso}
             </span>
             <span className="hero-spec-chip">
-              <ShieldCheck className="w-3.5 h-3.5 text-accent" /> Group of 4 Units
+              <Sparkles className="w-3.5 h-3.5 text-accent" /> {t.hero.chipEco}
             </span>
             <span className="hero-spec-chip">
-              <Leaf className="w-3.5 h-3.5 text-accent" /> 400 - 700 MT / Month Capacity
+              <ShieldCheck className="w-3.5 h-3.5 text-accent" /> {t.hero.chipUnits}
+            </span>
+            <span className="hero-spec-chip">
+              <Leaf className="w-3.5 h-3.5 text-accent" /> {t.hero.chipCapacity}
             </span>
           </div>
 
           <div className="hero-cta-group">
             <Link className="button button-light hero-primary-btn" to="/products">
-              <span>Our Products</span>
+              <span>{t.hero.btnProducts}</span>
               <ArrowUpRight className="w-4 h-4" />
             </Link>
             <Link className="hero-secondary-btn" to="/about">
-              <span>About Us</span>
+              <span>{t.hero.btnAbout}</span>
               <ChevronRight className="w-4 h-4" />
             </Link>
           </div>
@@ -88,7 +95,7 @@ export function Hero() {
           <div className="hero-quick-metrics" data-aos="fade-up" data-aos-delay="200">
             <div className="quick-metric-item">
               <span className="quick-metric-num">1972</span>
-              <span className="quick-metric-lbl">Established Year</span>
+              <span className="quick-metric-lbl">{brand.shortName} Est.</span>
             </div>
             <div className="quick-metric-divider" />
             <div className="quick-metric-item">
@@ -109,10 +116,10 @@ export function Hero() {
             <div className="hero-card-header">
               <div className="hero-card-tag">
                 <ShieldCheck className="w-4 h-4 text-accent" />
-                <span>THAIAGAM CAPABILITIES</span>
+                <span>{t.hero.capabilitiesHeader}</span>
               </div>
               <div className="hero-slider-pills">
-                {heroSlides.map((slide, index) => (
+                {slides.map((slide, index) => (
                   <button
                     key={slide.tag}
                     onClick={() => setActiveSlide(index)}
@@ -130,7 +137,7 @@ export function Hero() {
             </div>
 
             <div className="hero-card-tabs">
-              {heroSlides.map((slide, index) => (
+              {slides.map((slide, index) => (
                 <button
                   key={slide.tag}
                   onClick={() => setActiveSlide(index)}
@@ -157,7 +164,7 @@ export function Hero() {
       {/* Hero Foot Strip */}
       <div className="hero-bottom-strip">
         <Link to="/about" className="strip-scroll-link">
-          <span>Explore Thaiagam</span>
+          <span>{t.hero.exploreBtn}</span>
           <span className="strip-arrow">↓</span>
         </Link>
       </div>

@@ -9,8 +9,11 @@ import { products } from '../content'
 import { LiquidGlassCard } from '../components/LiquidGlassCard'
 import { Sparkles, CheckCircle2, ArrowUpRight, ArrowRight, PackageCheck, Layers } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { useLanguage } from '../components/LanguageTranslator'
 
 export function HomePage() {
+  const { brand, t } = useLanguage()
+
   return (
     <div className="page-home-view">
       {/* 1. Hero Showcase */}
@@ -21,37 +24,36 @@ export function HomePage() {
         <div className="statement-inner">
           <div className="statement-left-col">
             <span className="liquid-badge">
-              <Sparkles className="w-3.5 h-3.5" /> Established Heritage
+              <Sparkles className="w-3.5 h-3.5" /> {t.statement?.badge || 'Established Heritage'}
             </span>
             <h2 className="statement-headline">
-              Thaiagam Group of Companies was <em>Since 1972.</em>
+              <span className="notranslate" translate="no">{brand.name}</span> {t.statement?.headlinePrefix ? `${t.statement.headlinePrefix} ` : ''}<em>{t.statement?.headlineEmphasis || 'Since 1972.'}</em>
             </h2>
             <p className="statement-body">
-              Thaiagam group of companies since 1972 has more than 40 years of experiences in coir products. Our group comprises of four units supplying qualitative coir fibre products, curled coir rope, and coir peat worldwide.
+              {brand.aboutDesc}
             </p>
 
             <ul className="statement-key-points">
-              <li>
-                <CheckCircle2 className="w-4 h-4 text-accent" />
-                <span>40+ years of industrial experience in natural coir products</span>
-              </li>
-              <li>
-                <CheckCircle2 className="w-4 h-4 text-accent" />
-                <span>Comprises four dedicated manufacturing and processing units</span>
-              </li>
-              <li>
-                <CheckCircle2 className="w-4 h-4 text-accent" />
-                <span>Supplying India’s leading mattress manufacturers & global export</span>
-              </li>
+              {(t.statement?.points || [
+                '40+ years of industrial experience in natural coir products',
+                'ISO Certified & 1 Star Category Certificate Status Holder Exporter',
+                'Comprises four dedicated manufacturing and processing units',
+                'Export footprint spanning China, Europe, Australia, Turkey & beyond',
+              ]).map((point, pIdx) => (
+                <li key={pIdx}>
+                  <CheckCircle2 className="w-4 h-4 text-accent" />
+                  <span>{point}</span>
+                </li>
+              ))}
             </ul>
 
             <div className="statement-action-wrap">
               <Link className="button button-accent statement-primary-btn" to="/contact">
-                <span>Contact Now</span>
+                <span>{t.statement?.btnContact || 'Contact Now'}</span>
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
               <Link className="statement-secondary-link" to="/products">
-                <span>Explore Full Catalog</span>
+                <span>{t.statement?.btnCatalog || 'Explore Full Catalog'}</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -68,18 +70,18 @@ export function HomePage() {
         <div className="section-head-wrap" data-aos="fade-up">
           <div>
             <span className="liquid-badge">
-              <PackageCheck className="w-3.5 h-3.5" /> Product Showcase
+              <PackageCheck className="w-3.5 h-3.5" /> {t.statement?.showcaseBadge || 'Product Showcase'}
             </span>
             <h2 className="section-title">
-              Export-Ready <em>Coir Solutions.</em>
+              {t.statement?.showcaseTitle || 'Export-Ready'} <em>{t.statement?.showcaseEmphasis || 'Coir Solutions.'}</em>
             </h2>
           </div>
           <div className="section-head-action">
             <p className="section-subtitle">
-              Engineered for resilience, high aeration, and strict international agricultural and mattress manufacturing standards.
+              {t.statement?.showcaseSubtitle || 'Engineered for resilience, high aeration, and strict international agricultural and mattress manufacturing standards.'}
             </p>
             <Link to="/products" className="view-all-products-link">
-              <span>View Full Catalog</span>
+              <span>{t.statement?.btnCatalog || 'View Full Catalog'}</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -87,7 +89,7 @@ export function HomePage() {
 
         {/* 3-Col Teaser Grid - Clean: ONLY Image and Name */}
         <div className="home-products-minimal-grid" data-aos="fade-up" data-aos-delay="100">
-          {products.map((product) => (
+          {products.map((product, idx) => (
             <Link
               key={product.number}
               to={`/products?target=${product.id}`}
@@ -96,18 +98,18 @@ export function HomePage() {
               <div className="home-minimal-media">
                 <img
                   src={product.image}
-                  alt={product.title}
+                  alt={t.products.items?.[idx]?.title || product.title}
                   className="home-minimal-img"
                   loading="lazy"
                 />
                 <span className="home-minimal-number">#{product.number}</span>
-                <span className="home-minimal-tag">{product.tag}</span>
+                <span className="home-minimal-tag">{t.products.items?.[idx]?.tag || product.tag}</span>
               </div>
 
               <div className="home-minimal-caption">
-                <h3 className="home-minimal-title">{product.title}</h3>
+                <h3 className="home-minimal-title">{t.products.items?.[idx]?.title || product.title}</h3>
                 <span className="home-minimal-link">
-                  <span>Explore Product</span>
+                  <span>{t.statement?.exploreProduct || 'Explore Product'}</span>
                   <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>
               </div>

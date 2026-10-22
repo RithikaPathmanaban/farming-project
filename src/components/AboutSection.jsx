@@ -2,11 +2,13 @@ import { useState } from 'react'
 import { factoryStories } from '../content'
 import { Factory, ArrowUpRight, Maximize2, X, ShieldCheck, ChevronRight, Check } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { useLanguage } from './LanguageTranslator'
 
 export function AboutSection() {
   const [selectedUnitIdx, setSelectedUnitIdx] = useState(0)
   const [activePhotoIdx, setActivePhotoIdx] = useState(0)
   const [activeModalImg, setActiveModalImg] = useState(null)
+  const { brand, t } = useLanguage()
 
   const activeFactory = factoryStories[selectedUnitIdx]
   const currentImages = activeFactory.images
@@ -17,14 +19,14 @@ export function AboutSection() {
       <div className="section-head-wrap" data-aos="fade-up">
         <div>
           <span className="liquid-badge">
-            <Factory className="w-3.5 h-3.5" /> Group Units
+            <Factory className="w-3.5 h-3.5" /> {t.about.badge}
           </span>
           <h2 className="section-title">
-            About <em>Thaiagam Group.</em>
+            {t.about.title} <em>{t.about.titleEmphasis}</em>
           </h2>
         </div>
         <p className="section-subtitle">
-          Established in 1972 with over 40 years of industrial excellence. Our group operates four specialized manufacturing units for curled coir rope, coir fibre bales, and coco peat export.
+          {t.about.subtitle}
         </p>
       </div>
 
@@ -74,7 +76,7 @@ export function AboutSection() {
                 <span>
                   {selectedUnitIdx === 0
                     ? '100% natural, biodegradable raw coconut husks sourced from South India'
-                    : 'Export-grade packaging with direct port dispatch to Europe, China & Australia'}
+                    : 'Export-grade packaging with direct port dispatch to China, Europe, Australia & Turkey'}
                 </span>
               </div>
               <div className="dossier-spec-item">
