@@ -84,8 +84,24 @@ export function ProductsPage() {
   const [showSpecsTable, setShowSpecsTable] = useState(false)
   const [activeModalProduct, setActiveModalProduct] = useState(null)
 
+  // Localize products using current active language
+  const localizedProducts = products.map((prod, idx) => {
+    const loc = t?.products?.items?.find((item) => item.id === prod.id) || t?.products?.items?.[idx]
+    if (!loc) return prod
+    return {
+      ...prod,
+      title: loc.title || prod.title,
+      subtitle: loc.subtitle || prod.subtitle,
+      tag: loc.tag || prod.tag,
+      category: loc.category || prod.category,
+      text: loc.text || prod.text,
+      benefit: loc.benefit || prod.benefit,
+      highlights: loc.highlights || prod.highlights,
+    }
+  })
+
   // Filter products by live search query
-  const filteredProducts = products.filter((p) => {
+  const filteredProducts = localizedProducts.filter((p) => {
     const query = searchQuery.toLowerCase().trim()
     if (!query) return true
 
@@ -168,19 +184,19 @@ export function ProductsPage() {
             <div className="products-hero-stats-strip">
               <div className="hero-stat-pill">
                 <span className="stat-pill-num">400+ MT</span>
-                <span className="stat-pill-lbl">Curled Rope / Mo</span>
+                <span className="stat-pill-lbl">{t.products?.statRope || 'Curled Rope / Mo'}</span>
               </div>
               <div className="hero-stat-pill">
                 <span className="stat-pill-num">700+ MT</span>
-                <span className="stat-pill-lbl">Coco Peat / Mo</span>
+                <span className="stat-pill-lbl">{t.products?.statPeat || 'Coco Peat / Mo'}</span>
               </div>
               <div className="hero-stat-pill">
                 <span className="stat-pill-num">&lt; 0.5 EC</span>
-                <span className="stat-pill-lbl">Low-Salt Substrates</span>
+                <span className="stat-pill-lbl">{t.products?.statSubstrates || 'Low-Salt Substrates'}</span>
               </div>
               <div className="hero-stat-pill">
                 <span className="stat-pill-num">40+ Yrs</span>
-                <span className="stat-pill-lbl">Global Export</span>
+                <span className="stat-pill-lbl">{t.products?.statExport || 'Global Export'}</span>
               </div>
             </div>
 
@@ -202,7 +218,7 @@ export function ProductsPage() {
 
           {/* Right Column: 3 Core Products Preview Showcase */}
           <div className="products-hero-quick-grid trio-grid" data-aos="fade-left" data-aos-delay="100">
-            {products.map((item) => (
+            {localizedProducts.slice(0, 3).map((item) => (
               <div
                 key={item.id}
                 onClick={() => setActiveModalProduct(item)}
@@ -223,7 +239,7 @@ export function ProductsPage() {
                   <div className="quick-product-caption">
                     <h3 className="quick-product-title">{item.title}</h3>
                     <span className="quick-product-hint">
-                      View Specs <ArrowUpRight className="w-3.5 h-3.5 inline ml-0.5" />
+                      {t.products.viewSpecsHint || 'View Specs'} <ArrowUpRight className="w-3.5 h-3.5 inline ml-0.5" />
                     </span>
                   </div>
                 </div>
@@ -253,7 +269,7 @@ export function ProductsPage() {
             <Search className="w-4 h-4 catalog-search-icon" />
             <input
               type="text"
-              placeholder="Search by name, grade, or use..."
+              placeholder={t.products.searchPlaceholder || "Search by name, grade, or use..."}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="catalog-search-input"
@@ -300,7 +316,7 @@ export function ProductsPage() {
                   </div>
                   <div className="comm-media-hover-overlay">
                     <span className="comm-inspect-pill">
-                      <FileText className="w-3.5 h-3.5" /> View Technical Specs
+                      <FileText className="w-3.5 h-3.5" /> {t.products.viewTechSpecs || 'View Technical Specs'}
                     </span>
                   </div>
                 </div>
@@ -335,7 +351,7 @@ export function ProductsPage() {
                       className="button button-accent comm-inquire-btn"
                     >
                       <Mail className="w-4 h-4" />
-                      <span>Inquire Now</span>
+                      <span>{t.products.btnEnquire || 'Inquire Now'}</span>
                     </Link>
 
                     <button
@@ -345,7 +361,7 @@ export function ProductsPage() {
                       title="View Lab Specifications & Applications"
                     >
                       <FileText className="w-4 h-4" />
-                      <span>Full Specs</span>
+                      <span>{t.products.btnSpecs || 'Full Specs'}</span>
                     </button>
 
                     <a
@@ -394,8 +410,8 @@ export function ProductsPage() {
               <Table className="w-5 h-5 text-accent" />
               <span>
                 {showSpecsTable
-                  ? 'Hide Master Laboratory Specifications Matrix'
-                  : 'Compare All 6 Export Products in Master Laboratory Specifications Matrix'}
+                  ? (t.products?.hideMatrix || 'Hide Master Laboratory Specifications Matrix')
+                  : (t.products?.compareMatrix || 'Compare All 6 Export Products in Master Laboratory Specifications Matrix')}
               </span>
             </div>
             <ChevronDown className={`w-5 h-5 matrix-chevron ${showSpecsTable ? 'is-rotated' : ''}`} />
@@ -407,13 +423,13 @@ export function ProductsPage() {
                 <table className="catalog-matrix-table">
                   <thead>
                     <tr>
-                      <th>Technical Parameter</th>
-                      <th>Grow Bags</th>
-                      <th>Coco Pots</th>
-                      <th>5kg Husk Chips</th>
-                      <th>Coco Peat (5Kg)</th>
-                      <th>Coir Fibre Bales</th>
-                      <th>Curled Coir Rope</th>
+                      <th>{t.products?.matrixParam || 'Technical Parameter'}</th>
+                      <th>{localizedProducts[0]?.title || 'Grow Bags'}</th>
+                      <th>{localizedProducts[1]?.title || 'Coco Pots'}</th>
+                      <th>{localizedProducts[2]?.title || '5kg Husk Chips'}</th>
+                      <th>{localizedProducts[3]?.title || 'Coco Peat (5Kg)'}</th>
+                      <th>{localizedProducts[4]?.title || 'Coir Fibre Bales'}</th>
+                      <th>{localizedProducts[5]?.title || 'Curled Coir Rope'}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -434,10 +450,10 @@ export function ProductsPage() {
 
               <div className="matrix-table-footer">
                 <span>
-                  All parameters verified in our Pollachi laboratory before container dispatch.
+                  {t.products?.matrixVerified || 'All parameters verified in our Pollachi laboratory before container dispatch.'}
                 </span>
                 <Link to="/contact" className="matrix-footer-cta">
-                  <span>Request Custom Specification Sheet</span>
+                  <span>{t.products?.matrixRequestSheet || 'Request Custom Specification Sheet'}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
@@ -449,17 +465,17 @@ export function ProductsPage() {
         <div className="products-closing-banner" data-aos="fade-up">
           <div className="closing-banner-inner">
             <span className="liquid-badge">
-              <Sparkles className="w-3.5 h-3.5" /> Custom Manufacturing & Private Labeling
+              <Sparkles className="w-3.5 h-3.5" /> {t.products?.oemBadge || 'Custom Manufacturing & Private Labeling'}
             </span>
             <h2 className="closing-banner-title">
-              Need Custom Dimensions, Density, or Private Label Packaging?
+              {t.products?.oemTitle || 'Need Custom Dimensions, Density, or Private Label Packaging?'}
             </h2>
             <p className="closing-banner-desc">
-              We engineer tailored moisture profiles, custom coil diameters, branded grow bags, and customized bale dimensions for international distributors and large-scale industrial consumers across China, Europe, Australia, Turkey & worldwide.
+              {t.products?.oemDesc || 'We engineer tailored moisture profiles, custom coil diameters, branded grow bags, and customized bale dimensions for international distributors and large-scale industrial consumers across China, Europe, Australia, Turkey & worldwide.'}
             </p>
             <div className="closing-banner-actions">
               <Link to="/contact" className="button button-light">
-                <span>Contact Export Team</span>
+                <span>{t.products?.oemContact || 'Contact Export Team'}</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <a
@@ -471,7 +487,7 @@ export function ProductsPage() {
                 className="button button-whatsapp"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>Instant WhatsApp Quote</span>
+                <span>{t.products?.oemWhatsApp || 'Instant WhatsApp Quote'}</span>
               </a>
             </div>
           </div>
@@ -483,6 +499,7 @@ export function ProductsPage() {
         <ProductSpecsModal
           product={activeModalProduct}
           onClose={() => setActiveModalProduct(null)}
+          t={t}
         />
       )}
     </div>
@@ -492,7 +509,7 @@ export function ProductsPage() {
 // --------------------------------------------------------------------------
 // High-End Product Specifications Modal Component
 // --------------------------------------------------------------------------
-function ProductSpecsModal({ product, onClose }) {
+function ProductSpecsModal({ product, onClose, t }) {
   return (
     <div className="comm-modal-backdrop" onClick={onClose} role="dialog" aria-modal="true">
       <div
@@ -524,15 +541,15 @@ function ProductSpecsModal({ product, onClose }) {
             <div className="comm-modal-media-trust">
               <div className="trust-item">
                 <ShieldCheck className="w-4 h-4 text-sprout" />
-                <span>100% Organic & Biodegradable</span>
+                <span>{t?.products?.trustOrganic || '100% Organic & Biodegradable'}</span>
               </div>
               <div className="trust-item">
                 <CheckCircle2 className="w-4 h-4 text-accent" />
-                <span>Direct Factory Export from Pollachi</span>
+                <span>{t?.products?.trustFactory || 'Direct Factory Export from Pollachi'}</span>
               </div>
               <div className="trust-item">
                 <PackageCheck className="w-4 h-4 text-sprout" />
-                <span>FCL / LCL Container Loading Ready</span>
+                <span>{t?.products?.trustContainer || 'FCL / LCL Container Loading Ready'}</span>
               </div>
             </div>
 
@@ -543,7 +560,7 @@ function ProductSpecsModal({ product, onClose }) {
                 className="button button-accent w-full"
               >
                 <Mail className="w-4 h-4" />
-                <span>Request Commercial Quotation</span>
+                <span>{t?.products?.requestQuote || 'Request Commercial Quotation'}</span>
               </Link>
               <a
                 href={`https://wa.me/91${contactInfo.phones[0]}?text=${encodeURIComponent(
@@ -554,7 +571,7 @@ function ProductSpecsModal({ product, onClose }) {
                 className="button button-whatsapp w-full"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>Chat on WhatsApp</span>
+                <span>{t?.products?.chatWhatsApp || 'Chat on WhatsApp'}</span>
               </a>
             </div>
           </div>
@@ -569,7 +586,7 @@ function ProductSpecsModal({ product, onClose }) {
 
             {/* Overview Narrative */}
             <div className="comm-modal-section">
-              <h4 className="comm-modal-section-title">Product Overview</h4>
+              <h4 className="comm-modal-section-title">{t?.products?.modalOverview || 'Product Overview'}</h4>
               <p className="comm-modal-text">{product.text}</p>
             </div>
 
@@ -578,7 +595,7 @@ function ProductSpecsModal({ product, onClose }) {
               <div className="comm-modal-section">
                 <h4 className="comm-modal-section-title">
                   <ShieldCheck className="w-4 h-4 text-accent inline mr-1.5" />
-                  Factory Laboratory Specifications
+                  {t?.products?.modalSpecs || 'Factory Laboratory Specifications'}
                 </h4>
                 <div className="comm-modal-specs-table">
                   {Object.entries(product.specs).map(([key, val]) => (
@@ -596,7 +613,7 @@ function ProductSpecsModal({ product, onClose }) {
             {/* Key Highlights */}
             {product.highlights && (
               <div className="comm-modal-section">
-                <h4 className="comm-modal-section-title">Performance Highlights</h4>
+                <h4 className="comm-modal-section-title">{t?.products?.modalHighlights || 'Performance Highlights'}</h4>
                 <ul className="comm-modal-checklist">
                   {product.highlights.map((hItem, hIdx) => (
                     <li key={hIdx}>
@@ -611,7 +628,7 @@ function ProductSpecsModal({ product, onClose }) {
             {/* Target Industrial Applications */}
             {product.applications && (
               <div className="comm-modal-section">
-                <h4 className="comm-modal-section-title">Industrial Applications</h4>
+                <h4 className="comm-modal-section-title">{t?.products?.modalApplications || 'Industrial Applications'}</h4>
                 <div className="comm-modal-apps-grid">
                   {product.applications.map((appItem, aIdx) => (
                     <div key={aIdx} className="modal-app-card">

@@ -2,41 +2,56 @@ import { useState, useEffect } from 'react'
 import { services } from '../content'
 import { Truck, Check, Maximize2, X, ArrowRight, ShieldCheck } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { useLanguage } from './LanguageTranslator'
 
 export function ServicesSection() {
   const [activeIdx, setActiveIdx] = useState(0)
   const [activeModalImg, setActiveModalImg] = useState(null)
+  const { t } = useLanguage()
+
+  const localizedServices = services.map((service, index) => {
+    const loc = t.services?.items?.[index]
+    if (!loc) return service
+    return {
+      ...service,
+      title: loc.title || service.title,
+      tag: loc.tag || service.tag,
+      description: loc.description || service.description,
+      stats: loc.stats || service.stats,
+      features: loc.features || service.features,
+    }
+  })
 
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') setActiveModalImg(null)
-      if (e.key === 'ArrowRight') setActiveIdx((prev) => (prev + 1) % services.length)
-      if (e.key === 'ArrowLeft') setActiveIdx((prev) => (prev - 1 + services.length) % services.length)
+      if (e.key === 'ArrowRight') setActiveIdx((prev) => (prev + 1) % localizedServices.length)
+      if (e.key === 'ArrowLeft') setActiveIdx((prev) => (prev - 1 + localizedServices.length) % localizedServices.length)
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [])
+  }, [localizedServices.length])
 
   return (
     <section className="services-section section-pad" id="services">
       <div className="section-head-wrap services-head-row" data-aos="fade-up">
         <div>
           <span className="liquid-badge">
-            <Truck className="w-3.5 h-3.5" /> Operations & Supply
+            <Truck className="w-3.5 h-3.5" /> {t.services?.badge || 'Operations & Supply'}
           </span>
           <h2 className="section-title">
-            Our Operational & <em>Supply Services.</em>
+            {t.services?.title || 'Our Operational &'} <em>{t.services?.titleEmphasis || 'Supply Services.'}</em>
           </h2>
         </div>
         <p className="section-subtitle">
-          Explore our mechanized handling, specialized sun-curing yards, and nationwide logistics infrastructure. Click or hover any facility to inspect operations.
+          {t.services?.subtitle || 'Explore our mechanized handling, specialized sun-curing yards, and nationwide logistics infrastructure. Click or hover any facility to inspect operations.'}
         </p>
       </div>
 
       {/* Interactive Expanding Accordion Deck */}
       <div className="services-expand-deck" data-aos="fade-up" data-aos-delay="100">
-        {services.map((service, index) => {
+        {localizedServices.map((service, index) => {
           const isActive = index === activeIdx
 
           return (
@@ -83,7 +98,7 @@ export function ServicesSection() {
                 <div className="service-expanded-content">
                   <div className="deck-top-row">
                     <div className="deck-badge-group">
-                      <span className="deck-index-badge">Facility 0{index + 1}</span>
+                      <span className="deck-index-badge">{t.services?.facility || 'Facility'} 0{index + 1}</span>
                       <span className="deck-category-badge">{service.tag}</span>
                     </div>
 
@@ -97,7 +112,7 @@ export function ServicesSection() {
                       aria-label={`Enlarge photo of ${service.title}`}
                     >
                       <Maximize2 className="w-4 h-4" />
-                      <span>Inspect Photo</span>
+                      <span>{t.services?.inspectPhoto || 'Inspect Photo'}</span>
                     </button>
                   </div>
 
@@ -117,12 +132,12 @@ export function ServicesSection() {
 
                     <div className="deck-bottom-bar">
                       <div className="deck-stat-chip">
-                        <span className="deck-stat-label">Capacity Metric</span>
+                        <span className="deck-stat-label">{t.services?.capacityMetric || 'Capacity Metric'}</span>
                         <strong className="deck-stat-val">{service.stats}</strong>
                       </div>
 
                       <Link to="/contact" className="deck-inquire-link">
-                        <span>Book Capacity</span>
+                        <span>{t.services?.bookCapacity || 'Book Capacity'}</span>
                         <ArrowRight className="w-4 h-4" />
                       </Link>
                     </div>

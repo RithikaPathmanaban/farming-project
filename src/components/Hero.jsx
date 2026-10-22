@@ -112,50 +112,56 @@ export function Hero() {
 
         {/* Right Column: Liquid Glass Capability Carousel */}
         <div className="hero-interactive-col" data-aos="fade-left" data-aos-duration="900" data-aos-delay="150">
-          <LiquidGlassCard className="hero-capability-card">
-            <div className="hero-card-header">
-              <div className="hero-card-tag">
-                <ShieldCheck className="w-4 h-4 text-accent" />
-                <span>{t.hero.capabilitiesHeader}</span>
+          <div className="hero-card-stage">
+            <LiquidGlassCard className="hero-capability-card">
+              <div className="hero-card-header">
+                <div className="hero-card-tag">
+                  <ShieldCheck className="w-4 h-4 text-accent" />
+                  <span>{t.hero.capabilitiesHeader}</span>
+                </div>
+                <div className="hero-slider-pills">
+                  {slides.map((slide, index) => (
+                    <button
+                      key={slide.tag}
+                      onClick={() => setActiveSlide(index)}
+                      className={`slider-pill-dot ${index === activeSlide ? 'active' : ''}`}
+                      aria-label={`Show ${slide.tag}`}
+                    />
+                  ))}
+                </div>
               </div>
-              <div className="hero-slider-pills">
+
+              <div className="hero-card-body" ref={slidePanelRef}>
+                <span className="cap-tag-pill">{current.tag}</span>
+                <h2 className="cap-heading">{current.title}</h2>
+                <p className="cap-desc">{current.text}</p>
+              </div>
+
+              <div className="hero-card-tabs">
                 {slides.map((slide, index) => (
                   <button
                     key={slide.tag}
                     onClick={() => setActiveSlide(index)}
-                    className={`slider-pill-dot ${index === activeSlide ? 'active' : ''}`}
-                    aria-label={`Show ${slide.tag}`}
-                  />
+                    className={`hero-tab-btn ${index === activeSlide ? 'active' : ''}`}
+                  >
+                    <span className="tab-btn-index">0{index + 1}</span>
+                    <span className="tab-btn-highlight">{slide.tag}</span>
+                  </button>
                 ))}
               </div>
-            </div>
+            </LiquidGlassCard>
 
-            <div className="hero-card-body" ref={slidePanelRef}>
-              <span className="cap-tag-pill">{current.tag}</span>
-              <h2 className="cap-heading">{current.title}</h2>
-              <p className="cap-desc">{current.text}</p>
-            </div>
-
-            <div className="hero-card-tabs">
-              {slides.map((slide, index) => (
-                <button
-                  key={slide.tag}
-                  onClick={() => setActiveSlide(index)}
-                  className={`hero-tab-btn ${index === activeSlide ? 'active' : ''}`}
-                >
-                  <span className="tab-btn-index">0{index + 1}</span>
-                  <span className="tab-btn-highlight">{slide.tag}</span>
-                </button>
-              ))}
-            </div>
-          </LiquidGlassCard>
-
-          {/* Floating Heritage Stamp */}
-          <div className="hero-floating-badge" data-aos="zoom-in" data-aos-delay="400">
-            <div className="badge-ring">
-              <span className="badge-year-label">SINCE</span>
-              <strong className="badge-year-val">1972</strong>
-              <span className="badge-loc">DINDIGUL, INDIA</span>
+            {/* Floating Heritage Stamp */}
+            <div className="hero-floating-badge" data-aos="zoom-in" data-aos-delay="400">
+              <div className="badge-ring">
+                <span className="badge-year-label">
+                  {brand.shortName === '泰亚甘' ? '始于' : brand.shortName === 'ثاياجام' ? 'منذ' : 'SINCE'}
+                </span>
+                <strong className="badge-year-val">1972</strong>
+                <span className="badge-loc">
+                  {brand.shortName === '泰亚甘' ? '印度·丹迪格尔' : brand.shortName === 'ثاياجام' ? 'دنديغول، الهند' : 'DINDIGUL, INDIA'}
+                </span>
+              </div>
             </div>
           </div>
         </div>

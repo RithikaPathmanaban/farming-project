@@ -10,7 +10,18 @@ export function AboutSection() {
   const [activeModalImg, setActiveModalImg] = useState(null)
   const { brand, t } = useLanguage()
 
-  const activeFactory = factoryStories[selectedUnitIdx]
+  const localizedStories = factoryStories.map((factory, index) => {
+    const loc = t?.about?.stories?.[index]
+    if (!loc) return factory
+    return {
+      ...factory,
+      title: loc.title || factory.title,
+      text: loc.text || factory.text,
+      galleryTitle: loc.galleryTitle || factory.galleryTitle,
+    }
+  })
+
+  const activeFactory = localizedStories[selectedUnitIdx] || factoryStories[selectedUnitIdx]
   const currentImages = activeFactory.images
   const featuredImage = currentImages[activePhotoIdx] || currentImages[0]
 
@@ -32,7 +43,7 @@ export function AboutSection() {
 
       {/* Interactive Unit Segmented Switcher */}
       <div className="unit-switch-bar" data-aos="fade-up" data-aos-delay="60">
-        {factoryStories.map((factory, index) => (
+        {localizedStories.map((factory, index) => (
           <button
             key={factory.number}
             type="button"
@@ -55,7 +66,7 @@ export function AboutSection() {
           <div className="console-dossier-col">
             <div className="dossier-meta-badge">
               <ShieldCheck className="w-4 h-4 text-accent" />
-              <span>Dedicated Group Unit 0{selectedUnitIdx + 1}</span>
+              <span>{t.about.dedicatedUnit || 'Dedicated Group Unit'} 0{selectedUnitIdx + 1}</span>
             </div>
 
             <h3 className="dossier-title">{activeFactory.title}</h3>
@@ -63,39 +74,31 @@ export function AboutSection() {
 
             {/* Key Technical Operational Capabilities */}
             <div className="dossier-specs-list">
-              <div className="dossier-spec-item">
-                <Check className="w-4 h-4 text-accent" />
-                <span>
-                  {selectedUnitIdx === 0
-                    ? '400+ MT / Month Curled Coir Rope specifically twisted for mattresses'
-                    : '700+ MT / Month High & Low EC Coco Pith for global agriculture'}
-                </span>
-              </div>
-              <div className="dossier-spec-item">
-                <Check className="w-4 h-4 text-accent" />
-                <span>
-                  {selectedUnitIdx === 0
-                    ? '100% natural, biodegradable raw coconut husks sourced from South India'
-                    : 'Export-grade packaging with direct port dispatch to China, Europe, Australia & Turkey'}
-                </span>
-              </div>
-              <div className="dossier-spec-item">
-                <Check className="w-4 h-4 text-accent" />
-                <span>
-                  {selectedUnitIdx === 0
-                    ? 'Continuous decortication machinery with hydraulic compression balers'
-                    : 'Natural sun-cured open yards ensuring optimal low moisture ratios'}
-                </span>
-              </div>
+              {(t.about?.dossierSpecs?.[selectedUnitIdx] || [
+                selectedUnitIdx === 0
+                  ? '400+ MT / Month Curled Coir Rope specifically twisted for mattresses'
+                  : '700+ MT / Month High & Low EC Coco Pith for global agriculture',
+                selectedUnitIdx === 0
+                  ? '100% natural, biodegradable raw coconut husks sourced from South India'
+                  : 'Export-grade packaging with direct port dispatch to China, Europe, Australia & Turkey',
+                selectedUnitIdx === 0
+                  ? 'Continuous decortication machinery with hydraulic compression balers'
+                  : 'Natural sun-cured open yards ensuring optimal low moisture ratios',
+              ]).map((specText, sIdx) => (
+                <div key={sIdx} className="dossier-spec-item">
+                  <Check className="w-4 h-4 text-accent" />
+                  <span>{specText}</span>
+                </div>
+              ))}
             </div>
 
             <div className="dossier-cta-row">
               <Link to="/contact" className="button button-light">
-                <span>Inquire With Unit 0{selectedUnitIdx + 1}</span>
+                <span>{t.about?.inquireUnit || 'Inquire With Unit'} 0{selectedUnitIdx + 1}</span>
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
               <span className="dossier-photo-counter">
-                Photo {activePhotoIdx + 1} of {currentImages.length}
+                {t.about?.photoLabel || 'Photo'} {activePhotoIdx + 1} {t.about?.photoOf || 'of'} {currentImages.length}
               </span>
             </div>
           </div>
@@ -121,10 +124,10 @@ export function AboutSection() {
                 className="console-featured-img"
               />
               <div className="console-photo-glass-overlay">
-                <span className="console-live-tag">Live Facility Inspection</span>
+                <span className="console-live-tag">{t.about?.liveTag || 'Live Facility Inspection'}</span>
                 <div className="console-zoom-pill">
                   <Maximize2 className="w-4 h-4" />
-                  <span>Enlarge HD View</span>
+                  <span>{t.about?.zoomHint || 'Enlarge HD View'}</span>
                 </div>
               </div>
             </div>

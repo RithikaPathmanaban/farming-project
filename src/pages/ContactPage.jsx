@@ -32,7 +32,7 @@ export function ContactPage() {
                 <Phone className="w-5 h-5 text-accent" />
               </div>
               <div className="quick-strip-text">
-                <span className="quick-strip-label">Direct Phone</span>
+                <span className="quick-strip-label">{t.contact.directPhone || 'Direct Phone'}</span>
                 <span className="quick-strip-val">+91 {contactInfo.phones[0]}</span>
               </div>
             </a>
@@ -47,8 +47,8 @@ export function ContactPage() {
                 <MessageCircle className="w-5 h-5 text-sprout" />
               </div>
               <div className="quick-strip-text">
-                <span className="quick-strip-label">WhatsApp Sales</span>
-                <span className="quick-strip-val">Instant Chat Online</span>
+                <span className="quick-strip-label">{t.contact.whatsappSales || 'WhatsApp Sales'}</span>
+                <span className="quick-strip-val">{t.contact.instantChat || 'Instant Chat Online'}</span>
               </div>
             </a>
 
@@ -60,7 +60,7 @@ export function ContactPage() {
                 <Mail className="w-5 h-5 text-accent" />
               </div>
               <div className="quick-strip-text">
-                <span className="quick-strip-label">Official Email</span>
+                <span className="quick-strip-label">{t.contact.emailUs || 'Official Email'}</span>
                 <span className="quick-strip-val">{contactInfo.email}</span>
               </div>
             </a>
@@ -70,7 +70,7 @@ export function ContactPage() {
                 <MapPin className="w-5 h-5 text-gold" />
               </div>
               <div className="quick-strip-text">
-                <span className="quick-strip-label">Headquarters</span>
+                <span className="quick-strip-label">{t.contact.registeredOffice || 'Headquarters'}</span>
                 <span className="quick-strip-val">Dindigul, Tamil Nadu</span>
               </div>
             </div>

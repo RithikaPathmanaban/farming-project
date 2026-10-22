@@ -157,7 +157,7 @@ export function ContactSection() {
                 <MapPin className="w-5 h-5 text-accent" />
               </div>
               <div>
-                <span className="contact-card-lbl">Registered Office & Mill Location</span>
+                <span className="contact-card-lbl">{t.contact.registeredOffice || 'Registered Office & Mill Location'}</span>
                 <address className="contact-card-val" style={{ fontStyle: 'normal', lineHeight: 1.5 }}>
                   {contactInfo.address}
                 </address>
@@ -171,8 +171,8 @@ export function ContactSection() {
               <MessageCircle className="w-5 h-5" />
             </div>
             <div className="whatsapp-callout-info">
-              <strong>Need Immediate Contract Pricing?</strong>
-              <p>Chat directly with our export team via WhatsApp.</p>
+              <strong>{t.contact.needPricing || 'Need Immediate Contract Pricing?'}</strong>
+              <p>{t.contact.chatTeam || 'Chat directly with our export team via WhatsApp.'}</p>
             </div>
             <a
               href={`https://wa.me/91${contactInfo.phones[0]}?text=Hello%20Thaiagam%20Group%2C%20I'd%20like%20to%20request%20a%20commercial%20quote.`}
@@ -180,7 +180,7 @@ export function ContactSection() {
               rel="noopener noreferrer"
               className="whatsapp-callout-btn"
             >
-              <span>Chat Now</span>
+              <span>{t.contact.chatNowBtn || 'Chat Now'}</span>
               <ArrowUpRight className="w-4 h-4" />
             </a>
           </div>
@@ -194,15 +194,14 @@ export function ContactSection() {
                 <div className="success-icon-bubble">
                   <CheckCircle2 className="w-10 h-10 text-accent" />
                 </div>
-                <h3 className="success-heading">Inquiry Transmitted Successfully</h3>
+                <h3 className="success-heading">{t.contact.successHeading || 'Inquiry Transmitted Successfully'}</h3>
                 <p className="success-message">
-                  Thank you, <strong>{submittedData.name || 'Valued Partner'}</strong>. Your commercial inquiry for{' '}
-                  <strong>{submittedData.product || 'Coir Products'}</strong> has been registered directly at our desk.
+                  {t.contact.successText || 'Your commercial inquiry has been registered directly at our desk.'}
                 </p>
 
                 <div className="success-target-email-badge">
                   <Mail className="w-4 h-4 text-accent" />
-                  <span>Delivered to: <strong>{RECIPIENT_EMAIL}</strong></span>
+                  <span>{t.contact?.deliveredTo || 'Delivered to:'} <strong>{RECIPIENT_EMAIL}</strong></span>
                 </div>
 
                 <div className="success-actions-row">
@@ -216,22 +215,22 @@ export function ContactSection() {
                       setSelectedTonnageChip('')
                     }}
                   >
-                    <span>Send Another Inquiry</span>
+                    <span>{t.contact?.btnSendAnother || 'Send Another Inquiry'}</span>
                   </button>
                 </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="rfq-form">
                 <div className="rfq-form-heading">
-                  <h4>Commercial Supply Inquiry</h4>
-                  <span>Direct Factory Quote Desk · Typical response in 2–4 hours</span>
+                  <h4>{t.contact?.formTitle || 'Commercial Supply Inquiry'}</h4>
+                  <span>{t.contact?.formDesc || 'Direct Factory Quote Desk · Typical response in 2–4 hours'}</span>
                 </div>
 
                 {/* 1. Interactive One-Tap Product Selector Chips */}
                 <div className="form-group-chips">
-                  <label className="form-label-chips">Step 1: Select Product Requirement</label>
+                  <label className="form-label-chips">{t.contact?.step1 || 'Step 1: Select Product Requirement'}</label>
                   <div className="product-chips-grid">
-                    {quickProductOptions.map((chip) => (
+                    {(t.contact?.quickProducts || quickProductOptions).map((chip) => (
                       <button
                         key={chip.label}
                         type="button"
@@ -247,16 +246,16 @@ export function ContactSection() {
 
                 {/* 2. Volume Estimator Chips */}
                 <div className="form-group-chips">
-                  <label className="form-label-chips">Step 2: Estimated Monthly Volume</label>
+                  <label className="form-label-chips">{t.contact?.step2 || 'Step 2: Estimated Monthly Volume'}</label>
                   <div className="tonnage-chips-grid">
-                    {tonnageOptions.map((t) => (
+                    {(t.contact?.tonnageOptions || tonnageOptions).map((tonnageItem) => (
                       <button
-                        key={t}
+                        key={tonnageItem}
                         type="button"
-                        className={`tonnage-chip-btn ${selectedTonnageChip === t ? 'is-selected' : ''}`}
-                        onClick={() => handleSelectTonnageChip(t)}
+                        className={`tonnage-chip-btn ${selectedTonnageChip === tonnageItem ? 'is-selected' : ''}`}
+                        onClick={() => handleSelectTonnageChip(tonnageItem)}
                       >
-                        {t}
+                        {tonnageItem}
                       </button>
                     ))}
                   </div>
@@ -265,26 +264,26 @@ export function ContactSection() {
                 {/* 3. Input Fields in Form Rows */}
                 <div className="form-row-duo">
                   <div className="form-field-wrap">
-                    <label htmlFor="contact-name">Your Full Name *</label>
+                    <label htmlFor="contact-name">{t.contact?.nameLabel || 'Your Full Name *'}</label>
                     <input
                       type="text"
                       id="contact-name"
                       name="name"
                       required
-                      placeholder=""
+                      placeholder={t.contact?.namePlaceholder || 'Your Full Name or Company'}
                       value={formData.name}
                       onChange={handleChange}
                     />
                   </div>
 
                   <div className="form-field-wrap">
-                    <label htmlFor="contact-email">Email Address *</label>
+                    <label htmlFor="contact-email">{t.contact?.emailLabel || 'Email Address *'}</label>
                     <input
                       type="email"
                       id="contact-email"
                       name="email"
                       required
-                      placeholder="name@company.com"
+                      placeholder={t.contact?.emailPlaceholder || 'name@company.com'}
                       value={formData.email}
                       onChange={handleChange}
                     />
@@ -293,25 +292,25 @@ export function ContactSection() {
 
                 <div className="form-row-duo">
                   <div className="form-field-wrap">
-                    <label htmlFor="contact-phone">Phone / WhatsApp Number *</label>
+                    <label htmlFor="contact-phone">{t.contact?.phoneLabel || 'Phone / WhatsApp Number *'}</label>
                     <input
                       type="tel"
                       id="contact-phone"
                       name="phone"
                       required
-                      placeholder="+91 00000 00000"
+                      placeholder={t.contact?.phonePlaceholder || '+91 00000 00000'}
                       value={formData.phone}
                       onChange={handleChange}
                     />
                   </div>
 
                   <div className="form-field-wrap">
-                    <label htmlFor="contact-product">Specific Product Focus</label>
+                    <label htmlFor="contact-product">{t.contact?.productLabel || 'Specific Product Focus'}</label>
                     <input
                       type="text"
                       id="contact-product"
                       name="product"
-                      placeholder="e.g. Curled Coir Rope 400 MT"
+                      placeholder={t.contact?.productPlaceholder || 'e.g. Curled Coir Rope 400 MT'}
                       value={formData.product || selectedProductChip}
                       onChange={handleChange}
                     />
@@ -319,12 +318,12 @@ export function ContactSection() {
                 </div>
 
                 <div className="form-field-wrap">
-                  <label htmlFor="contact-message">Contract Message / Specific Requirements</label>
+                  <label htmlFor="contact-message">{t.contact?.messageLabel || 'Contract Message / Specific Requirements'}</label>
                   <textarea
                     id="contact-message"
                     name="message"
                     rows={4}
-                    placeholder="Enter your required details..."
+                    placeholder={t.contact?.messagePlaceholder || 'Enter your required details...'}
                     value={formData.message}
                     onChange={handleChange}
                   />
@@ -338,11 +337,11 @@ export function ContactSection() {
                   {isSubmitting ? (
                     <>
                       <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>Transmitting Contract Details...</span>
+                      <span>{t.contact?.btnSending || 'Transmitting Contract Details...'}</span>
                     </>
                   ) : (
                     <>
-                      <span>Submit Inquiry to Factory Desk</span>
+                      <span>{t.contact?.btnSend || 'Submit Inquiry to Factory Desk'}</span>
                       <Send className="w-4 h-4" />
                     </>
                   )}
@@ -367,7 +366,7 @@ export function ContactSection() {
               rel="noopener noreferrer"
               className="map-direct-link"
             >
-              <span>Open in Google Maps</span>
+              <span>{t.contact?.openMaps || 'Open in Google Maps'}</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
           </div>

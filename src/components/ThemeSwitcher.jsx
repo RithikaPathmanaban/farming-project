@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Palette, Check, Sparkles, X, RotateCcw } from 'lucide-react'
+import { useLanguage } from './LanguageTranslator'
 
 export const THEMES = [
   {
@@ -94,6 +95,8 @@ export function useThemeState() {
 }
 
 export function ThemeModal({ isOpen, onClose, currentTheme, onSelectTheme }) {
+  const { t } = useLanguage()
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose()
@@ -110,7 +113,7 @@ export function ThemeModal({ isOpen, onClose, currentTheme, onSelectTheme }) {
 
   if (!isOpen) return null
 
-  const activeThemeObj = THEMES.find((t) => t.id === currentTheme) || THEMES[0]
+  const activeThemeObj = THEMES.find((item) => item.id === currentTheme) || THEMES[0]
 
   return (
     <div
@@ -127,13 +130,13 @@ export function ThemeModal({ isOpen, onClose, currentTheme, onSelectTheme }) {
         <div className="theme-modal-header">
           <div className="theme-modal-title-group">
             <span className="theme-modal-badge">
-              <Sparkles className="w-3.5 h-3.5" /> Color Themes
+              <Sparkles className="w-3.5 h-3.5" /> {t.theme?.badge || 'Color Themes'}
             </span>
             <h2 id="theme-studio-title" className="theme-modal-title">
-              Select Color Theme
+              {t.theme?.title || 'Select Color Theme'}
             </h2>
             <p className="theme-modal-subtitle">
-              Choose your preferred color combination for the website.
+              {t.theme?.subtitle || 'Choose your preferred color combination for the website.'}
             </p>
           </div>
 
@@ -169,7 +172,7 @@ export function ThemeModal({ isOpen, onClose, currentTheme, onSelectTheme }) {
 
                   {isActive && (
                     <span className="theme-card-active-check">
-                      <Check className="w-3 h-3" /> Active
+                      <Check className="w-3 h-3" /> {t.theme?.active || 'Active'}
                     </span>
                   )}
                 </div>
@@ -188,7 +191,7 @@ export function ThemeModal({ isOpen, onClose, currentTheme, onSelectTheme }) {
 
         <div className="theme-modal-footer">
           <div className="theme-modal-footer-note">
-            Active: <strong>{activeThemeObj.name}</strong> · Saved automatically
+            {t.theme?.active || 'Active'}: <strong>{activeThemeObj.name}</strong> · Saved automatically
           </div>
 
           <button
@@ -197,7 +200,7 @@ export function ThemeModal({ isOpen, onClose, currentTheme, onSelectTheme }) {
             onClick={() => onSelectTheme('white')}
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            <span>Reset to Default (Coco Agri White)</span>
+            <span>{t.theme?.reset || 'Reset to Default (Coco Agri White)'}</span>
           </button>
         </div>
       </div>
@@ -206,7 +209,8 @@ export function ThemeModal({ isOpen, onClose, currentTheme, onSelectTheme }) {
 }
 
 export function FloatingThemeTrigger({ onClick, currentTheme, hidden }) {
-  const activeTheme = THEMES.find((t) => t.id === currentTheme) || THEMES[0]
+  const { t } = useLanguage()
+  const activeTheme = THEMES.find((item) => item.id === currentTheme) || THEMES[0]
 
   return (
     <button
@@ -218,7 +222,7 @@ export function FloatingThemeTrigger({ onClick, currentTheme, hidden }) {
     >
       <Palette className="theme-btn-icon" />
       <span className="theme-btn-dot" />
-      <span className="theme-btn-label">Theme</span>
+      <span className="theme-btn-label">{t.theme?.triggerLabel || 'Theme'}</span>
     </button>
   )
 }

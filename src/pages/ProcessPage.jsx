@@ -43,6 +43,8 @@ const qualityCheckpoints = [
   },
 ]
 
+const cpIcons = [Activity, Droplets, Layers, Cpu]
+
 export function ProcessPage() {
   const { brand, t } = useLanguage()
 
@@ -65,19 +67,19 @@ export function ProcessPage() {
           <div className="process-hero-stats-row">
             <div className="process-hero-stat">
               <span className="stat-num">40+</span>
-              <span className="stat-text">Years Production Mastery</span>
+              <span className="stat-text">{t.process.statsYears || 'Years Production Mastery'}</span>
             </div>
             <div className="process-hero-stat">
               <span className="stat-num">4</span>
-              <span className="stat-text">Specialized Processing Units</span>
+              <span className="stat-text">{t.process.statsUnits || 'Specialized Processing Units'}</span>
             </div>
             <div className="process-hero-stat">
               <span className="stat-num">700 MT</span>
-              <span className="stat-text">Monthly Capacity</span>
+              <span className="stat-text">{t.process.statsCapacity || 'Monthly Capacity'}</span>
             </div>
             <div className="process-hero-stat">
               <span className="stat-num">100%</span>
-              <span className="stat-text">Eco & Biodegradable</span>
+              <span className="stat-text">{t.process.statsEco || 'Eco & Biodegradable'}</span>
             </div>
           </div>
         </div>
@@ -91,20 +93,20 @@ export function ProcessPage() {
         <div className="section-head-wrap">
           <div>
             <span className="liquid-badge">
-              <ShieldCheck className="w-3.5 h-3.5" /> Quality Control
+              <ShieldCheck className="w-3.5 h-3.5" /> {t.process.qaSectionBadge || 'Quality Control'}
             </span>
             <h2 className="section-title">
-              Rigorous Standards for <em>Global Reliability.</em>
+              {t.process.qaSectionTitle || 'Rigorous Standards for'} <em>{t.process.qaSectionEmphasis || 'Global Reliability.'}</em>
             </h2>
           </div>
           <p className="section-subtitle">
-            Our multi-stage verification ensures that every container leaving our Tamil Nadu facility satisfies strict agricultural quarantine and international mattress specifications.
+            {t.process.qaSectionSubtitle || 'Our multi-stage verification ensures that every container leaving our Tamil Nadu facility satisfies strict agricultural quarantine and international mattress specifications.'}
           </p>
         </div>
 
         <div className="qa-checkpoints-grid" data-aos="fade-up">
-          {qualityCheckpoints.map((cp, idx) => {
-            const Icon = cp.icon
+          {(t.process?.checkpoints || qualityCheckpoints).map((cp, idx) => {
+            const Icon = cpIcons[idx] || ShieldCheck
             return (
               <div key={idx} className="qa-checkpoint-card">
                 <div className="qa-card-icon-wrap">
@@ -124,37 +126,35 @@ export function ProcessPage() {
         <div className="machinery-banner-card">
           <div className="machinery-content-side">
             <span className="liquid-badge">
-              <FileCheck className="w-3.5 h-3.5" /> Factory Yard Capabilities
+              <FileCheck className="w-3.5 h-3.5" /> {t.process?.capabilitiesBadge || 'Factory Yard Capabilities'}
             </span>
             <h2 className="machinery-title">
-              Mechanized Scale with <em>Artisanal Sorting.</em>
+              {t.process?.capabilitiesTitle || 'Mechanized Scale with Artisanal Sorting.'}
             </h2>
             <p className="machinery-desc">
-              Operating across four dedicated manufacturing units in Dindigul, Tamil Nadu, we combine high-speed defibering drums, hydraulic tractor loaders, automatic curling machinery, and vast open sun-curing yards.
+              {t.process?.capabilitiesDesc || 'Operating across four dedicated manufacturing units in Dindigul, Tamil Nadu, we combine high-speed defibering drums, hydraulic tractor loaders, automatic curling machinery, and vast open sun-curing yards.'}
             </p>
 
             <ul className="machinery-features">
-              <li>
-                <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
-                <span>Heavy hydraulic loaders handling hundreds of tons of raw husks daily</span>
-              </li>
-              <li>
-                <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
-                <span>High-density 5:1 hydraulic presses for volumetric shipping savings</span>
-              </li>
-              <li>
-                <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
-                <span>ISO Certified & 1 Star Category export container loading docks with fumigation compliance</span>
-              </li>
+              {(t.process?.capPoints || [
+                'Heavy hydraulic loaders handling hundreds of tons of raw husks daily',
+                'High-density 5:1 hydraulic presses for volumetric shipping savings',
+                'ISO Certified & 1 Star Category export container loading docks with fumigation compliance',
+              ]).map((pt, idx) => (
+                <li key={idx}>
+                  <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
+                  <span>{pt}</span>
+                </li>
+              ))}
             </ul>
 
             <div className="machinery-actions">
               <Link to="/contact" className="button button-accent">
-                <span>Book Factory Inspection</span>
+                <span>{t.process?.btnBookInspection || 'Book Factory Inspection'}</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link to="/about" className="button button-outline">
-                <span>View Factory Galleries</span>
+                <span>{t.process?.btnViewGalleries || 'View Factory Galleries'}</span>
               </Link>
             </div>
           </div>

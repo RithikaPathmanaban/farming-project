@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { testimonials } from '../content'
 import { Star, Quote, MessageSquare, Globe2, CheckCircle2 } from 'lucide-react'
+import { useLanguage } from './LanguageTranslator'
 
 // Country flag mapping
 const flagMap = {
@@ -15,30 +16,42 @@ const flagMap = {
 export function TestimonialsSection() {
   const [selectedFilter, setSelectedFilter] = useState('all')
   const [activeSpotlightIdx, setActiveSpotlightIdx] = useState(0)
+  const { t } = useLanguage()
+
+  const localizedTestimonials = testimonials.map((item, idx) => {
+    const loc = t.testimonials?.items?.[idx]
+    if (!loc) return item
+    return {
+      ...item,
+      name: loc.name || item.name,
+      location: loc.location || item.location,
+      quote: loc.quote || item.quote,
+    }
+  })
 
   const filteredTestimonials =
     selectedFilter === 'all'
-      ? testimonials
-      : testimonials.filter((t) => {
-          if (selectedFilter === 'india') return t.location === 'Chennai' || t.location === 'Rajasthan'
-          return t.location.toLowerCase() === selectedFilter.toLowerCase()
+      ? localizedTestimonials
+      : localizedTestimonials.filter((item) => {
+          if (selectedFilter === 'india') return item.location.includes('India') || item.location === 'Chennai' || item.location === 'Rajasthan' || item.location.includes('印度') || item.location.includes('الهند')
+          return item.location.toLowerCase().includes(selectedFilter.toLowerCase())
         })
 
-  const currentItem = filteredTestimonials[activeSpotlightIdx] || filteredTestimonials[0] || testimonials[0]
+  const currentItem = filteredTestimonials[activeSpotlightIdx] || filteredTestimonials[0] || localizedTestimonials[0]
 
   return (
     <section className="testimonials-section section-pad" id="testimonials">
       <div className="section-head-wrap" data-aos="fade-up">
         <div>
           <span className="liquid-badge">
-            <MessageSquare className="w-3.5 h-3.5" /> Client Feedback
+            <MessageSquare className="w-3.5 h-3.5" /> {t.testimonials?.badge || 'Client Feedback'}
           </span>
           <h2 className="section-title">
-            Trusted by Partners from <em>India to the World.</em>
+            {t.testimonials?.title || 'Trusted by Partners from'} <em>{t.testimonials?.titleEmphasis || 'India to the World.'}</em>
           </h2>
         </div>
         <p className="section-subtitle">
-          Delivering 100% eco-friendly coir and coco peat products with a steadfast commitment to discipline, reliability, and material quality.
+          {t.testimonials?.subtitle || 'Delivering 100% eco-friendly coir and coco peat products with a steadfast commitment to discipline, reliability, and material quality.'}
         </p>
       </div>
 
@@ -55,7 +68,7 @@ export function TestimonialsSection() {
           }}
         >
           <Globe2 className="w-3.5 h-3.5" />
-          <span>Global Partners ({testimonials.length})</span>
+          <span>{t.testimonials?.allPartners || 'Global Partners'} ({localizedTestimonials.length})</span>
         </button>
         <button
           type="button"
@@ -67,7 +80,7 @@ export function TestimonialsSection() {
             setActiveSpotlightIdx(0)
           }}
         >
-          <span>🇨🇳 China</span>
+          <span>🇨🇳 {t.testimonials?.china || 'China'}</span>
         </button>
         <button
           type="button"
@@ -79,7 +92,7 @@ export function TestimonialsSection() {
             setActiveSpotlightIdx(0)
           }}
         >
-          <span>🇪🇺 Europe</span>
+          <span>🇪🇺 {t.testimonials?.europe || 'Europe'}</span>
         </button>
         <button
           type="button"
@@ -91,7 +104,7 @@ export function TestimonialsSection() {
             setActiveSpotlightIdx(0)
           }}
         >
-          <span>🇮🇳 India (Domestic)</span>
+          <span>🇮🇳 {t.testimonials?.india || 'India (Domestic)'}</span>
         </button>
       </div>
 
@@ -112,7 +125,7 @@ export function TestimonialsSection() {
               ))}
               <span className="spotlight-verified-badge">
                 <CheckCircle2 className="w-3.5 h-3.5 text-accent" />
-                <span>Verified Buyer Contract</span>
+                <span>{t.testimonials?.verifiedPartner || 'Verified Commercial Buyer'}</span>
               </span>
             </div>
 
@@ -127,7 +140,7 @@ export function TestimonialsSection() {
               <div className="spotlight-author-info">
                 <h4 className="spotlight-author-name">{currentItem.name}</h4>
                 <span className="spotlight-author-country">
-                  {flagMap[currentItem.location] || '🌐'} {currentItem.location} Commercial Client
+                  {flagMap[currentItem.location] || '🌐'} {currentItem.location}
                 </span>
               </div>
             </div>

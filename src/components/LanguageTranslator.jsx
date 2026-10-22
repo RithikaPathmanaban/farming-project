@@ -95,79 +95,24 @@ export function applyGoogleTranslation(langCode) {
   document.documentElement.lang = targetLang.code
   document.documentElement.dir = targetLang.dir
 
+  // Clear any lingering Google Translate cookies so browser extensions or old sessions don't render widget
   const domain = window.location.hostname
   const expirePast = '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
-
-  // Manage Google Translate cookie
-  if (langCode === 'en') {
-    document.cookie = `googtrans${expirePast}`
-    document.cookie = `googtrans${expirePast} domain=${domain};`
-    if (domain.includes('.')) {
-      const parts = domain.split('.')
-      if (parts.length >= 2) {
-        const rootDomain = '.' + parts.slice(-2).join('.')
-        document.cookie = `googtrans${expirePast} domain=${rootDomain};`
-      }
-    }
-  } else {
-    const cookieValue = `/en/${langCode}`
-    document.cookie = `googtrans=${cookieValue}; path=/;`
-    document.cookie = `googtrans=${cookieValue}; path=/; domain=${domain};`
-    if (domain.includes('.')) {
-      const parts = domain.split('.')
-      if (parts.length >= 2) {
-        const rootDomain = '.' + parts.slice(-2).join('.')
-        document.cookie = `googtrans=${cookieValue}; path=/; domain=${rootDomain};`
-      }
+  document.cookie = `googtrans${expirePast}`
+  document.cookie = `googtrans${expirePast} domain=${domain};`
+  if (domain.includes('.')) {
+    const parts = domain.split('.')
+    if (parts.length >= 2) {
+      const rootDomain = '.' + parts.slice(-2).join('.')
+      document.cookie = `googtrans${expirePast} domain=${rootDomain};`
     }
   }
 
-  // Trigger Google Translate dropdown in DOM without page reload!
-  const triggerGoogleSelect = () => {
-    const selectEl = document.querySelector('.goog-te-combo')
-    if (selectEl) {
-      if (langCode === 'en') {
-        // Choose option with value 'en' or first empty option to restore original English
-        const optEn = Array.from(selectEl.options).find((o) => o.value === 'en')
-        if (optEn) {
-          selectEl.value = 'en'
-        } else {
-          selectEl.selectedIndex = 0
-        }
-      } else {
-        selectEl.value = langCode
-      }
-      selectEl.dispatchEvent(new Event('change'))
-
-      // Also trigger banner restore link if present
-      if (langCode === 'en') {
-        try {
-          const banner = document.querySelector('.goog-te-banner-frame')
-          if (banner && banner.contentDocument) {
-            const closeBtn = banner.contentDocument.querySelector(
-              '.goog-close-link, #goog-gt-tt button, a[id=":1.restore"]'
-            )
-            if (closeBtn) closeBtn.click()
-          }
-        } catch {}
-      }
-
-      return true
-    }
-    return false
-  }
-
-  // Try immediately
-  if (!triggerGoogleSelect()) {
-    // If Google Translate has not loaded the combo yet, poll every 50ms (up to 3 seconds)
-    let attempts = 0
-    const pollTimer = setInterval(() => {
-      attempts++
-      if (triggerGoogleSelect() || attempts >= 60) {
-        clearInterval(pollTimer)
-      }
-    }, 50)
-  }
+  // Remove any injected Google Translate badges or floating symbols
+  try {
+    document.querySelectorAll('.VIpgJd-ZVi9od-aZ2wEe-wOHMyf, .VIpgJd-ZVi9od-aZ2wEe-OiiCO, .goog-te-banner-frame, #goog-gt-tt, iframe[id^=":"]')
+      .forEach((el) => el.remove())
+  } catch {}
 }
 
 import { getTranslation } from '../translations'

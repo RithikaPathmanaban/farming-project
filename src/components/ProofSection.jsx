@@ -2,8 +2,16 @@ import { useEffect, useRef, useState } from 'react'
 import { animate } from 'animejs'
 import { proofStats } from '../content'
 import { Award, ShieldCheck, Globe2, Sparkles, CheckCircle2, RotateCw, Check } from 'lucide-react'
+import { useLanguage } from './LanguageTranslator'
 
-const accreditationDetails = [
+const accreditationIconMap = {
+  iso: ShieldCheck,
+  'one-star': Award,
+  eco: CheckCircle2,
+  global: Globe2,
+}
+
+const baseAccreditationDetails = [
   {
     id: 'iso',
     icon: ShieldCheck,
@@ -67,6 +75,30 @@ export function ProofSection() {
   const [hasAnimated, setHasAnimated] = useState(false)
   const counterRefs = useRef([])
   const [flippedCards, setFlippedCards] = useState({})
+  const { brand, t } = useLanguage()
+
+  const localizedStats = proofStats.map((stat, idx) => {
+    const loc = t.proof?.stats?.[idx]
+    if (!loc) return stat
+    return {
+      ...stat,
+      label: loc.label || stat.label,
+      desc: loc.desc || stat.desc,
+    }
+  })
+
+  const localizedAccreditations = baseAccreditationDetails.map((acc, idx) => {
+    const loc = t.proof?.accreditations?.[idx]
+    if (!loc) return acc
+    return {
+      ...acc,
+      title: loc.title || acc.title,
+      subtitle: loc.subtitle || acc.subtitle,
+      frontDesc: loc.frontDesc || acc.frontDesc,
+      backHeader: loc.backHeader || acc.backHeader,
+      backPoints: loc.backPoints || acc.backPoints,
+    }
+  })
 
   const toggleFlip = (id) => {
     setFlippedCards((prev) => ({ ...prev, [id]: !prev[id] }))
@@ -119,7 +151,7 @@ export function ProofSection() {
             <div className="proof-image-gradient" />
             <div className="proof-badge-floating">
               <Sparkles className="w-4 h-4 text-accent" />
-              <span>100% Eco-Friendly & Biodegradable</span>
+              <span>{t.hero?.chipEco || '100% Eco-Friendly & Biodegradable'}</span>
             </div>
           </div>
         </div>
@@ -127,18 +159,18 @@ export function ProofSection() {
         {/* Right Column: Telemetry Readouts */}
         <div className="proof-copy-col" data-aos="fade-left" data-aos-duration="700">
           <span className="liquid-badge">
-            <Award className="w-3.5 h-3.5" /> Group Experience
+            <Award className="w-3.5 h-3.5" /> {t.gauges?.badge || 'Group Experience'}
           </span>
           <h2 className="section-title">
-            Industrial Heritage <em>Since 1972.</em>
+            <span className="notranslate" translate="no">{brand.name}</span> <em>{t.statement?.headlineEmphasis || 'Since 1972.'}</em>
           </h2>
           <p className="proof-lead-text">
-            Thaiagam group of companies has more than 40 years of experience in coir products. Our production units supply more than 400 MT/month curled coir and 700 MT/month coir peat products globally.
+            {brand.leadDesc}
           </p>
 
           {/* Animated Metrics Grid */}
           <div className="proof-counter-grid">
-            {proofStats.map((stat, index) => (
+            {localizedStats.map((stat, index) => (
               <div
                 className="counter-card"
                 key={stat.label}
@@ -171,11 +203,11 @@ export function ProofSection() {
       <div className="certifications-row" data-aos="fade-up" data-aos-delay="150">
         <div className="cert-header">
           <ShieldCheck className="w-5 h-5 text-accent" />
-          <span>VERIFIED ACCREDITATIONS & INDUSTRIAL COMPLIANCE (CLICK CARD TO FLIP ↻)</span>
+          <span>{t.hero?.chipIso || 'ISO & 1 Star Category Certified'} · {t.proof?.accreditations?.[3]?.subtitle || 'China · Europe · Australia · Turkey'}</span>
         </div>
 
         <div className="cert-cards-grid">
-          {accreditationDetails.map((item) => {
+          {localizedAccreditations.map((item) => {
             const Icon = item.icon
             const isFlipped = !!flippedCards[item.id]
 
@@ -203,7 +235,7 @@ export function ProofSection() {
                         <Icon className="w-5 h-5 text-accent" />
                       </div>
                       <span className="flip-badge-hint">
-                        <RotateCw className="w-3.5 h-3.5" /> Tap to Flip
+                        <RotateCw className="w-3.5 h-3.5" /> ↻
                       </span>
                     </div>
 
@@ -227,8 +259,6 @@ export function ProofSection() {
                         </li>
                       ))}
                     </ul>
-
-                    <span className="flip-return-hint">Click again to return</span>
                   </div>
                 </div>
               </div>

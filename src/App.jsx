@@ -16,6 +16,7 @@ import { ProductsPage } from './pages/ProductsPage'
 import { ProcessPage } from './pages/ProcessPage'
 import { AboutPage } from './pages/AboutPage'
 import { ContactPage } from './pages/ContactPage'
+import { applyGoogleTranslation } from './components/LanguageTranslator'
 
 function ScrollToTop() {
   const { pathname } = useLocation()

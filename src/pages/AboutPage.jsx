@@ -32,13 +32,13 @@ export function AboutPage() {
         <div className="statement-inner">
           <div className="statement-left-col">
             <span className="liquid-badge">
-              <Award className="w-3.5 h-3.5" /> Heritage Pillars
+              <Award className="w-3.5 h-3.5" /> {t.about.pillarsBadge || 'Heritage Pillars'}
             </span>
             <h2 className="statement-headline">
-              Crafted by Experience, <em>Driven by Modern Machinery.</em>
+              {t.about.pillarsTitle || 'Crafted by Experience,'} <em>{t.about.pillarsEmphasis || 'Driven by Modern Machinery.'}</em>
             </h2>
             <p className="statement-body">
-              For over 40 years, our philosophy has centered on zero-waste coconut husk upcycling, uncompromised moisture control, and long-term partnerships with leading domestic mattress makers and overseas agricultural importers.
+              {t.about.pillarsBody || 'For over 40 years, our philosophy has centered on zero-waste coconut husk upcycling, uncompromised moisture control, and long-term partnerships with leading domestic mattress makers and overseas agricultural importers.'}
             </p>
 
             <ul className="statement-key-points">
@@ -80,18 +80,22 @@ export function AboutPage() {
           <div className="export-icon-badge">
             <Globe className="w-8 h-8 text-accent" />
           </div>
-          <h2 className="export-headline">Global Distribution & Seaworthy Logistics</h2>
+          <h2 className="export-headline">{t.about.exportTitle || 'Global Distribution & Seaworthy Logistics'}</h2>
           <p className="export-sub">
-            Serving agricultural distributors, greenhouse operators, and mattress manufacturers across {contactInfo.exportMarkets}.
+            {t.about.exportSubtitle || 'Serving agricultural distributors, greenhouse operators, and mattress manufacturers across'} {contactInfo.exportMarkets}.
           </p>
           <div className="export-tags-wrap">
-            <span className="export-tag">China</span>
-            <span className="export-tag">Europe</span>
-            <span className="export-tag">Australia</span>
-            <span className="export-tag">Turkey</span>
-            <span className="export-tag">United Kingdom</span>
-            <span className="export-tag">Middle East</span>
-            <span className="export-tag">North America</span>
+            {(t.about?.exportCountries || [
+              'China',
+              'Europe',
+              'Australia',
+              'Turkey',
+              'United Kingdom',
+              'Middle East',
+              'North America',
+            ]).map((country, cIdx) => (
+              <span key={cIdx} className="export-tag">{country}</span>
+            ))}
           </div>
         </div>
       </section>
