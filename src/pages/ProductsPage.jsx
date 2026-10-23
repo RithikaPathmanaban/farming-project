@@ -82,7 +82,7 @@ export function ProductsPage() {
   const { brand, t } = useLanguage()
   const [searchQuery, setSearchQuery] = useState('')
   const [showSpecsTable, setShowSpecsTable] = useState(false)
-  const [activeModalProduct, setActiveModalProduct] = useState(null)
+  const [activeModalProductId, setActiveModalProductId] = useState(null)
 
   // Localize products using current active language
   const localizedProducts = products.map((prod, idx) => {
@@ -97,8 +97,23 @@ export function ProductsPage() {
       text: loc.text || prod.text,
       benefit: loc.benefit || prod.benefit,
       highlights: loc.highlights || prod.highlights,
+      applications: loc.applications || prod.applications,
+      specs: loc.specs || prod.specs,
     }
   })
+
+  // Live localized modal product based on active language
+  const activeModalProduct = activeModalProductId
+    ? (localizedProducts.find((p) => p.id === activeModalProductId || p.number === activeModalProductId) || null)
+    : null
+
+  const setActiveModalProduct = (item) => {
+    if (!item) {
+      setActiveModalProductId(null)
+    } else {
+      setActiveModalProductId(item.id || item.number || item)
+    }
+  }
 
   // Filter products by live search query
   const filteredProducts = localizedProducts.filter((p) => {
@@ -153,7 +168,7 @@ export function ProductsPage() {
     if (target) {
       const match = products.find((p) => p.id === target || p.number === target)
       if (match) {
-        setActiveModalProduct(match)
+        setActiveModalProduct(match.id)
       }
     }
   }, [])
@@ -601,7 +616,7 @@ function ProductSpecsModal({ product, onClose, t }) {
                   {Object.entries(product.specs).map(([key, val]) => (
                     <div key={key} className="modal-spec-row">
                       <span className="modal-spec-key">
-                        {key.replace(/([A-Z])/g, ' $1').trim()}
+                        {t?.products?.specLabels?.[key] || key.replace(/([A-Z])/g, ' $1').trim()}
                       </span>
                       <span className="modal-spec-val">{val}</span>
                     </div>

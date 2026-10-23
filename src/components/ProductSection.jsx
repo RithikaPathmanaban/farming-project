@@ -101,7 +101,7 @@ function ProductCardItem({ product, index = 0, t }) {
             <p className="product-summary-text">{summaryText}</p>
 
             <ul className="product-bullets">
-              {product.details.map((detail, dIdx) => (
+              {(localized?.highlights || product.details).map((detail, dIdx) => (
                 <li key={dIdx}>
                   <Check className="bullet-check-icon" />
                   <span>{detail}</span>
