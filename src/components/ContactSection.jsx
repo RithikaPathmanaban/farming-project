@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { LiquidGlassCard } from './LiquidGlassCard'
 import { contactInfo } from '../content'
 import { Mail, Phone, MapPin, Send, CheckCircle2, MessageSquare, Loader2, MessageCircle, ArrowUpRight } from 'lucide-react'
@@ -38,6 +38,27 @@ export function ContactSection() {
     product: '',
     message: '',
   })
+
+  // Auto-prefill product if navigated from product cards (/contact?product=...)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const searchParams = new URLSearchParams(window.location.search)
+      const prodParam = searchParams.get('product') || searchParams.get('target')
+      if (prodParam) {
+        const decodedProd = decodeURIComponent(prodParam)
+        const matchedChip = quickProductOptions.find(
+          (c) => c.label.toLowerCase() === decodedProd.toLowerCase() || decodedProd.toLowerCase().includes(c.label.toLowerCase())
+        )
+        const chosenProduct = matchedChip ? matchedChip.label : decodedProd
+        setSelectedProductChip(chosenProduct)
+        setFormData((prev) => ({
+          ...prev,
+          product: chosenProduct,
+          message: prev.message || `Hello Thaiagam team, I am interested in placing an order for ${chosenProduct}. Please provide CIF / FOB price quote and container specifications.`,
+        }))
+      }
+    }
+  }, [])
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -87,24 +108,32 @@ export function ContactSection() {
     })
 
     const payload = new FormData()
-    payload.append('Name', userEnteredName)
-    payload.append('Email', userEnteredEmail)
-    payload.append('Phone', userEnteredPhone)
-    payload.append('Product', userEnteredProduct)
-    payload.append('Message', userEnteredMessage)
-    payload.append('_subject', `New Inquiry from ${userEnteredName} - Thaiagam Coir`)
+    payload.append('Inquiry Type', 'Commercial Product Order / Supply Inquiry')
+    payload.append('Product Ordered', userEnteredProduct)
+    if (selectedTonnageChip) {
+      payload.append('Estimated Monthly Volume', selectedTonnageChip)
+    }
+    payload.append('Customer Name', userEnteredName)
+    payload.append('Customer Email', userEnteredEmail)
+    payload.append('Customer Phone / WhatsApp', userEnteredPhone)
+    payload.append('Order Details & Message', userEnteredMessage)
+    payload.append('_subject', `📦 New Order / Commercial Inquiry: ${userEnteredProduct} - ${userEnteredName}`)
     payload.append('_replyto', userEnteredEmail)
     payload.append('_captcha', 'false')
     payload.append('_template', 'table')
 
     try {
-      await fetch(`https://formsubmit.co/ajax/${RECIPIENT_EMAIL}`, {
+      const res = await fetch(`https://formsubmit.co/ajax/${RECIPIENT_EMAIL}`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
         },
         body: payload,
       })
+      const result = await res.json().catch(() => null)
+      if (result && result.success === 'false' && result.message?.includes('Activation')) {
+        console.info('FormSubmit requires one-time confirmation in recipient inbox:', RECIPIENT_EMAIL)
+      }
     } catch (err) {
       console.warn('FormSubmit background dispatch:', err)
     } finally {

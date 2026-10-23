@@ -128,7 +128,7 @@ function ProductCardItem({ product, index = 0, t }) {
           {/* Action CTA */}
           <Link
             className="product-inquire-btn"
-            to="/contact"
+            to={`/contact?product=${encodeURIComponent(title)}`}
             aria-label={`Inquire about ${title}`}
           >
             <span>{t?.products?.btnEnquire || 'Inquire for Contract'}</span>
