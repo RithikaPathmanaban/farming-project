@@ -8013,6 +8013,76 @@ body::-webkit-scrollbar-track {
   align-items: center;
 }
 
+/* All 5 Products Hero Showcase Collage */
+.products-hero-collage-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.products-hero-collage-card {
+  position: relative;
+  width: 100%;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  aspect-ratio: 16 / 10;
+  max-height: 380px;
+}
+
+.products-hero-collage-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.products-hero-collage-card:hover .products-hero-collage-img {
+  transform: scale(1.03);
+}
+
+.products-hero-collage-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.05) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+.products-hero-collage-tag {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(14, 30, 24, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.55rem 0.95rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-paper);
+}
+
+[data-theme="white"] .products-hero-collage-card {
+  border-color: rgba(21, 71, 52, 0.15);
+  box-shadow: 0 15px 35px -5px rgba(21, 71, 52, 0.12);
+  background: #f7f9f7;
+}
+
+[data-theme="white"] .products-hero-collage-tag {
+  background: rgba(255, 255, 255, 0.9);
+  color: #154734;
+  border-color: rgba(21, 71, 52, 0.18);
+}
+
 /* 3-Core Products Hero Quick Preview Trio */
 .products-hero-quick-grid {
   display: grid;
@@ -10328,6 +10398,326 @@ html[dir="rtl"] .process-quality-assurance-card {
 html[dir="rtl"] .qa-certificates-showcase {
   justify-content: flex-start;
 }
+
+/* ==========================================================================
+   ARABIC RTL BIDIRECTIONAL & TEXT ALIGNMENT SYSTEM
+   Universal Rule: Wherever there is Arabic or English text in Arabic mode,
+   everything must be right-to-left aligned (text-align: right / direction: rtl).
+   ========================================================================== */
+
+/* Universal Document RTL Baseline */
+html[dir="rtl"],
+html[dir="rtl"] body {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Ensure ALL typographical elements in RTL are right-aligned */
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4,
+html[dir="rtl"] h5,
+html[dir="rtl"] h6,
+html[dir="rtl"] p,
+html[dir="rtl"] span:not(.button):not(.liquid-badge):not(.badge),
+html[dir="rtl"] a:not(.button):not(.footer-back-top-btn):not(.liquid-cta-btn):not(.whatsapp-callout-btn),
+html[dir="rtl"] li,
+html[dir="rtl"] address,
+html[dir="rtl"] label {
+  text-align: right;
+}
+
+/* Form controls in RTL: text aligns to the right */
+html[dir="rtl"] input,
+html[dir="rtl"] textarea,
+html[dir="rtl"] select {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Brand text and logo in Header & Footer */
+html[dir="rtl"] .liquid-brand,
+html[dir="rtl"] .brand-text-col,
+html[dir="rtl"] .brand-name,
+html[dir="rtl"] .brand-sub {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+/* FOOTER RTL ALIGNMENT */
+html[dir="rtl"] .footer-brand-col,
+html[dir="rtl"] .footer-brand-desc,
+html[dir="rtl"] .footer-est-tag,
+html[dir="rtl"] .footer-nav-col,
+html[dir="rtl"] .footer-nav-col a,
+html[dir="rtl"] .footer-contact-col,
+html[dir="rtl"] .footer-col-head,
+html[dir="rtl"] .footer-legal {
+  direction: rtl !important;
+  text-align: right !important;
+  align-items: flex-start !important;
+}
+
+html[dir="rtl"] .footer-nav-col a:hover {
+  transform: translateX(-4px);
+}
+
+/* All footer contact rows (Address, Phone, Email) share identical right-aligned flex layout */
+html[dir="rtl"] .footer-contact-link,
+html[dir="rtl"] a.footer-contact-link,
+html[dir="rtl"] div.footer-contact-link,
+html[dir="rtl"] .footer-contact-link a[href^="tel:"] {
+  display: flex !important;
+  flex-direction: row !important;
+  direction: rtl !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  text-align: right !important;
+  gap: 0.65rem !important;
+  width: auto !important;
+}
+
+html[dir="rtl"] .footer-contact-link svg {
+  flex-shrink: 0;
+  margin: 0;
+}
+
+html[dir="rtl"] .footer-contact-link span {
+  text-align: right !important;
+  direction: rtl !important;
+  unicode-bidi: isolate !important;
+}
+
+/* International phone numbers in footer: display +91 properly without reversing while remaining right-aligned */
+html[dir="rtl"] .footer-phone-text,
+html[dir="rtl"] a.footer-contact-link[href^="tel:"] span {
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
+  display: inline-block !important;
+  text-align: right !important;
+}
+
+html[dir="rtl"] .footer-back-top-btn {
+  direction: rtl !important;
+  align-self: flex-start !important;
+}
+
+/* HEADER & MOBILE DRAWER PHONE NUMBERS */
+html[dir="rtl"] .header-phone-link {
+  direction: rtl !important;
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+html[dir="rtl"] .header-phone-text {
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
+  display: inline-block !important;
+}
+
+html[dir="rtl"] .mobile-drawer-phone {
+  direction: rtl !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.6rem !important;
+}
+
+html[dir="rtl"] .mobile-drawer-phone-text {
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
+  display: inline-block !important;
+}
+
+/* CONTACT SECTION & QUICK STRIP CARDS */
+html[dir="rtl"] .contact-card-item,
+html[dir="rtl"] .quick-strip-card {
+  direction: rtl !important;
+  text-align: right !important;
+  justify-content: flex-start !important;
+}
+
+html[dir="rtl"] .contact-card-lbl,
+html[dir="rtl"] .quick-strip-label,
+html[dir="rtl"] .contact-lead-text,
+html[dir="rtl"] .contact-hero-desc,
+html[dir="rtl"] address.contact-card-val,
+html[dir="rtl"] .contact-card-val,
+html[dir="rtl"] .quick-strip-val {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+html[dir="rtl"] .contact-card-phones {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+html[dir="rtl"] .contact-card-phones a,
+html[dir="rtl"] a[href^="tel:"] .quick-strip-val {
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
+  display: inline-block !important;
+  text-align: right !important;
+}
+
+/* PRODUCT MODALS, SPECIFICATION CARDS & HIGHLIGHTS */
+html[dir="rtl"] .comm-product-card,
+html[dir="rtl"] .comm-card-body,
+html[dir="rtl"] .comm-card-title,
+html[dir="rtl"] .comm-card-subtitle,
+html[dir="rtl"] .comm-modal-container,
+html[dir="rtl"] .comm-modal-header,
+html[dir="rtl"] .comm-modal-title,
+html[dir="rtl"] .comm-modal-subtitle,
+html[dir="rtl"] .comm-modal-overview,
+html[dir="rtl"] .comm-modal-section-title,
+html[dir="rtl"] .comm-modal-specs-table,
+html[dir="rtl"] .modal-spec-row {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+html[dir="rtl"] .modal-spec-key,
+html[dir="rtl"] .modal-spec-val,
+html[dir="rtl"] .spec-row-val {
+  text-align: right !important;
+  direction: rtl !important;
+  unicode-bidi: isolate !important;
+}
+
+/* Comparison tables in RTL */
+html[dir="rtl"] .catalog-matrix-table td,
+html[dir="rtl"] .catalog-matrix-table th,
+html[dir="rtl"] .specs-matrix-table td,
+html[dir="rtl"] .specs-matrix-table th,
+html[dir="rtl"] .catalog-matrix-table .td-param,
+html[dir="rtl"] .specs-matrix-table .spec-row-label {
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+/* Numeric stats & counters */
+html[dir="rtl"] .quick-metric-num,
+html[dir="rtl"] .hero-quick-metrics .quick-metric-num,
+html[dir="rtl"] .stat-pill-num,
+html[dir="rtl"] .counter-val-wrap,
+html[dir="rtl"] .proof-number,
+html[dir="rtl"] .stat-counter-number,
+html[dir="rtl"] .process-hero-stat-card .stat-num {
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
+  display: inline-block;
+  font-feature-settings: "tnum";
+}
+
+/* Checkmarks and bullets alignment in RTL */
+html[dir="rtl"] .comm-card-highlights-list li,
+html[dir="rtl"] .comm-modal-checklist li,
+html[dir="rtl"] .product-bullets li,
+html[dir="rtl"] .statement-key-points li,
+html[dir="rtl"] .dossier-specs-list .dossier-spec-item {
+  direction: rtl !important;
+  text-align: right !important;
+  flex-direction: row !important;
+  justify-content: flex-start !important;
+}
+
+html[dir="rtl"] .bullet-check-icon,
+html[dir="rtl"] .comm-card-highlights-list li svg,
+html[dir="rtl"] .comm-modal-checklist li svg,
+html[dir="rtl"] .statement-key-points li svg {
+  margin-left: 0.5rem !important;
+  margin-right: 0 !important;
+  flex-shrink: 0;
+}
+
+/* Search input in catalog for RTL */
+html[dir="rtl"] .catalog-search-input {
+  text-align: right;
+  padding-right: 2.75rem;
+  padding-left: 2.75rem;
+}
+
+html[dir="rtl"] .catalog-search-icon {
+  right: 1rem;
+  left: auto;
+}
+
+html[dir="rtl"] .catalog-search-clear {
+  left: 0.75rem;
+  right: auto;
+}
+
+/* ==========================================================================
+   PRODUCT IMAGE CAROUSEL (Auto-running without navigation, pauses on hover)
+   ========================================================================== */
+.product-carousel-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.product-carousel-single-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.6s var(--ease-smooth);
+}
+
+.product-carousel-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity 0.65s cubic-bezier(0.25, 1, 0.5, 1), transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+.product-carousel-slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.product-carousel-slide.is-inactive {
+  opacity: 0;
+  transform: scale(0.97);
+  z-index: 1;
+}
+
+/* Modal frame specific sizing */
+.comm-modal-img-frame .product-carousel-wrap {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  padding: 1.5rem;
+}
+
+.comm-modal-img-frame .product-carousel-slide {
+  padding: 1.5rem;
+}
+
+.comm-modal-container:hover .product-carousel-slide.is-active {
+  transform: scale(1.02);
+}
+
+
 
 
 

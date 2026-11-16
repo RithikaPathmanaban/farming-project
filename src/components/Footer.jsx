@@ -67,9 +67,9 @@ export function Footer() {
               <MapPin className="w-4 h-4 text-accent" />
               <span>{contactInfo.address}</span>
             </div>
-            <a href={`tel:${contactInfo.phones[0]}`} className="footer-contact-link">
+            <a href={`tel:+91${contactInfo.phones[0]}`} className="footer-contact-link">
               <Phone className="w-4 h-4 text-accent" />
-              <span>+91 {contactInfo.phones.join(' / +91 ')}</span>
+              <span className="footer-phone-text">+91 {contactInfo.phones.join(' / +91 ')}</span>
             </a>
             <a href={`mailto:${contactInfo.email}`} className="footer-contact-link">
               <Mail className="w-4 h-4 text-accent" />

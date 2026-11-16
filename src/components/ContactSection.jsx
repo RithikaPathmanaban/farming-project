@@ -7,12 +7,11 @@ import { useLanguage } from './LanguageTranslator'
 const RECIPIENT_EMAIL = contactInfo.email || 'rahman@thaiagam.com'
 
 const quickProductOptions = [
-  { label: 'Grow Bags', tag: 'Greenhouse' },
-  { label: 'Coco Pots (Grow Pots)', tag: 'Biodegradable' },
+  { label: 'Grow Bags & Slabs', tag: 'Greenhouse' },
   { label: '5kg Husk Chips Block', tag: 'Aeration' },
   { label: 'Coco Peat (5kg Blocks)', tag: 'Low & High EC' },
   { label: 'Coir Fibre Bales', tag: 'Baled Fibre' },
-  { label: 'Curled Coir Rope (MTF)', tag: 'Mattress Grade' },
+  { label: 'Machine twisted fibre (Curled coir rope)', tag: 'Mattress Grade' },
 ]
 
 const tonnageOptions = ['< 50 MT', '100 - 400 MT', '500 - 700 MT (Bulk Contract)']
@@ -170,7 +169,7 @@ export function ContactSection() {
                   {contactInfo.phones.map((phone, idx) => (
                     <span key={phone} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
                       {idx > 0 && <span className="phone-sep">/</span>}
-                      <a href={`tel:${phone}`} className="contact-card-val" style={{ margin: 0 }}>
+                      <a href={`tel:+91${phone}`} className="contact-card-val" style={{ margin: 0 }}>
                         +91 {phone}
                       </a>
                     </span>

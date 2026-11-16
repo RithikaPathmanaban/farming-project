@@ -82,12 +82,12 @@ export function Header({
               <span className="theme-btn-dot" />
             </button>
             <a
-              href={`tel:${contactInfo.phones[0]}`}
+              href={`tel:+91${contactInfo.phones[0]}`}
               className="mobile-drawer-phone"
               onClick={onNavigate}
             >
               <Phone className="w-4 h-4 text-accent" />
-              <span>+91 {contactInfo.phones[0]}</span>
+              <span className="mobile-drawer-phone-text">+91 {contactInfo.phones[0]}</span>
             </a>
             <Link
               className="mobile-cta-btn button button-small"
@@ -102,13 +102,13 @@ export function Header({
 
         <div className="header-actions">
           <a
-            href={`tel:${contactInfo.phones[0]}`}
+            href={`tel:+91${contactInfo.phones[0]}`}
             className="header-phone-link"
             title={`Call ${brand.shortName}: +91 ${contactInfo.phones[0]}`}
             aria-label={`Call ${brand.shortName}: +91 ${contactInfo.phones[0]}`}
           >
             <Phone className="w-3.5 h-3.5 text-accent" />
-            <span className="header-phone-text">{contactInfo.phones[0]}</span>
+            <span className="header-phone-text">+91 {contactInfo.phones[0]}</span>
           </a>
 
           <Link className="liquid-cta-btn" to="/contact">

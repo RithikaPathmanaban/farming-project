@@ -29,6 +29,15 @@ export const SUPPORTED_LANGUAGES = [
     dir: 'rtl',
     desc: 'الترجمة العربية · Arabic translation',
   },
+  {
+    code: 'es',
+    label: 'Spanish',
+    native: 'Español',
+    shortNative: 'Español',
+    flag: '🇪🇸',
+    dir: 'ltr',
+    desc: 'Traducción al español · Spanish translation',
+  },
 ]
 
 export const BRAND_TRANSLATIONS = {
@@ -38,8 +47,8 @@ export const BRAND_TRANSLATIONS = {
     name: 'Thaiagam',
     fullName: 'Thaiagam Group of Companies',
     documentTitle: 'Thaiagam Group of Companies | Qualitative Range of Coir Fibre Products Since 1972',
-    aboutDesc: 'Thaiagam group of companies since 1972 has more than 40 years of experiences in coir products. Our group comprises of four units supplying qualitative coir products.',
-    leadDesc: 'Thaiagam group of companies since 1972 has more than 40 years of experiences in coir products. Our group comprises of four units supplying India’s leading companies and global export markets.',
+    aboutDesc: 'Thaiagam group of companies since 1972 has more than 40 years of experiences in coir products. Our group comprises on supplying qualitative coir products.',
+    leadDesc: 'Thaiagam group of companies since 1972 has more than 40 years of experiences in coir products. Our group comprises on four units supplying India’s leading companies and global export markets.',
   },
   'zh-CN': {
     brandName: '泰亚甘',
@@ -58,6 +67,15 @@ export const BRAND_TRANSLATIONS = {
     documentTitle: 'مجموعة شركات ثاياجام | منتجات ألياف جوز الهند عالية الجودة منذ 1972',
     aboutDesc: 'تتمتع مجموعة شركات ثاياجام بخبرة تمتد لأكثر من 40 عاماً منذ عام 1972 في تصنيع وتصدير منتجات ألياف جوز الهند والبيتموس عالية الجودة عالمياً.',
     leadDesc: 'تمتلك مجموعة شركات ثاياجام منذ عام 1972 أكثر من 40 عاماً من الخبرة في منتجات جوز الهند وتوريد كبرى الشركات والأسواق العالمية.',
+  },
+  es: {
+    brandName: 'THAIAGAM',
+    brandSub: 'GRUPO DE EMPRESAS · DESDE 1972',
+    name: 'Thaiagam',
+    fullName: 'Grupo de Empresas Thaiagam (Thaiagam Group)',
+    documentTitle: 'Grupo de Empresas Thaiagam | Gama Cualitativa de Productos de Fibra de Coco Desde 1972',
+    aboutDesc: 'El grupo de empresas Thaiagam desde 1972 cuenta con más de 40 años de experiencia en productos de coco. Nuestro grupo suministra productos de coco de calidad superior.',
+    leadDesc: 'El grupo de empresas Thaiagam desde 1972 cuenta con más de 40 años de experiencia en productos de coco. Nuestro grupo suministra a empresas líderes de la India y mercados globales de exportación.',
   },
 }
 
@@ -87,7 +105,7 @@ export function getSavedLanguage() {
 export function applyGoogleTranslation(langCode) {
   try {
     localStorage.setItem(STORAGE_LANG_KEY, langCode)
-  } catch {}
+  } catch { }
 
   const targetLang = SUPPORTED_LANGUAGES.find((l) => l.code === langCode) || SUPPORTED_LANGUAGES[0]
 
@@ -112,7 +130,7 @@ export function applyGoogleTranslation(langCode) {
   try {
     document.querySelectorAll('.VIpgJd-ZVi9od-aZ2wEe-wOHMyf, .VIpgJd-ZVi9od-aZ2wEe-OiiCO, .goog-te-banner-frame, #goog-gt-tt, iframe[id^=":"]')
       .forEach((el) => el.remove())
-  } catch {}
+  } catch { }
 }
 
 import { getTranslation } from '../translations'

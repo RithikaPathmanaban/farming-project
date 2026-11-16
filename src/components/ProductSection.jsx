@@ -10,7 +10,6 @@ const productSpecsData = [
   {
     spec: 'Primary Application',
     growBags: 'Commercial Greenhouse Hydroponics',
-    cocoPots: 'Root Training & Nursery Saplings',
     huskChips: 'Orchids, Anthuriums & Aeration',
     coirPeat: 'Horticulture, Potting & Greenhouses',
     fibreBales: 'Needle Felt, Geo-textiles & Mattresses',
@@ -18,9 +17,8 @@ const productSpecsData = [
   },
   {
     spec: 'Material & Texture',
-    growBags: '70/30 or 50/50 Washed Peat/Chips',
-    cocoPots: 'Natural Coir Fibre + Natural Latex',
-    huskChips: '8 – 20 mm Uniform Cut Husk Chips',
+    growBags: 'Customized according to buyer preferences',
+    huskChips: 'Uniform Cut Husk Chips',
     coirPeat: 'Fine Sieved Absorbent Lignin Pith',
     fibreBales: 'Long Natural Bristle Golden Fiber',
     coirRope: 'High-Tensile Machine-Curled Twist',
@@ -28,7 +26,6 @@ const productSpecsData = [
   {
     spec: 'Moisture Tolerance',
     growBags: '< 18% Moisture Controlled',
-    cocoPots: 'Dry Mold-Resistant Shell',
     huskChips: '< 18% Sun Cured Low Moisture',
     coirPeat: '< 20% Export Grade Dry',
     fibreBales: '< 15% Optimal Low Moisture',
@@ -37,7 +34,6 @@ const productSpecsData = [
   {
     spec: 'Packaging & Form Factor',
     growBags: 'UV-Treated Poly Sleeves (100cm)',
-    cocoPots: 'Molded Pots (3" to 12" Sizes)',
     huskChips: '5 Kg Compressed Blocks (~5:1)',
     coirPeat: '5 Kg Compressed Blocks (~70-75L)',
     fibreBales: 'Hydraulic Strapped Bales (120-130 Kg)',
@@ -46,16 +42,14 @@ const productSpecsData = [
   {
     spec: 'Electrical Conductivity (EC)',
     growBags: 'Low EC (< 0.5 mS/cm) & Buffered',
-    cocoPots: 'Natural Organic Low Salt',
     huskChips: 'Low EC (< 0.5 mS/cm) Washed',
-    coirPeat: 'Low EC (< 0.5 mS/cm) & High EC',
+    coirPeat: 'According to requirement',
     fibreBales: 'Natural Raw Salt Resilient',
     coirRope: 'Natural Raw Salt Resilient',
   },
   {
     spec: 'Eco & Bio Compliance',
     growBags: '100% Organic Soil-Less Substrate',
-    cocoPots: '100% Biodegradable in Soil',
     huskChips: '100% Natural Organic Chips',
     coirPeat: '100% Organic Soil Conditioner',
     fibreBales: '100% Biodegradable Organic',
@@ -67,7 +61,6 @@ function ProductCardItem({ product, index = 0, t }) {
   const [isExpanded, setIsExpanded] = useState(false)
   const localized = t?.products?.items?.[index]
   const title = localized?.title || product.title
-  const tag = localized?.tag || product.tag
   const summaryText = localized?.text || product.text
   const benefit = localized?.subtitle || product.benefit
 
@@ -82,7 +75,6 @@ function ProductCardItem({ product, index = 0, t }) {
             className="product-showcase-img"
             loading="lazy"
           />
-          <span className="product-category-pill">{tag}</span>
           <span className="product-idx-pill">#{product.number}</span>
         </div>
 
@@ -188,12 +180,11 @@ export function ProductSection() {
               <thead>
                 <tr>
                   <th className="spec-head-property">Technical Parameter</th>
-                  <th className="spec-head-col">Grow Bags</th>
-                  <th className="spec-head-col">Coco Pots</th>
+                  <th className="spec-head-col">Grow Bags & Slabs</th>
                   <th className="spec-head-col">5kg Husk Chips</th>
                   <th className="spec-head-col">Coco Peat (5kg)</th>
                   <th className="spec-head-col">Coir Fibre Bales</th>
-                  <th className="spec-head-col">Curled Coir Rope</th>
+                  <th className="spec-head-col">{products[4]?.title || 'Machine twisted fibre (Curled coir rope)'}</th>
                 </tr>
               </thead>
               <tbody>
@@ -203,7 +194,6 @@ export function ProductSection() {
                       <strong>{row.spec}</strong>
                     </td>
                     <td className="spec-row-val">{row.growBags}</td>
-                    <td className="spec-row-val">{row.cocoPots}</td>
                     <td className="spec-row-val">{row.huskChips}</td>
                     <td className="spec-row-val">{row.coirPeat}</td>
                     <td className="spec-row-val">{row.fibreBales}</td>

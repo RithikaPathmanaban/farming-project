@@ -25,7 +25,7 @@ export function ContactPage() {
           {/* Quick Direct Communication Strip */}
           <div className="contact-quick-strip">
             <a
-              href={`tel:${contactInfo.phones[0]}`}
+              href={`tel:+91${contactInfo.phones[0]}`}
               className="quick-strip-card"
             >
               <div className="quick-strip-icon">

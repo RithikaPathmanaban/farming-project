@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { products, contactInfo } from '../content'
+import { products, contactInfo, getAsset } from '../content'
 import {
   Leaf,
   ArrowRight,
@@ -20,12 +20,12 @@ import {
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../components/LanguageTranslator'
+import { ProductImageCarousel } from '../components/ProductImageCarousel'
 
 const technicalSpecsMatrix = [
   {
     param: 'Primary Application',
     growBags: 'Commercial Greenhouse Hydroponics',
-    cocoPots: 'Root Training & Nursery Saplings',
     huskChips: 'Orchids, Anthuriums & Aeration',
     coirPeat: 'Horticulture, Greenhouses & Soil Blend',
     fibreBales: 'Needle Felt, Non-Woven & Mattresses',
@@ -33,9 +33,8 @@ const technicalSpecsMatrix = [
   },
   {
     param: 'Material Composition',
-    growBags: '70/30 or 50/50 Washed Peat/Chips',
-    cocoPots: 'Natural Coir Fibre + Natural Latex',
-    huskChips: '8 – 20 mm Uniform Cut Husk Chips',
+    growBags: 'Customized according to buyer preferences',
+    huskChips: 'Uniform Cut Husk Chips',
     coirPeat: 'Sieved Pith Dust & Fine Lignin Sponges',
     fibreBales: 'Long Natural Bristle Coconut Fiber',
     coirRope: '100% Mature Chestnut Coconut Fiber',
@@ -43,7 +42,6 @@ const technicalSpecsMatrix = [
   {
     param: 'Moisture Tolerance',
     growBags: '< 18% Moisture Controlled',
-    cocoPots: 'Dry Mold-Resistant Shell',
     huskChips: '< 18% Sun Cured Low Moisture',
     coirPeat: '< 20% Export Moisture',
     fibreBales: '< 15% Maximum Sun Cured',
@@ -52,7 +50,6 @@ const technicalSpecsMatrix = [
   {
     param: 'Packaging & Form Factor',
     growBags: 'UV-Treated Poly Sleeves (100cm)',
-    cocoPots: 'Molded Pots (3" to 12" Sizes)',
     huskChips: '5 Kg Compressed Blocks (~5:1)',
     coirPeat: '5 Kg Compressed Blocks (~70-75L)',
     fibreBales: 'Hydraulic Strapped Bales (120-130 Kg)',
@@ -61,16 +58,14 @@ const technicalSpecsMatrix = [
   {
     param: 'Electrical Conductivity (EC)',
     growBags: 'Low EC (< 0.5 mS/cm) & Buffered',
-    cocoPots: 'Natural Organic Low Salt',
     huskChips: 'Low EC (< 0.5 mS/cm) Washed',
-    coirPeat: 'Low EC (< 0.5 mS/cm) & High EC',
+    coirPeat: 'According to requirement',
     fibreBales: 'Natural Raw Salt Impermeable',
     coirRope: 'Natural Raw Salt Resilient',
   },
   {
     param: 'Biodegradability & Eco Safety',
     growBags: '100% Organic Soil-Less Substrate',
-    cocoPots: '100% Biodegradable in Soil',
     huskChips: '100% Natural Organic Chips',
     coirPeat: '100% Organic Soil Conditioner',
     fibreBales: '100% Organic Biodegradable',
@@ -231,35 +226,17 @@ export function ProductsPage() {
             </div>
           </div>
 
-          {/* Right Column: 3 Core Products Preview Showcase */}
-          <div className="products-hero-quick-grid trio-grid" data-aos="fade-left" data-aos-delay="100">
-            {localizedProducts.slice(0, 3).map((item) => (
-              <div
-                key={item.id}
-                onClick={() => setActiveModalProduct(item)}
-                className="quick-product-card group"
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => e.key === 'Enter' && setActiveModalProduct(item)}
-              >
-                <div className="quick-product-img-wrap">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="quick-product-img"
-                    loading="lazy"
-                  />
-                  <div className="quick-product-overlay" />
-                  <span className="quick-product-category-tag">{item.tag}</span>
-                  <div className="quick-product-caption">
-                    <h3 className="quick-product-title">{item.title}</h3>
-                    <span className="quick-product-hint">
-                      {t.products.viewSpecsHint || 'View Specs'} <ArrowUpRight className="w-3.5 h-3.5 inline ml-0.5" />
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
+          {/* Right Column: All 5 Export Products Showcase Collage */}
+          <div className="products-hero-collage-wrap" data-aos="fade-left" data-aos-delay="100">
+            <div className="products-hero-collage-card">
+              <img
+                src={getAsset('products/all-products-collage.jpg')}
+                alt="Thaiagam Eco-Friendly Coir Export Portfolio - All 5 Products Collage"
+                className="products-hero-collage-img"
+                loading="lazy"
+              />
+              <div className="products-hero-collage-overlay" />
+            </div>
           </div>
         </div>
       </section>
@@ -327,7 +304,6 @@ export function ProductsPage() {
                   />
                   <div className="comm-card-badges">
                     <span className="comm-idx-badge">#{product.number}</span>
-                    <span className="comm-tag-badge">{product.tag}</span>
                   </div>
                   <div className="comm-media-hover-overlay">
                     <span className="comm-inspect-pill">
@@ -339,7 +315,6 @@ export function ProductsPage() {
                 {/* Card Body Information */}
                 <div className="comm-card-body">
                   <div className="comm-card-header">
-                    <span className="comm-category-label">{product.category}</span>
                     <h3
                       className="comm-card-title"
                       onClick={() => setActiveModalProduct(product)}
@@ -349,7 +324,7 @@ export function ProductsPage() {
                     <p className="comm-card-subtitle">{product.subtitle}</p>
                   </div>
 
-                  {/* 3 Clean Key Highlights (No cluttered boxes, no unclickable tags!) */}
+                  {/* Key Highlights */}
                   <ul className="comm-card-highlights-list">
                     {(product.highlights || product.details).slice(0, 3).map((item, hIdx) => (
                       <li key={hIdx}>
@@ -426,7 +401,7 @@ export function ProductsPage() {
               <span>
                 {showSpecsTable
                   ? (t.products?.hideMatrix || 'Hide Master Laboratory Specifications Matrix')
-                  : (t.products?.compareMatrix || 'Compare All 6 Export Products in Master Laboratory Specifications Matrix')}
+                  : (t.products?.compareMatrix || 'Compare All 5 Export Products in Master Laboratory Specifications Matrix')}
               </span>
             </div>
             <ChevronDown className={`w-5 h-5 matrix-chevron ${showSpecsTable ? 'is-rotated' : ''}`} />
@@ -439,12 +414,11 @@ export function ProductsPage() {
                   <thead>
                     <tr>
                       <th>{t.products?.matrixParam || 'Technical Parameter'}</th>
-                      <th>{localizedProducts[0]?.title || 'Grow Bags'}</th>
-                      <th>{localizedProducts[1]?.title || 'Coco Pots'}</th>
-                      <th>{localizedProducts[2]?.title || '5kg Husk Chips'}</th>
-                      <th>{localizedProducts[3]?.title || 'Coco Peat (5Kg)'}</th>
-                      <th>{localizedProducts[4]?.title || 'Coir Fibre Bales'}</th>
-                      <th>{localizedProducts[5]?.title || 'Curled Coir Rope'}</th>
+                      <th>{localizedProducts[0]?.title || 'Grow Bags & Slabs'}</th>
+                      <th>{localizedProducts[1]?.title || '5kg Husk Chips'}</th>
+                      <th>{localizedProducts[2]?.title || 'Coco Peat (5Kg)'}</th>
+                      <th>{localizedProducts[3]?.title || 'Coir Fibre Bales'}</th>
+                      <th>{localizedProducts[4]?.title || 'Machine twisted fibre (Curled coir rope)'}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -452,7 +426,6 @@ export function ProductsPage() {
                       <tr key={rIdx}>
                         <td className="td-param">{row.param}</td>
                         <td>{row.growBags}</td>
-                        <td>{row.cocoPots}</td>
                         <td>{row.huskChips}</td>
                         <td>{row.coirPeat}</td>
                         <td>{row.fibreBales}</td>
@@ -545,12 +518,13 @@ function ProductSpecsModal({ product, onClose, t }) {
           {/* Left Column: Visual & Quick Commercial Actions */}
           <div className="comm-modal-media-col">
             <div className="comm-modal-img-frame">
-              <img
-                src={product.image}
+              <ProductImageCarousel
+                images={product.images}
+                fallbackImage={product.image}
                 alt={product.title}
-                className="comm-modal-img"
+                imgClassName="comm-modal-img"
+                interval={2200}
               />
-              <span className="comm-modal-tag-pill">{product.tag}</span>
             </div>
 
             <div className="comm-modal-media-trust">
@@ -558,14 +532,14 @@ function ProductSpecsModal({ product, onClose, t }) {
                 <ShieldCheck className="w-4 h-4 text-sprout" />
                 <span>{t?.products?.trustOrganic || '100% Organic & Biodegradable'}</span>
               </div>
-              <div className="trust-item">
+              {/* <div className="trust-item">
                 <CheckCircle2 className="w-4 h-4 text-accent" />
                 <span>{t?.products?.trustFactory || 'Direct Factory Export from Pollachi'}</span>
               </div>
               <div className="trust-item">
                 <PackageCheck className="w-4 h-4 text-sprout" />
                 <span>{t?.products?.trustContainer || 'FCL / LCL Container Loading Ready'}</span>
-              </div>
+              </div> */}
             </div>
 
             <div className="comm-modal-side-actions">
@@ -594,7 +568,6 @@ function ProductSpecsModal({ product, onClose, t }) {
           {/* Right Column: Deep Lab Specifications & Applications */}
           <div className="comm-modal-details-col">
             <div className="comm-modal-header">
-              <span className="comm-modal-cat-pill">{product.category}</span>
               <h2 className="comm-modal-title">{product.title}</h2>
               <p className="comm-modal-subtitle">{product.subtitle}</p>
             </div>

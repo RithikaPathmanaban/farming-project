@@ -19,7 +19,7 @@ export function AboutPage() {
             <Sparkles className="w-3.5 h-3.5" /> {t.hero.sinceBadge}
           </span>
           <h1 className="about-hero-title">
-            {brand.name} <em>{t.about.titleEmphasis}</em>
+            {t.about.title} <em>{t.about.titleEmphasis}</em>
           </h1>
           <p className="about-hero-desc">
             {brand.leadDesc}
