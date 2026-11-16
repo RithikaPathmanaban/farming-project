@@ -176,7 +176,7 @@ export const products = [
     images: [
       getAsset('products/coir-husk-chips-5kg.png'),
       getAsset('products/coir-husk-chips-block.png'),
-      getAsset('products/coir-husk-chips-top.png'),
+      getAsset('products/coir-husk-chips-loose.png'),
     ],
     text: 'Compressed 5kg husk chips block delivering superior aeration and drainage for hydroponic and greenhouse crops. Cut from mature coconut husks into uniform cubical chips that resist compaction and maintain open air pores.',
     longDescription: [
